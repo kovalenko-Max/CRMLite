@@ -3,7 +3,31 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31321.278
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CRMLite.CRMAPI", "CRMLite.LeadAPI\CRMLite.CRMAPI.csproj", "{02550EAE-3C90-49F6-A3EB-D696F0962619}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CRMLite.CRMCore", "CRMLite.LeadCore\CRMLite.CRMCore.csproj", "{0843A195-BCB6-4F73-83BC-CEF94361BCCE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CRMLite.CRMDatabase", "CRMLite.LeadDataBase\CRMLite.CRMDatabase.csproj", "{4E711F2D-7FD9-46A4-88D7-D928993D739B}"
+EndProject
 Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{02550EAE-3C90-49F6-A3EB-D696F0962619}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{02550EAE-3C90-49F6-A3EB-D696F0962619}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{02550EAE-3C90-49F6-A3EB-D696F0962619}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{02550EAE-3C90-49F6-A3EB-D696F0962619}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0843A195-BCB6-4F73-83BC-CEF94361BCCE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0843A195-BCB6-4F73-83BC-CEF94361BCCE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0843A195-BCB6-4F73-83BC-CEF94361BCCE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0843A195-BCB6-4F73-83BC-CEF94361BCCE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4E711F2D-7FD9-46A4-88D7-D928993D739B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4E711F2D-7FD9-46A4-88D7-D928993D739B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4E711F2D-7FD9-46A4-88D7-D928993D739B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4E711F2D-7FD9-46A4-88D7-D928993D739B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
