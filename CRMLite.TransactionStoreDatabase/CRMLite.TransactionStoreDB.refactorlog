@@ -1,0 +1,122 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Operations Version="1.0" xmlns="http://schemas.microsoft.com/sqlserver/dac/Serialization/2012/02">
+  <Operation Name="Rename Refactor" Key="75026742-6cff-49d0-9ff3-cc4e7f60c654" ChangeDateTime="08/03/2021 09:28:23">
+    <Property Name="ElementName" Value="[CRMLite].[Balance].[lead_id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[CRMLite].[Balance]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="LeadID" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="7ec82a79-5b06-466d-bfa2-b023d0820ef7" ChangeDateTime="08/03/2021 09:28:29">
+    <Property Name="ElementName" Value="[CRMLite].[Balance].[wallet_id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[CRMLite].[Balance]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="WalletID" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="98aa8662-dbbc-4b4f-954f-5c672add3369" ChangeDateTime="08/03/2021 09:28:48">
+    <Property Name="ElementName" Value="[CRMLite].[Currency].[id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[CRMLite].[Currency]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="ID" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="9ca64adf-7297-45f8-9488-6773106f6194" ChangeDateTime="08/03/2021 09:28:52">
+    <Property Name="ElementName" Value="[CRMLite].[Currency].[name]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[CRMLite].[Currency]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Name" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="bc78017c-e2a6-48a4-8650-cd6c79cc1001" ChangeDateTime="08/03/2021 09:30:56">
+    <Property Name="ElementName" Value="[CRMLite].[OperationTypes].[type]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[CRMLite].[OperationTypes]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Type" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="1ab9f253-4826-4a0b-a460-fcfa90cfaf28" ChangeDateTime="08/03/2021 09:42:53">
+    <Property Name="ElementName" Value="[CRMLite].[Transactions].[id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[CRMLite].[Transactions]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="ID" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="4a65ce28-038b-4bde-92fb-94ddc97bc475" ChangeDateTime="08/03/2021 09:42:59">
+    <Property Name="ElementName" Value="[CRMLite].[Transactions].[operation_type]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[CRMLite].[Transactions]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Operation_type" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="bb0af9c3-1f5c-4de1-847d-251725261838" ChangeDateTime="08/03/2021 09:43:03">
+    <Property Name="ElementName" Value="[CRMLite].[Transactions].[wallet_from]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[CRMLite].[Transactions]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Wallet_from" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="dc4a90c9-95d8-4d06-8dad-3e1d9c116cfe" ChangeDateTime="08/03/2021 09:43:08">
+    <Property Name="ElementName" Value="[CRMLite].[Transactions].[wallet_to]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[CRMLite].[Transactions]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Wallet_to" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="3322f971-d567-4731-ad87-966ce24e0ffc" ChangeDateTime="08/03/2021 09:43:11">
+    <Property Name="ElementName" Value="[CRMLite].[Transactions].[amount]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[CRMLite].[Transactions]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Amount" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="ffdf81e7-eef4-48b6-9f42-3c1ab24cd5de" ChangeDateTime="08/03/2021 09:43:14">
+    <Property Name="ElementName" Value="[CRMLite].[Transactions].[timestamp]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[CRMLite].[Transactions]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Timestamp" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="b7fa5e28-882b-4055-abc9-ac4a018be395" ChangeDateTime="08/03/2021 09:43:24">
+    <Property Name="ElementName" Value="[CRMLite].[Wallet].[currency]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[CRMLite].[Wallet]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Currency" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="164c3f98-19f6-41e6-a169-516285f75e4c" ChangeDateTime="08/03/2021 09:43:29">
+    <Property Name="ElementName" Value="[CRMLite].[Wallet].[amount]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[CRMLite].[Wallet]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Amount" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="cb31622f-5ee4-4f21-8a58-87c60107a82f" ChangeDateTime="08/03/2021 09:43:31">
+    <Property Name="ElementName" Value="[CRMLite].[Wallet].[id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[CRMLite].[Wallet]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="ID" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="c6d15d1d-5909-4277-bd7b-ae6f9329eebc" ChangeDateTime="08/03/2021 09:47:44">
+    <Property Name="ElementName" Value="[CRMLite].[Transactions].[Wallet_from]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[CRMLite].[Transactions]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="WalletFrom" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="ee587f4e-889c-45a6-9037-f79c21ea1b06" ChangeDateTime="08/03/2021 09:47:49">
+    <Property Name="ElementName" Value="[CRMLite].[Transactions].[Wallet_to]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[CRMLite].[Transactions]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="WalletTo" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="b3ce2fe3-4e9a-4940-947c-b2ea4d20a246" ChangeDateTime="08/03/2021 09:48:04">
+    <Property Name="ElementName" Value="[CRMLite].[Transactions].[Operation_type]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[CRMLite].[Transactions]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="OperationType" />
+  </Operation>
+</Operations>
