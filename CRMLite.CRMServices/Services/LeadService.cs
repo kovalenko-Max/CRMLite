@@ -1,5 +1,5 @@
 ﻿using CRMLite.CRMCore.Entities;
-using CRMLite.CRMDatabase.Interfaces;
+using CRMLite.CRMDAL.Interfaces;
 using CRMLite.CRMServices.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -20,7 +20,7 @@ namespace CRMLite.CRMServices.Services
         {
             try
             {
-                var lead = await _leadRepository.GetLeadByID(Id);
+                var lead = await _leadRepository.GetLeadByIDAsync(Id);
 
                 return lead;
             }
@@ -35,7 +35,7 @@ namespace CRMLite.CRMServices.Services
             try
             {
                 lead.Id = Guid.NewGuid();
-                await _leadRepository.RegistrationLead(lead);
+                await _leadRepository.RegistrationLeadAsync(lead);
 
                 return lead.Id;
             }
@@ -49,7 +49,7 @@ namespace CRMLite.CRMServices.Services
         {
             try
             {
-                await _leadRepository.UpdateLead(lead);
+                await _leadRepository.UpdateLeadAsync(lead);
             }
             catch (Exception)
             {
@@ -62,7 +62,7 @@ namespace CRMLite.CRMServices.Services
         {
             try
             {
-                await _leadRepository.DeleteLeadById(Id);
+                await _leadRepository.DeleteLeadByIdAsync(Id);
             }
             catch (Exception)
             {
@@ -74,7 +74,7 @@ namespace CRMLite.CRMServices.Services
         {
             try
             {
-                return await _leadRepository.GetAllLeads();
+                return await _leadRepository.GetAllLeadsAsync();
             }
             catch (Exception)
             {

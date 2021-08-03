@@ -5,8 +5,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\CRMLite.LeadCore\CRMLite.CRMCore.csproj" />
-    <ProjectReference Include="..\CRMLite.LeadDataBase\CRMLite.CRMDAL.csproj" />
+    <ProjectReference Include="..\CRMLite.CRMCore\CRMLite.CRMCore.csproj" />
+    <ProjectReference Include="..\CRMLite.CRMDAL\CRMLite.CRMDAL.csproj" />
   </ItemGroup>
 
 </Project>
