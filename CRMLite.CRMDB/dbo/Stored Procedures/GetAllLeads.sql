@@ -1,4 +1,11 @@
-﻿CREATE PROCEDURE [CRMLite].[GetAllLeads]
+﻿CREATE PROCEDURE [dbo].[GetAllLeads]
 AS
-SELECT *
+SELECT Leads.Id
+	,Leads.Firstname
+	,Leads.Lastname
+	,Leads.Email
+	,Leads.PasportNumber
+	,Leads.Password
+	,Leads.TIN
+	,Leads.ROLE
 FROM [CRMLite].[Leads]
