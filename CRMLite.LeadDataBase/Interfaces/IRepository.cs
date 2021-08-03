@@ -1,6 +1,6 @@
 ﻿using System.Data;
 
-namespace CRMLite.CRMDatabase.Interfaces
+namespace CRMLite.CRMDAL.Interfaces
 {
     public interface IRepository
     {
