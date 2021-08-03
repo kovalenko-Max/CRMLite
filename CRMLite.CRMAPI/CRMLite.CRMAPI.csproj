@@ -10,7 +10,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\CRMLite.CRMServices\CRMLite.CRMServices.csproj" />
-    <ProjectReference Include="..\CRMLite.LeadCore\CRMLite.CRMCore.csproj" />
   </ItemGroup>
 
 </Project>
