@@ -1,10 +1,12 @@
 ﻿using CRMLite.CRMCore.Entities;
+using Insight.Database;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace CRMLite.CRMDAL.Interfaces
 {
+    [Sql(Schema = "CRMLite")]
     public interface ILeadRepository : IRepository
     {
         Task<Lead> GetLeadByIDAsync(Guid ID);
