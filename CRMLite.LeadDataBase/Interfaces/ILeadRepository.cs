@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace CRMLite.CRMDatabase.Interfaces
+namespace CRMLite.CRMDAL.Interfaces
 {
     public interface ILeadRepository : IRepository
     {
