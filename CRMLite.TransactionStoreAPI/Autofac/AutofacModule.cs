@@ -1,5 +1,7 @@
 ﻿using Autofac;
+using CRMLite.TransactionStoreAPI.Serilog;
 using Microsoft.Extensions.Configuration;
+using Serilog.Events;
 
 namespace CRMLite.TransactionStoreAPI.Autofac
 {
@@ -14,6 +16,14 @@ namespace CRMLite.TransactionStoreAPI.Autofac
 
         protected override void Load(ContainerBuilder builder)
         {
+            InitializeSerilog(builder);
+        }
+
+        private void InitializeSerilog(ContainerBuilder builder)
+        {
+            var serilog = new SerilogInitialize(LogEventLevel.Debug);
+
+            builder.RegisterInstance(serilog).As<SerilogInitialize>();
         }
     }
 }
