@@ -11,9 +11,9 @@ namespace CRMLite.CRMServices.Services
     {
         private ILeadRepository _leadRepository { get; set; }
 
-        public LeadService(ILeadRepository leadRepository)
+        public LeadService(IDBContext dBContext)
         {
-            _leadRepository = leadRepository;
+            _leadRepository = dBContext.LeadRepository;
         }
 
         public async Task<Lead> GetLeadByIdAsync(Guid Id)
