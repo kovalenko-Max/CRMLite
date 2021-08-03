@@ -19,15 +19,15 @@ namespace CRMLite.CRMAPI.Controllers
         }
 
         [HttpGet]
-        public async Task<IEnumerable<Lead>> GetAllLeads()
+        public async Task<IEnumerable<Lead>> GetAllLeadsAsync()
         {
             var response = await _leadService.GetAllLeadsAsync();
 
             return response;
         }
 
-        [HttpGet("{Id}")]
-        public async Task<Lead> GetLeadById(Guid id)
+        [HttpGet("{id}")]
+        public async Task<Lead> GetLeadByIdAsync(Guid id)
         {
             var response = await _leadService.GetLeadByIdAsync(id);
 
@@ -35,7 +35,7 @@ namespace CRMLite.CRMAPI.Controllers
         }
 
         [HttpPost("registration")]
-        public async Task<Guid> RegistrationLead(Lead lead)
+        public async Task<Guid> RegistrationLeadAsync(Lead lead)
         {
             var response = await _leadService.RegistrationLeadAsync(lead);
 
@@ -43,13 +43,13 @@ namespace CRMLite.CRMAPI.Controllers
         }
 
         [HttpPut]
-        public async Task UpdateLead(Lead lead)
+        public async Task UpdateLeadAsync(Lead lead)
         {
             _leadService.UpdateLeadAsync(lead);
         }
 
         [HttpDelete]
-        public async Task DeleteLead(Guid Id)
+        public async Task DeleteLeadAsync(Guid Id)
         {
             _leadService.DeleteLeadByIdAsync(Id);
         }

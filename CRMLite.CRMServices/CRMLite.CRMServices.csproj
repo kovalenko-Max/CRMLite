@@ -5,6 +5,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Autofac" Version="6.2.0" />
+    <PackageReference Include="Autofac.Mvc5" Version="6.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\CRMLite.CRMCore\CRMLite.CRMCore.csproj" />
     <ProjectReference Include="..\CRMLite.CRMDAL\CRMLite.CRMDAL.csproj" />
   </ItemGroup>

@@ -37,9 +37,9 @@ namespace CRMLite.CRMDAL.Repositories
             {
                 return await _leadRepository.GetAllLeadsAsync();
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                throw;
+                throw e;
             }
         }
 
