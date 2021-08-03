@@ -1,5 +1,5 @@
 ﻿using CRMLite.CRMCore.Entities;
-using CRMLite.CRMDatabase.Interfaces;
+using CRMLite.CRMDAL.Interfaces;
 using Insight.Database;
 using System;
 using System.Collections.Generic;

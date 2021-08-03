@@ -11,6 +11,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CRMLite.CRMDAL", "CRMLite.L
 EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "CRMLite.CRMDB", "CRMLite.CRMDB\CRMLite.CRMDB.sqlproj", "{E45B9D9E-95E7-44D2-A493-2A2A865EABFE}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CRMLite.CRMAPI", "CRMLite.CRMAPI\CRMLite.CRMAPI.csproj", "{EF6FFD33-C0EB-4550-B07E-E35E8DF0A1A2}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CRMLite.CRMServices", "CRMLite.CRMServices\CRMLite.CRMServices.csproj", "{7475D898-B3D7-4787-BD98-19C95D72F88D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,6 +39,14 @@ Global
 		{E45B9D9E-95E7-44D2-A493-2A2A865EABFE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E45B9D9E-95E7-44D2-A493-2A2A865EABFE}.Release|Any CPU.Build.0 = Release|Any CPU
 		{E45B9D9E-95E7-44D2-A493-2A2A865EABFE}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{EF6FFD33-C0EB-4550-B07E-E35E8DF0A1A2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EF6FFD33-C0EB-4550-B07E-E35E8DF0A1A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EF6FFD33-C0EB-4550-B07E-E35E8DF0A1A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EF6FFD33-C0EB-4550-B07E-E35E8DF0A1A2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7475D898-B3D7-4787-BD98-19C95D72F88D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7475D898-B3D7-4787-BD98-19C95D72F88D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7475D898-B3D7-4787-BD98-19C95D72F88D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7475D898-B3D7-4787-BD98-19C95D72F88D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
