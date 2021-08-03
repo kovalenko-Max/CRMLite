@@ -9,7 +9,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\CRMLite.LeadCore\CRMLite.CRMCore.csproj" />
+    <ProjectReference Include="..\CRMLite.CRMCore\CRMLite.CRMCore.csproj" />
   </ItemGroup>
 
 </Project>
