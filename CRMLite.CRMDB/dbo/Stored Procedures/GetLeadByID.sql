@@ -1,0 +1,6 @@
+﻿CREATE PROCEDURE [CRMLite].[GetLeadByID]
+@Id UNIQUEIDENTIFIER
+AS
+SELECT *
+FROM [CRMLite].[Leads]
+WHERE [Id] = @Id

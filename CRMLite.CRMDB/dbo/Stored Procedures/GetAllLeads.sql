@@ -1,0 +1,4 @@
+﻿CREATE PROCEDURE [CRMLite].[GetAllLeads]
+AS
+SELECT *
+FROM [CRMLite].[Leads]

@@ -1,0 +1,4 @@
+﻿CREATE PROCEDURE [CRMLite].[DeleteLeadById] @Id UNIQUEIDENTIFIER
+AS
+DELETE [Leads]
+WHERE [Id] = @Id
