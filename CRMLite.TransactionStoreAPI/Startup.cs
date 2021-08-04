@@ -1,11 +1,9 @@
-using Autofac;
-using Autofac.Extensions.DependencyInjection;
-using CRMLite.TransactionStoreAPI.Autofac;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Serilog;
 
 namespace CRMLite.TransactionStoreAPI
 {
@@ -20,13 +18,9 @@ namespace CRMLite.TransactionStoreAPI
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
-            services.AddAutofac();
-        }
+            services.AddHttpContextAccessor();
 
-        public void ConfigureContainer(ContainerBuilder builder)
-        {
-            builder.RegisterModule(new AutofacModule(Configuration));
+            services.AddControllers();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -41,6 +35,8 @@ namespace CRMLite.TransactionStoreAPI
             app.UseRouting();
 
             app.UseAuthorization();
+
+            app.UseSerilogRequestLogging();
 
             app.UseEndpoints(endpoints =>
             {
