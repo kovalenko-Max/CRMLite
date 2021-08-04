@@ -51,7 +51,7 @@ namespace CRMLite.CRMServices.Services
             }
         }
 
-        public async void UpdateLeadAsync(Lead lead)
+        public async Task UpdateLeadAsync(Lead lead)
         {
             try
             {
@@ -64,7 +64,7 @@ namespace CRMLite.CRMServices.Services
 
         }
 
-        public async void DeleteLeadByIdAsync(Guid Id)
+        public async Task DeleteLeadByIdAsync(Guid Id)
         {
             try
             {

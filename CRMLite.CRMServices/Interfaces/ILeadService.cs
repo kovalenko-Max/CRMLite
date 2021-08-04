@@ -9,8 +9,8 @@ namespace CRMLite.CRMServices.Interfaces
     {
         public Task<Lead> GetLeadByIdAsync(Guid Id);
         public Task<bool> RegistrationLeadAsync(Lead lead, string path);
-        public void UpdateLeadAsync(Lead lead);
-        public void DeleteLeadByIdAsync(Guid Id);
+        public Task UpdateLeadAsync(Lead lead);
+        public Task DeleteLeadByIdAsync(Guid Id);
         public Task<IEnumerable<Lead>> GetAllLeadsAsync();
     }
 }

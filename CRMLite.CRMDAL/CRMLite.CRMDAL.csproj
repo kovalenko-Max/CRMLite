@@ -5,8 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Autofac" Version="6.2.0" />
-    <PackageReference Include="Autofac.Mvc5" Version="6.0.0" />
     <PackageReference Include="Insight.Database" Version="6.3.7" />
   </ItemGroup>
 
