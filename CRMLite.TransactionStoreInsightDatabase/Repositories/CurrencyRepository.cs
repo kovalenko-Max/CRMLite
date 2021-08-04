@@ -1,4 +1,4 @@
-﻿using CRMLite.TransactionStoreDomain.Interfaces;
+﻿using CRMLite.TransactionStoreDomain.Interfaces.IRepositories;
 using Insight.Database;
 using System.Collections.Generic;
 using System.Data;

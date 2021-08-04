@@ -1,5 +1,5 @@
 ﻿using CRMLite.TransactionStoreDomain.Entities;
-using CRMLite.TransactionStoreDomain.Interfaces;
+using CRMLite.TransactionStoreDomain.Interfaces.IRepositories;
 using Insight.Database;
 using System;
 using System.Collections.Generic;
@@ -21,39 +21,27 @@ namespace CRMLite.TransactionStoreInsightDatabase.Repositories
 
         public async Task CreateWalletWithinLeadAsync(Wallet wallet)
         {
-            try
-            {
-                wallet.ID = wallet.ID == Guid.Empty ? Guid.NewGuid() : wallet.ID;
-                await _walletRepository.CreateWalletWithinLeadAsync(wallet);
-            }
-            catch (Exception e)
-            {
-                throw e;
-            }
+            await _walletRepository.CreateWalletWithinLeadAsync(wallet);
         }
 
         public async Task<IEnumerable<Wallet>> GetAllWalletsByLeadIDAsync(Guid leadID)
         {
-            try
+            if (leadID != null)
             {
                 return await _walletRepository.GetAllWalletsByLeadIDAsync(leadID);
             }
-            catch (Exception e)
-            {
-                throw e;
-            }
+
+            throw new ArgumentNullException();
         }
 
         public async Task<Wallet> GetWalletByIDAsync(Guid id)
         {
-            try
+            if (id != null)
             {
                 return await _walletRepository.GetWalletByIDAsync(id);
             }
-            catch (Exception e)
-            {
-                throw e;
-            }
+
+            throw new ArgumentNullException();
         }
     }
 }
