@@ -1,3 +1,4 @@
+using CRMLite.TransactionStoreAPI.Middlewares;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -23,6 +24,7 @@ namespace CRMLite.TransactionStoreAPI
         {
             var connectionString = Configuration.GetConnectionString("Default");
             DbConnection connection = new SqlConnection(connectionString);
+
             services.AddHttpContextAccessor();
             services.AddControllers();
 
@@ -37,6 +39,8 @@ namespace CRMLite.TransactionStoreAPI
             }
 
             app.UseHttpsRedirection();
+
+            app.UseMiddleware<ErrorHandlerMiddleware>();
 
             app.UseRouting();
 
