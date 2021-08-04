@@ -1,0 +1,5 @@
+﻿CREATE PROCEDURE [CRMLIte].[GetAllWalletsByLeadID] @LeadID UNIQUEIDENTIFIER
+AS
+SELECT WalletID
+FROM [CRMLite].Balance
+WHERE LeadID = @LeadID

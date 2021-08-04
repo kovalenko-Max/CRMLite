@@ -1,0 +1,7 @@
+﻿CREATE PROCEDURE [CRMLIte].[GetWalletByID] @ID UNIQUEIDENTIFIER
+AS
+SELECT [ID]
+	,[Currency]
+	,Amount
+FROM [CRMLite].Wallet
+WHERE ID = @ID

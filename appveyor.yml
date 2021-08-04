@@ -1,0 +1,11 @@
+version: 1.0.{build}
+before_build:
+- cmd: dotnet restore
+build:
+  publish_aspnet_core: true
+  verbosity: minimal
+test:
+  # only assemblies to test
+  assemblies:
+    only:
+      - '**\*.Tests.dll'

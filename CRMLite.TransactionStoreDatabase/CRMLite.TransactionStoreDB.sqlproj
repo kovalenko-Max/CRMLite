@@ -59,6 +59,8 @@
     <Folder Include="CRMLite" />
     <Folder Include="CRMLite\Tables" />
     <Folder Include="Security" />
+    <Folder Include="CRMLite\StoredProcedures" />
+    <Folder Include="CRMLite\StoredProcedures\Wallet" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="CRMLite\Tables\Balance.sql" />
@@ -70,5 +72,8 @@
     <Build Include="CRMLite\Tables\Transactions.sql" />
     <Build Include="CRMLite\Tables\Wallet.sql" />
     <Build Include="Security\CRMLite.sql" />
+    <Build Include="CRMLite\StoredProcedures\Wallet\GetWalletByID.sql" />
+    <Build Include="CRMLite\StoredProcedures\Wallet\CreateWalletWithinLead.sql" />
+    <Build Include="CRMLite\StoredProcedures\Wallet\GetAllWalletsByLeadID.sql" />
   </ItemGroup>
 </Project>
