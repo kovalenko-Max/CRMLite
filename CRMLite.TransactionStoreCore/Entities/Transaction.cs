@@ -1,7 +1,6 @@
-﻿using CRMLite.TransactionStoreDomain.Entities;
-using System;
+﻿using System;
 
-namespace CRMLite.TransactionStoreCore.Entities
+namespace CRMLite.TransactionStoreDomain.Entities
 {
     public class Transaction
     {
