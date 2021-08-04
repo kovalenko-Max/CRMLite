@@ -1,5 +1,7 @@
-using Autofac;
-using Autofac.Extensions.DependencyInjection;
+using CRMLite.CRMDAL;
+using CRMLite.CRMDAL.Interfaces;
+using CRMLite.CRMServices.Interfaces;
+using CRMLite.CRMServices.Services;
 using MassTransit;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -7,7 +9,11 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using Serilog;
 using System;
+using System.Data;
+using System.Data.Common;
+using System.Data.SqlClient;
 using System.Threading;
 
 namespace CRMLite.CRMAPI
@@ -26,7 +32,7 @@ namespace CRMLite.CRMAPI
             var options = Configuration.GetSection("Bus").Get<BusOptions>();
 
             services.AddControllers();
-            services.AddAutofac();
+            services.AddHttpContextAccessor();
 
             services.AddMassTransit(x =>
             {
@@ -54,11 +60,13 @@ namespace CRMLite.CRMAPI
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "CRMLite.CRMAPI", Version = "v1" });
             });
-        }
 
-        public void ConfigureContainer(ContainerBuilder builder)
-        {
-            builder.RegisterModule(new AutofacConfig(Configuration));
+            var connectionString = Configuration.GetConnectionString("Default");
+            DbConnection connection = new SqlConnection(connectionString);
+            
+            services.AddSingleton<IDbConnection>(conn => connection);
+            services.AddSingleton<IDBContext, DBContext>();
+            services.AddScoped<ILeadService, LeadService>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -76,6 +84,8 @@ namespace CRMLite.CRMAPI
 
             app.UseAuthentication();
             app.UseAuthorization();
+
+            app.UseSerilogRequestLogging();
 
             app.UseEndpoints(endpoints =>
             {
