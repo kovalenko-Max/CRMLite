@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace CRMLite.TransactionStoreDAL
+﻿namespace CRMLite.TransactionStoreDAL
 {
     public class Class1
     {

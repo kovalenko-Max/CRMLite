@@ -1,6 +1,3 @@
-using Autofac;
-using Autofac.Extensions.DependencyInjection;
-using CRMLite.TransactionStoreAPI.Autofac;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -25,17 +22,10 @@ namespace CRMLite.TransactionStoreAPI
         {
             var connectionString = Configuration.GetConnectionString("Default");
             DbConnection connection = new SqlConnection(connectionString);
-
+            services.AddHttpContextAccessor();
             services.AddControllers();
-            services.AddAutofac();
 
             services.AddSingleton<IDbConnection>(conn => connection);
-
-        }
-
-        public void ConfigureContainer(ContainerBuilder builder)
-        {
-            builder.RegisterModule(new AutofacModule(Configuration));
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -50,6 +40,8 @@ namespace CRMLite.TransactionStoreAPI
             app.UseRouting();
 
             app.UseAuthorization();
+
+            app.UseSerilogRequestLogging();
 
             app.UseEndpoints(endpoints =>
             {
