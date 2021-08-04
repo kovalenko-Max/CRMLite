@@ -6,6 +6,9 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using System.Data;
+using System.Data.Common;
+using System.Data.SqlClient;
 
 namespace CRMLite.TransactionStoreAPI
 {
@@ -20,8 +23,14 @@ namespace CRMLite.TransactionStoreAPI
 
         public void ConfigureServices(IServiceCollection services)
         {
+            var connectionString = Configuration.GetConnectionString("Default");
+            DbConnection connection = new SqlConnection(connectionString);
+
             services.AddControllers();
             services.AddAutofac();
+
+            services.AddSingleton<IDbConnection>(conn => connection);
+
         }
 
         public void ConfigureContainer(ContainerBuilder builder)
