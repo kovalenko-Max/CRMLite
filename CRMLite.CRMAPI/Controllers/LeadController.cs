@@ -1,5 +1,6 @@
 ﻿using CRMLite.CRMCore.Entities;
 using CRMLite.CRMServices.Interfaces;
+using MassTransit;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -12,10 +13,12 @@ namespace CRMLite.CRMAPI.Controllers
     public class LeadController : ControllerBase
     {
         private ILeadService _leadService;
+        private readonly IBusControl _busControl;
 
-        public LeadController(ILeadService leadService)
+        public LeadController(ILeadService leadService, IBusControl busControl)
         {
             _leadService = leadService;
+            _busControl = busControl;
         }
 
         [HttpGet]
@@ -35,11 +38,14 @@ namespace CRMLite.CRMAPI.Controllers
         }
 
         [HttpPost("registration")]
-        public async Task<Guid> RegistrationLeadAsync(Lead lead)
+        public async Task<IActionResult> RegistrationLeadAsync(Lead lead)
         {
-            var response = await _leadService.RegistrationLeadAsync(lead);
-
-            return response;
+            var response = await _leadService.RegistrationLeadAsync(lead, $"{Request.Scheme}://{Request.Host}");
+            if (!response)
+            {
+                return BadRequest("Uncorrected data") ;
+            }
+            return Ok(response);
         }
 
         [HttpPut]

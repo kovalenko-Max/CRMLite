@@ -3,6 +3,7 @@ using CRMLite.CRMDAL.Interfaces;
 using CRMLite.CRMServices.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace CRMLite.CRMServices.Services
@@ -30,14 +31,19 @@ namespace CRMLite.CRMServices.Services
             }
         }
 
-        public async Task<Guid> RegistrationLeadAsync(Lead lead)
+        public async Task<bool> RegistrationLeadAsync(Lead lead, string path)
         {
             try
             {
-                lead.Id = Guid.NewGuid();
-                await _leadRepository.RegistrationLeadAsync(lead);
+                if (IsPasswordValid(lead.Password))
+                {
+                    lead.Password = BCrypt.Net.BCrypt.HashPassword(lead.Password);
+                    lead.Id = Guid.NewGuid();
+                    await _leadRepository.RegistrationLeadAsync(lead);
 
-                return lead.Id;
+                    return true;
+                }
+                return false;
             }
             catch (Exception)
             {
@@ -81,6 +87,12 @@ namespace CRMLite.CRMServices.Services
                 throw;
             }
         }
-    }
 
+        private bool IsPasswordValid(string password)
+        {
+            var regEx = new Regex(@"^(?=.*?[A-Z])(?=.*?[a-z])((?=.*?[0-9])|(?=.*?[#?!@$%^&*-]))", RegexOptions.Compiled);
+
+            return regEx.IsMatch(password);
+        }
+    }
 }
