@@ -5,4 +5,3 @@
     CONSTRAINT [PK_WALLET] PRIMARY KEY CLUSTERED ([ID] ASC),
     CONSTRAINT [Wallet_fk0] FOREIGN KEY ([Currency]) REFERENCES [CRMLite].[Currency] ([ID])
 );
-
