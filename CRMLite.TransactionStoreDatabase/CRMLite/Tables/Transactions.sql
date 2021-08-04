@@ -10,4 +10,3 @@
     CONSTRAINT [Trasactions_fk2] FOREIGN KEY ([WalletTo]) REFERENCES [CRMLite].[Wallet] ([ID]),
     UNIQUE NONCLUSTERED ([ID] ASC)
 );
-
