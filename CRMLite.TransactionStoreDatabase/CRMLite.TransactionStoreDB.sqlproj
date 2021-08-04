@@ -76,4 +76,7 @@
     <Build Include="CRMLite\StoredProcedures\Wallet\CreateWalletWithinLead.sql" />
     <Build Include="CRMLite\StoredProcedures\Wallet\GetAllWalletsByLeadID.sql" />
   </ItemGroup>
+  <ItemGroup>
+    <RefactorLog Include="CRMLite.TransactionStoreDB.refactorlog" />
+  </ItemGroup>
 </Project>

@@ -1,5 +1,5 @@
 ﻿CREATE PROCEDURE [CRMLite].[CreateWalletWithinLead] @LeadID UNIQUEIDENTIFIER
-	,@walletID UNIQUEIDENTIFIER
+	,@WalletID UNIQUEIDENTIFIER
 	,@Currency TINYINT
 	,@Amount DECIMAL(18, 0)
 AS
@@ -9,7 +9,7 @@ INSERT INTO [CRMLite].[Wallets] (
 	,Amount
 	)
 VALUES (
-	@walletID
+	@WalletID
 	,@Currency
 	,@Amount
 	)
@@ -20,5 +20,5 @@ INSERT INTO [CRMLite].[Balance] (
 	)
 VALUES (
 	@LeadID
-	,@walletID
+	,@WalletID
 	)

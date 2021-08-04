@@ -119,4 +119,11 @@
     <Property Name="ParentElementType" Value="SqlTable" />
     <Property Name="NewName" Value="OperationType" />
   </Operation>
+  <Operation Name="Rename Refactor" Key="bcf29831-3714-43af-922e-c2556d2809d7" ChangeDateTime="08/04/2021 12:45:55">
+    <Property Name="ElementName" Value="[CRMLite].[StockPortfolio].[Quontity]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[CRMLite].[StockPortfolio]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Quantity" />
+  </Operation>
 </Operations>
