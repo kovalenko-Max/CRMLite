@@ -7,7 +7,7 @@ namespace CRMLite.TransactionStoreDomain.Entities
     {
         public Guid ID { get; set; }
         public Guid LeadID { get; set; }
-        public List<Stock> Stocks { get; set; }
+        public Stock Stocks { get; set; }
         public int Quantity { get; set; }
     }
 }
