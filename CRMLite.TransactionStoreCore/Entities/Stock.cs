@@ -2,10 +2,10 @@
 
 namespace CRMLite.TransactionStoreDomain.Entities
 {
-    public class Wallet
+    public class Stock
     {
         public Guid ID { get; set; }
-        public string Currency { get; set; }
-        public decimal Amount { get; set; }
+        public string Title { get; set; }
+        public bool IsDividend { get; set; }
     }
 }
