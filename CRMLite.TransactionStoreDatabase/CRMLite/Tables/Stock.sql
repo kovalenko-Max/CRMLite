@@ -1,0 +1,10 @@
+﻿CREATE TABLE [CRMLite].[Stock]
+(
+	ID uniqueidentifier NOT NULL,
+	Title nvarchar(255) NOT NULL UNIQUE,
+	IsDividend BIT NOT NULL,
+	CONSTRAINT [PK_STOCK] PRIMARY KEY CLUSTERED
+	(
+		[ID] ASC
+	) WITH (IGNORE_DUP_KEY = OFF)
+)

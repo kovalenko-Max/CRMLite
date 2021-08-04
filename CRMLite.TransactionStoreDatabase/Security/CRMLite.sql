@@ -1,3 +1,2 @@
 ﻿CREATE SCHEMA [CRMLite]
     AUTHORIZATION [dbo];
-
