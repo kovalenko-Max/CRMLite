@@ -72,5 +72,10 @@
     <Build Include="dbo\Stored Procedures\RegistrationLead.sql" />
     <Build Include="dbo\Stored Procedures\UpdateLead.sql" />
     <Build Include="Security\CRMLite.sql" />
+    <Build Include="dbo\Tables\ConfirmMessage.sql" />
+    <Build Include="dbo\Stored Procedures\GetConfirmMessageByLeadID.sql" />
+    <Build Include="dbo\Stored Procedures\CreateConfirmMessage.sql" />
+    <Build Include="dbo\Stored Procedures\UpdateConfirmMessage.sql" />
+    <Build Include="dbo\Stored Procedures\DeleteConfirmMessage.sql" />
   </ItemGroup>
 </Project>

@@ -13,11 +13,13 @@ namespace CRMLite.CRMAPI.Controllers
     public class LeadController : ControllerBase
     {
         private ILeadService _leadService;
+        private IConfirmMessageService _confirmMessageService;
         private readonly IBusControl _busControl;
 
-        public LeadController(ILeadService leadService, IBusControl busControl)
+        public LeadController(ILeadService leadService, IConfirmMessageService confirmMessageService, IBusControl busControl)
         {
             _leadService = leadService;
+            _confirmMessageService = confirmMessageService;
             _busControl = busControl;
         }
 
@@ -55,9 +57,16 @@ namespace CRMLite.CRMAPI.Controllers
         }
 
         [HttpDelete("{id}")]
-        public async Task DeleteLeadAsync(Guid Id)
+        public async Task DeleteLeadAsync(Guid id)
         {
-            await _leadService.DeleteLeadByIdAsync(Id);
+            await _leadService.DeleteLeadByIdAsync(id);
+        }
+
+        [HttpGet("confirm")]
+        public async Task<IActionResult> ConfirmEmail(string message)
+        {
+            var result = await _confirmMessageService.MailConfirmationResultAsync(message);
+            return Ok(result);
         }
     }
 }

@@ -1,8 +1,10 @@
 ﻿using CRMLite.CRMCore.Entities;
+using CRMLite.CRMCore.Helper;
 using CRMLite.CRMDAL.Interfaces;
 using CRMLite.CRMServices.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Text.Json;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
@@ -11,10 +13,12 @@ namespace CRMLite.CRMServices.Services
     public class LeadService : ILeadService
     {
         private ILeadRepository _leadRepository { get; set; }
+        private IConfirmMessageService _confirmMessageService { get; set; }
 
-        public LeadService(IDBContext dBContext)
+        public LeadService(IDBContext dBContext, IConfirmMessageService confirmMessageService)
         {
             _leadRepository = dBContext.LeadRepository;
+            _confirmMessageService = confirmMessageService;
         }
 
         public async Task<Lead> GetLeadByIdAsync(Guid Id)
@@ -40,6 +44,7 @@ namespace CRMLite.CRMServices.Services
                     lead.Password = BCrypt.Net.BCrypt.HashPassword(lead.Password);
                     lead.Id = Guid.NewGuid();
                     await _leadRepository.RegistrationLeadAsync(lead);
+                    await _confirmMessageService.CreateMailConfirmationAsync(lead);
 
                     return true;
                 }
