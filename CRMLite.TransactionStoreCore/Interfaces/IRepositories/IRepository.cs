@@ -1,6 +1,6 @@
 ﻿using System.Data;
 
-namespace CRMLite.TransactionStoreDomain.Interfaces
+namespace CRMLite.TransactionStoreDomain.Interfaces.IRepositories
 {
     public interface IRepository
     {
