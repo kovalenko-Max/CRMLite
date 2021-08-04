@@ -14,5 +14,7 @@ namespace CRMLite.CRMDAL
         }
 
         public ILeadRepository LeadRepository => new LeadRepository(DBConnection);
+
+        public IConfirmMessageRepository ConfirmMessageRepository => new ConfirmMessageRepository(DBConnection);
     }
 }

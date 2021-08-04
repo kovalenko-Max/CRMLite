@@ -1,3 +1,4 @@
+using CRMLite.CRMCore.Entities;
 using CRMLite.CRMDAL;
 using CRMLite.CRMDAL.Interfaces;
 using CRMLite.CRMServices.Interfaces;
@@ -34,6 +35,9 @@ namespace CRMLite.CRMAPI
             services.AddControllers();
             services.AddHttpContextAccessor();
 
+            var smtpOptions = Configuration.GetSection("SmtpOptions");
+            services.Configure<SmtpOption>(smtpOptions);
+
             services.AddMassTransit(x =>
             {
                 x.UsingRabbitMq();
@@ -67,6 +71,8 @@ namespace CRMLite.CRMAPI
             services.AddSingleton<IDbConnection>(conn => connection);
             services.AddSingleton<IDBContext, DBContext>();
             services.AddScoped<ILeadService, LeadService>();
+            services.AddScoped<IConfirmMessageService, ConfirmMessageService>();
+            services.AddScoped<IMailExchangeService, MailExchangeService>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
