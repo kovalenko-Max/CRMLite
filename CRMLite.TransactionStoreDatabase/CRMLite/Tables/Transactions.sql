@@ -1,8 +1,8 @@
 ﻿CREATE TABLE [CRMLite].[Transactions] (
     [ID]             UNIQUEIDENTIFIER NOT NULL,
     [OperationType] TINYINT       NOT NULL,
-    [WalletFrom]    UNIQUEIDENTIFIER NULL,
-    [WalletTo]      UNIQUEIDENTIFIER NULL,
+    [WalletFrom]    UNIQUEIDENTIFIER NOT NULL,
+    [WalletTo]      UNIQUEIDENTIFIER NOT NULL,
     [Amount]         DECIMAL (18)  NOT NULL,
     [Timestamp]      DATETIME    NOT NULL,
     CONSTRAINT [Trasactions_fk0] FOREIGN KEY ([OperationType]) REFERENCES [CRMLite].[OperationTypes] ([ID]),
