@@ -1,13 +1,14 @@
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
+using MassTransit;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
-using System.Data.Common;
-using System.Data.SqlClient;
+using System;
+using System.Threading;
 
 namespace CRMLite.CRMAPI
 {
@@ -22,9 +23,33 @@ namespace CRMLite.CRMAPI
 
         public void ConfigureServices(IServiceCollection services)
         {
+            var options = Configuration.GetSection("Bus").Get<BusOptions>();
+
             services.AddControllers();
             services.AddAutofac();
 
+            services.AddMassTransit(x =>
+            {
+                x.UsingRabbitMq();
+            });
+
+            var busControl = Bus.Factory.CreateUsingRabbitMq(cfg =>
+            {
+                cfg.Host(options.Host, options.LocalHost, h =>
+                {
+                    h.Username(options.Username);
+                    h.Password(options.Password);
+                });
+
+                cfg.ReceiveEndpoint(options.Queue, e =>
+                {
+                    e.Consumer<LeadSubmittedEventConsumer>();
+                });
+            });
+
+            var source = new CancellationTokenSource(TimeSpan.FromSeconds(10));
+
+            busControl.Start();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "CRMLite.CRMAPI", Version = "v1" });
