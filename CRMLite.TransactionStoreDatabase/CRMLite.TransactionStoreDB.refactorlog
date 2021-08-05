@@ -133,4 +133,10 @@
     <Property Name="ParentElementType" Value="SqlSchema" />
     <Property Name="NewName" Value="[Wallets]" />
   </Operation>
+  <Operation Name="Move Schema" Key="6f2b6f9f-a8ee-4cbf-bca2-7676c17010af" ChangeDateTime="08/05/2021 10:24:00">
+    <Property Name="ElementName" Value="[dbo].[GetAllStocks]" />
+    <Property Name="ElementType" Value="SqlProcedure" />
+    <Property Name="NewSchema" Value="CRMLite" />
+    <Property Name="IsNewSchemaExternal" Value="False" />
+  </Operation>
 </Operations>
