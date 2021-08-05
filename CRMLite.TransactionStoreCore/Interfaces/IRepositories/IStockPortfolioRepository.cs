@@ -7,6 +7,6 @@ namespace CRMLite.TransactionStoreDomain.Interfaces.IRepositories
 {
     public interface IStockPortfolioRepository
     {
-        Task<IEnumerable<StockPortfolio>> GetAllStocksByLeadID(Guid leadID);
+        Task<IEnumerable<StockPortfolio>> GetAllStocksByLeadIDAsync(Guid leadID);
     }
 }

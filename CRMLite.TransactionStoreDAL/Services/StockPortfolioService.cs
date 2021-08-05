@@ -18,7 +18,7 @@ namespace CRMLite.TransactionStoreBLL.Services
 
         public async Task<IEnumerable<StockPortfolio>> GetStockPortfolioByLeadAsync(Guid leadID)
         {
-            var response = await _stockPortfolioRepository.GetAllStocksByLeadID(leadID);
+            var response = await _stockPortfolioRepository.GetAllStocksByLeadIDAsync(leadID);
 
             return response;
         }
