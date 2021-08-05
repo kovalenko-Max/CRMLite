@@ -68,6 +68,7 @@ namespace CRMLite.TransactionStoreAPI
             services.AddTransient<ITransactionRepository, TransactionRepository>();
             services.AddTransient<IStockPortfolioRepository, StockPortfolioRepository>();
             services.AddTransient<IWalletRepository, WalletRepository>();
+            services.AddTransient<IOperationTypeRepository, OperationTypeRepository>();
         }
 
         private void AddServices(IServiceCollection services)
@@ -75,6 +76,7 @@ namespace CRMLite.TransactionStoreAPI
             services.AddTransient<ITransactionService, TransactionService>();
             services.AddTransient<IStockPortfolioService, StockPortfolioService>();
             services.AddTransient<IWalletService, WalletService>();
+            services.AddTransient<IOperationTypeService, OperationTypeService>();
         }
     }
 }
