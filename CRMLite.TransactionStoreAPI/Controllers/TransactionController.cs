@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace CRMLite.TransactionStoreAPI.Controllers
 {
-    [Route("api/[controller]")]
     [ApiController]
+    [Route("api/[controller]")]
     public class TransactionController : Controller
     {
         ITransactionService _transactionService;
