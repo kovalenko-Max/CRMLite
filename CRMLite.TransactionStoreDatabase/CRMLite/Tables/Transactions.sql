@@ -6,7 +6,7 @@
     [Amount]         DECIMAL (18)  NOT NULL,
     [Timestamp]      DATETIME    NOT NULL,
     CONSTRAINT [Trasactions_fk0] FOREIGN KEY ([OperationType]) REFERENCES [CRMLite].[OperationTypes] ([ID]),
-    CONSTRAINT [Trasactions_fk1] FOREIGN KEY ([WalletFrom]) REFERENCES [CRMLite].[Wallet] ([ID]),
-    CONSTRAINT [Trasactions_fk2] FOREIGN KEY ([WalletTo]) REFERENCES [CRMLite].[Wallet] ([ID]),
+    CONSTRAINT [Trasactions_fk1] FOREIGN KEY ([WalletFrom]) REFERENCES [CRMLite].[Wallets] ([ID]),
+    CONSTRAINT [Trasactions_fk2] FOREIGN KEY ([WalletTo]) REFERENCES [CRMLite].[Wallets] ([ID]),
     UNIQUE NONCLUSTERED ([ID] ASC)
 );

@@ -13,6 +13,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\CRMLite.TransactionStoreCore\CRMLite.TransactionStoreDomain.csproj" />
+    <ProjectReference Include="..\CRMLite.TransactionStoreDAL\CRMLite.TransactionStoreBLL.csproj" />
+    <ProjectReference Include="..\CRMLite.TransactionStoreInsightDatabase\CRMLite.TransactionStoreInsightDatabase.csproj" />
   </ItemGroup>
 
 

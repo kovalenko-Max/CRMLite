@@ -70,7 +70,7 @@
     <Build Include="CRMLite\Tables\StockPortfolio.sql" />
     <Build Include="CRMLite\Tables\StockTransactions.sql" />
     <Build Include="CRMLite\Tables\Transactions.sql" />
-    <Build Include="CRMLite\Tables\Wallet.sql" />
+    <Build Include="CRMLite\Tables\Wallets.sql" />
     <Build Include="Security\CRMLite.sql" />
     <Build Include="CRMLite\StoredProcedures\Wallet\GetWalletByID.sql" />
     <Build Include="CRMLite\StoredProcedures\Wallet\CreateWalletWithinLead.sql" />
