@@ -1,4 +1,4 @@
-﻿CREATE TABLE [CRMLite].[Wallet] (
+﻿CREATE TABLE [CRMLite].[Wallets] (
     [ID]       UNIQUEIDENTIFIER NOT NULL,
     [Currency] TINYINT       NOT NULL,
     [Amount]   DECIMAL (18)  NOT NULL,

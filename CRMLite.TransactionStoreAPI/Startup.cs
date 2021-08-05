@@ -1,4 +1,8 @@
 using CRMLite.TransactionStoreAPI.Middlewares;
+using CRMLite.TransactionStoreBLL.Services;
+using CRMLite.TransactionStoreDomain.Interfaces.IRepositories;
+using CRMLite.TransactionStoreDomain.Interfaces.IServices;
+using CRMLite.TransactionStoreInsightDatabaseL.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -29,6 +33,10 @@ namespace CRMLite.TransactionStoreAPI
             services.AddControllers();
 
             services.AddSingleton<IDbConnection>(conn => connection);
+
+            AddRepositories(services);
+            AddServices(services);
+
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -52,6 +60,16 @@ namespace CRMLite.TransactionStoreAPI
             {
                 endpoints.MapControllers();
             });
+        }
+
+        private void AddRepositories(IServiceCollection services)
+        {
+            services.AddTransient<ITransactionRepository, TransactionRepository>();
+        }
+
+        private void AddServices(IServiceCollection services)
+        {
+            services.AddTransient<ITransactionService, TransactionService>();
         }
     }
 }
