@@ -21,6 +21,7 @@ namespace CRMLite.TransactionStoreBLL.Services
             if (leadID != Guid.Empty)
             {
                 var response = await _stockPortfolioRepository.GetAllStocksByLeadIDAsync(leadID);
+
                 return response;
             }
 
