@@ -61,6 +61,7 @@
     <Folder Include="Security" />
     <Folder Include="CRMLite\StoredProcedures" />
     <Folder Include="CRMLite\StoredProcedures\Wallet" />
+    <Folder Include="CRMLite\StoredProcedures\Stock" />
     <Folder Include="CRMLite\StoredProcedures\Currency" />
   </ItemGroup>
   <ItemGroup>
@@ -76,7 +77,6 @@
     <Build Include="CRMLite\StoredProcedures\Wallet\GetWalletByID.sql" />
     <Build Include="CRMLite\StoredProcedures\Wallet\CreateWalletWithinLead.sql" />
     <Build Include="CRMLite\StoredProcedures\Wallet\GetAllWalletsByLeadID.sql" />
-    <Build Include="CRMLite\StoredProcedures\Currency\GetAllCurrency.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="CRMLite.TransactionStoreDB.refactorlog" />
