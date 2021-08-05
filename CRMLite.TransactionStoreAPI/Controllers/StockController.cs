@@ -18,7 +18,7 @@ namespace CRMLite.TransactionStoreAPI.Controllers
         }
 
         [HttpGet]
-        public async Task<IEnumerable<Stock>> GetAllStocksByLeadIDAsync()
+        public async Task<IEnumerable<Stock>> GetAllStocksAsync()
         {
             var response = await _stockService.GetAllStocksAsync();
 
