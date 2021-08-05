@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace CRMLite.TransactionStoreInsightDatabase.Repositories
 {
-    class StockPortfolioRepository : IStockPortfolioRepository
+    public class StockPortfolioRepository : IStockPortfolioRepository
     {
         private readonly IStockPortfolioRepository _stockPortfolioRepository;
         public IDbConnection DBConnection { get; }
@@ -21,9 +21,13 @@ namespace CRMLite.TransactionStoreInsightDatabase.Repositories
 
         public async Task<IEnumerable<StockPortfolio>> GetAllStocksByLeadIDAsync(Guid leadID)
         {
-            var response = await _stockPortfolioRepository.GetAllStocksByLeadIDAsync(leadID);
-            
-            return response;
+            if (leadID != Guid.Empty)
+            {
+                var response = await _stockPortfolioRepository.GetAllStocksByLeadIDAsync(leadID);
+                return response;
+            }
+
+            throw new ArgumentException("Guid LeadID is empty");
         }
     }
 }

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CRMLite.TransactionStoreBLL.Services
 {
-    class StockPortfolioService : IStockPortfolioService
+    public class StockPortfolioService : IStockPortfolioService
     {
         private readonly IStockPortfolioRepository _stockPortfolioRepository;
 
@@ -18,9 +18,13 @@ namespace CRMLite.TransactionStoreBLL.Services
 
         public async Task<IEnumerable<StockPortfolio>> GetStockPortfolioByLeadAsync(Guid leadID)
         {
-            var response = await _stockPortfolioRepository.GetAllStocksByLeadIDAsync(leadID);
+            if (leadID != Guid.Empty)
+            {
+                var response = await _stockPortfolioRepository.GetAllStocksByLeadIDAsync(leadID);
+                return response;
+            }
 
-            return response;
+            throw new ArgumentException("Guid LeadID is empty");
         }
     }
 }

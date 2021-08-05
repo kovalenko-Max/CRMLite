@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Threading.Tasks;
 
-namespace CRMLite.TransactionStoreInsightDatabaseL.Repositories
+namespace CRMLite.TransactionStoreInsightDatabase.Repositories
 {
     public class TransactionRepository : ITransactionRepository
     {
