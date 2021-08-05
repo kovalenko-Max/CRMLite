@@ -21,9 +21,14 @@ namespace CRMLite.TransactionStoreAPI.Controllers
         [HttpGet("{leadID}")]
         public async Task<IEnumerable<StockPortfolio>> GetAllStocksByLeadIDAsync(Guid leadID)
         {
-            var response = await _stockPortfolioService.GetStockPortfolioByLeadAsync(leadID);
+            if (leadID != Guid.Empty)
+            {
+                var response = await _stockPortfolioService.GetStockPortfolioByLeadAsync(leadID);
 
-            return response;
+                return response;
+            }
+
+            throw new ArgumentException("Guid LeadID is empty");
         }
     }
 }

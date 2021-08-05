@@ -2,7 +2,7 @@ using CRMLite.TransactionStoreAPI.Middlewares;
 using CRMLite.TransactionStoreBLL.Services;
 using CRMLite.TransactionStoreDomain.Interfaces.IRepositories;
 using CRMLite.TransactionStoreDomain.Interfaces.IServices;
-using CRMLite.TransactionStoreInsightDatabaseL.Repositories;
+using CRMLite.TransactionStoreInsightDatabase.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -49,6 +49,7 @@ namespace CRMLite.TransactionStoreAPI
             app.UseHttpsRedirection();
 
             app.UseMiddleware<ErrorHandlerMiddleware>();
+            app.UseMiddleware<ArgumentExceptionHandlerMiddleware>();
 
             app.UseRouting();
 
@@ -65,11 +66,13 @@ namespace CRMLite.TransactionStoreAPI
         private void AddRepositories(IServiceCollection services)
         {
             services.AddTransient<ITransactionRepository, TransactionRepository>();
+            services.AddTransient<IStockPortfolioRepository, StockPortfolioRepository>();
         }
 
         private void AddServices(IServiceCollection services)
         {
             services.AddTransient<ITransactionService, TransactionService>();
+            services.AddTransient<IStockPortfolioService, StockPortfolioService>();
         }
     }
 }
