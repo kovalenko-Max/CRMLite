@@ -21,27 +21,32 @@ namespace CRMLite.TransactionStoreInsightDatabase.Repositories
 
         public async Task CreateTransactionAsync(Transaction transaction)
         {
-            await _transactionRepository.CreateTransactionAsync(transaction);
+            if (transaction != null)
+            {
+                await _transactionRepository.CreateTransactionAsync(transaction);
+            }
+
+            throw new ArgumentNullException("Transaction is null");
         }
 
         public async Task<IEnumerable<Transaction>> GetAllTransactionByLeadIDAsync(Guid leadID)
         {
-            if (leadID != null)
+            if (leadID != Guid.Empty)
             {
                 return await _transactionRepository.GetAllTransactionByLeadIDAsync(leadID);
             }
 
-            throw new ArgumentNullException();
+            throw new ArgumentException("Guid  LeadID is empty");
         }
 
         public async Task<IEnumerable<Transaction>> GetAllTransactionByWalletIDAsync(Guid walletID)
         {
-            if (walletID != null)
+            if (walletID != Guid.Empty)
             {
                 return await _transactionRepository.GetAllTransactionByWalletIDAsync(walletID);
             }
 
-            throw new ArgumentNullException();
+            throw new ArgumentException("Guid  walletID is empty");
         }
     }
 }
