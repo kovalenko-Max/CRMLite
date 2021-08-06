@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 namespace CRMLite.CRMServices.Interfaces
 {
-    public interface IConfirmMessageService
+    public interface IRegistrationService
     {
         public Task CreateConfirmMessageAsync(ConfirmationMessageModel confirmationMessage);
         public Task<ConfirmationMessageModel> GetConfirmMessageByLeadIDAsync(Guid ID);
@@ -12,5 +12,6 @@ namespace CRMLite.CRMServices.Interfaces
         public Task DeleteConfirmMessageAsync(Guid ID);
         public Task CreateMailConfirmationAsync(Lead lead);
         public Task<bool> MailConfirmationResultAsync(string message);
+        public Task<bool> RegistrationLeadAsync(Lead lead, string path);
     }
 }
