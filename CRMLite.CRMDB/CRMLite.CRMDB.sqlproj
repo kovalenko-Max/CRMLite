@@ -67,7 +67,7 @@
     <Build Include="dbo\Tables\Leads.sql" />
     <Build Include="dbo\Stored Procedures\GetAllLeads.sql" />
     <Build Include="dbo\Stored Procedures\DeleteLeadById.sql" />
-    <Build Include="dbo\Stored Procedures\GetLeadByEmailAndPassword.sql" />
+    <Build Include="dbo\Stored Procedures\GetLeadByEmail.sql" />
     <Build Include="dbo\Stored Procedures\GetLeadByID.sql" />
     <Build Include="dbo\Stored Procedures\RegistrationLead.sql" />
     <Build Include="dbo\Stored Procedures\UpdateLead.sql" />
