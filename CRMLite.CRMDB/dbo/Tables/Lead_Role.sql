@@ -1,0 +1,7 @@
+﻿CREATE TABLE [CRMLite].[Lead_Role]
+(
+    [LeadID] UNIQUEIDENTIFIER NOT NULL,
+    [RoleID] UNIQUEIDENTIFIER NOT NULL
+    CONSTRAINT [Lead_Role_fk0] FOREIGN KEY ([LeadID]) REFERENCES [CRMLite].[Leads] ([ID]),
+    CONSTRAINT [Lead_Role_fk1] FOREIGN KEY ([RoleID]) REFERENCES [CRMLite].[Roles] ([ID])
+)
