@@ -13,6 +13,6 @@ namespace CRMLite.CRMDAL.Interfaces
         Task<IEnumerable<Lead>> GetAllLeadsAsync();
         Task<Guid> RegistrationLeadAsync(Lead lead);
         Task UpdateLeadAsync(Lead lead);
-        Task DeleteLeadByIdAsync(Guid ID);
+        Task DeleteLeadByIDAsync(Guid ID);
     }
 }

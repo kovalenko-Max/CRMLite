@@ -3,4 +3,4 @@ AS
 SELECT [LeadID],
 	[ConfirmMessage]
 FROM [CRMLite].[ConfirmMessage]
-WHERE [LeadId] = @LeadID
+WHERE [LeadID] = @LeadID

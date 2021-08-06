@@ -1,12 +1,11 @@
 ﻿CREATE TABLE [CRMLite].[Leads] (
-    [Id]            UNIQUEIDENTIFIER NOT NULL,
-    [Lastname]      NVARCHAR (255)   NOT NULL,
-    [Firstname]     NVARCHAR (255)   NOT NULL,
-    [PasportNumber] NVARCHAR (8)     NOT NULL,
+    [ID]            UNIQUEIDENTIFIER NOT NULL,
+    [LastName]      NVARCHAR (255)   NOT NULL,
+    [FirstName]     NVARCHAR (255)   NOT NULL,
+    [PassportNumber] NVARCHAR (8)     NOT NULL,
     [TIN]           NVARCHAR (12)    NOT NULL,
-    [Email]         NVARCHAR (255)   NOT NULL,
+    [Email]         NVARCHAR (255)   NOT NULL UNIQUE,
     [Password]      NVARCHAR (255)   NOT NULL,
-    [Role]          NVARCHAR (255)   NOT NULL,
-    CONSTRAINT [PK_LEADS] PRIMARY KEY CLUSTERED ([Id] ASC)
+    [Status]          NVARCHAR (255)   NOT NULL,
+    CONSTRAINT [PK_LEADS] PRIMARY KEY CLUSTERED ([ID] ASC)
 );
-

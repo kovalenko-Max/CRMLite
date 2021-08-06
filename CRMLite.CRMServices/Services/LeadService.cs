@@ -69,11 +69,11 @@ namespace CRMLite.CRMServices.Services
 
         }
 
-        public async Task DeleteLeadByIdAsync(Guid Id)
+        public async Task DeleteLeadByIDAsync(Guid Id)
         {
             try
             {
-                await _leadRepository.DeleteLeadByIdAsync(Id);
+                await _leadRepository.DeleteLeadByIDAsync(Id);
             }
             catch (Exception)
             {

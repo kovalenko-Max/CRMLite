@@ -19,11 +19,11 @@ namespace CRMLite.CRMDAL.Repositories
             _leadRepository = DBConnection.As<ILeadRepository>();
         }
 
-        public async Task DeleteLeadByIdAsync(Guid id)
+        public async Task DeleteLeadByIDAsync(Guid id)
         {
             try
             {
-                await _leadRepository.DeleteLeadByIdAsync(id);
+                await _leadRepository.DeleteLeadByIDAsync(id);
             }
             catch (Exception)
             {
