@@ -77,5 +77,10 @@
     <Build Include="dbo\Stored Procedures\CreateConfirmMessage.sql" />
     <Build Include="dbo\Stored Procedures\UpdateConfirmMessage.sql" />
     <Build Include="dbo\Stored Procedures\DeleteConfirmMessage.sql" />
+    <Build Include="dbo\Tables\Lead_Role.sql" />
+    <Build Include="dbo\Tables\Roles.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <RefactorLog Include="CRMLite.CRMDB.refactorlog" />
   </ItemGroup>
 </Project>

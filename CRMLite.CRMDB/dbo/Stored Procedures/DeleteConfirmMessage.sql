@@ -1,5 +1,4 @@
-﻿CREATE PROCEDURE [CRMLite].[DeleteConfirmMessage]
-@LeadID UNIQUEIDENTIFIER
+﻿CREATE PROCEDURE [CRMLite].[DeleteConfirmMessage] @LeadID UNIQUEIDENTIFIER
 AS
 DELETE [CRMLite].[ConfirmMessage]
-WHERE [LeadId] = @LeadID
+WHERE [LeadID] = @LeadID

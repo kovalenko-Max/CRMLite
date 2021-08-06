@@ -2,7 +2,7 @@
 	@ConfirmMessage NVARCHAR(20)
 AS
 INSERT INTO [CRMLite].[ConfirmMessage] (
-	[LeadId],
+	[LeadID],
 	[ConfirmMessage]
 	)
 VALUES (

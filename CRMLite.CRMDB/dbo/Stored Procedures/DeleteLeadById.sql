@@ -1,4 +1,7 @@
-﻿CREATE PROCEDURE [CRMLite].[DeleteLeadById] @Id UNIQUEIDENTIFIER
+﻿CREATE PROCEDURE [CRMLite].[DeleteLeadByID] @LeadID UNIQUEIDENTIFIER
 AS
-DELETE [Leads]
-WHERE [Id] = @Id
+DELETE [CRMLite].[Lead_Role]
+WHERE [LeadID] = @LeadID
+
+DELETE [CRMLite].[Leads]
+WHERE [ID] = @LeadID
