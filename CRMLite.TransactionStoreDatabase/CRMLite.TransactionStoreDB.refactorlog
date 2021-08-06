@@ -139,4 +139,10 @@
     <Property Name="NewSchema" Value="CRMLite" />
     <Property Name="IsNewSchemaExternal" Value="False" />
   </Operation>
+  <Operation Name="Move Schema" Key="618bf844-3032-4a52-b18d-766fd8fde51e" ChangeDateTime="08/06/2021 10:28:31">
+    <Property Name="ElementName" Value="[dbo].[GetAllTransactionByWalletID]" />
+    <Property Name="ElementType" Value="SqlProcedure" />
+    <Property Name="NewSchema" Value="CRMLite" />
+    <Property Name="IsNewSchemaExternal" Value="False" />
+  </Operation>
 </Operations>

@@ -66,6 +66,7 @@
     <Folder Include="CRMLite\StoredProcedures\OperationType" />
     <Folder Include="CRMLite\StoredProcedures\StockPortfolio" />
     <Folder Include="CRMLite\StoredProcedures\StockTransaction" />
+    <Folder Include="CRMLite\StoredProcedures\Transaction" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="CRMLite\Tables\Balance.sql" />
@@ -87,6 +88,9 @@
     <Build Include="CRMLite\StoredProcedures\StockTransaction\CreateStockTransaction.sql" />
     <Build Include="CRMLite\StoredProcedures\StockTransaction\GetAllStockTransactionsByLeadID.sql" />
     <Build Include="CRMLite\StoredProcedures\StockTransaction\GetAllStockTransactionsByStockID.sql" />
+    <Build Include="CRMLite\StoredProcedures\Transaction\CreateTransaction.sql" />
+    <Build Include="CRMLite\StoredProcedures\Transaction\GetAllTransactionsByLeadID.sql" />
+    <Build Include="CRMLite\StoredProcedures\Transaction\GetAllTransactionsByWalletID.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="CRMLite.TransactionStoreDB.refactorlog" />
