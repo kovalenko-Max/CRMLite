@@ -1,4 +1,6 @@
-﻿using System;
+﻿using CRMLite.Core.Contracts.Authorization.Roles;
+using System;
+using System.Collections.Generic;
 
 namespace CRMLite.CRMCore.Entities
 {
@@ -11,6 +13,7 @@ namespace CRMLite.CRMCore.Entities
         public string Password { get; set; }
         public string PasportNumber { get; set; }
         public string TIN { get; set; }
-        public Roles Role { get; set; }
+        public StatusType StatusType { get; set; }
+        public List<RoleType> Role { get; set; }
     }
 }

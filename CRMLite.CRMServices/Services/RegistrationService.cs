@@ -5,17 +5,19 @@ using CRMLite.CRMServices.Interfaces;
 using System;
 using System.Text.Json;
 using System.Threading.Tasks;
+using CRMLite.Core.Contracts.Authorization.Roles;
+using System.Text.RegularExpressions;
 
 namespace CRMLite.CRMServices.Services
 {
-    public class ConfirmMessageService : IConfirmMessageService
+    public class RegistrationService : IRegistrationService
     {
 
         private readonly IMailExchangeService _mailExchangeService;
         private readonly ILeadRepository _leadRepository;
         private IConfirmMessageRepository _confirmMessageRepository { get; set; }
 
-        public ConfirmMessageService(IDBContext dBContext, IMailExchangeService mailExchangeService)
+        public RegistrationService(IDBContext dBContext, IMailExchangeService mailExchangeService)
         {
             _confirmMessageRepository = dBContext.ConfirmMessageRepository;
             _mailExchangeService = mailExchangeService;
@@ -68,13 +70,41 @@ namespace CRMLite.CRMServices.Services
             if (model.ConfirmMessage == confirmMessageDB.ConfirmMessage)
             {
                 var lead = await _leadRepository.GetLeadByIDAsync(model.LeadID);
-                lead.Role = CRMCore.Roles.User;
+                lead.Role.Add(RoleType.User);
                 await _leadRepository.UpdateLeadAsync(lead);
 
                 return true;
             }
 
             return false;
+        }
+
+        public async Task<bool> RegistrationLeadAsync(Lead lead, string path)
+        {
+            try
+            {
+                if (IsPasswordValid(lead.Password))
+                {
+                    lead.Password = BCrypt.Net.BCrypt.HashPassword(lead.Password);
+                    lead.Id = Guid.NewGuid();
+                    await _leadRepository.RegistrationLeadAsync(lead);
+                    await CreateMailConfirmationAsync(lead);
+
+                    return true;
+                }
+                return false;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        private bool IsPasswordValid(string password)
+        {
+            var regEx = new Regex(@"^(?=.*?[A-Z])(?=.*?[a-z])((?=.*?[0-9])|(?=.*?[#?!@$%^&*-]))", RegexOptions.Compiled);
+
+            return regEx.IsMatch(password);
         }
     }
 }

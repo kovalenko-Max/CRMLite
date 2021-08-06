@@ -4,10 +4,10 @@ using System.Text;
 
 namespace CRMLite.Core.Contracts.Authorization.Roles
 {
-    public enum RoleType
+    public enum StatusType 
     {
-        UnconfirmedUser,
-        User,
-        Admin
+        Regular,
+        VIP,
+        Blocked
     }
 }

@@ -78,5 +78,18 @@ namespace CRMLite.CRMDAL.Repositories
                 throw;
             }
         }
+        public async Task<Lead> GetLeadByEmailAsync(string email)
+        {
+            try
+            {
+                var lead = _leadRepository.GetLeadByEmailAsync(email);
+
+                return await lead;
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
     }
 }
