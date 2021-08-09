@@ -62,7 +62,7 @@ namespace CRMLite.CRMAPI.Controllers
         [HttpDelete("{id}")]
         public async Task DeleteLeadAsync(Guid id)
         {
-            await _leadService.DeleteLeadByIdAsync(id);
+            await _leadService.DeleteLeadByIDAsync(id);
         }
     }
 }
