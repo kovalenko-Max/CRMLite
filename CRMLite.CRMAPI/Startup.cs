@@ -1,3 +1,5 @@
+using CRMLite.Core.Contracts.Authentification;
+using CRMLite.Core.Contracts.Authorization;
 using CRMLite.CRMAPI.JWT;
 using CRMLite.CRMCore.Entities;
 using CRMLite.TransactionStoreAPI.Middlewares;
@@ -39,7 +41,8 @@ namespace CRMLite.CRMAPI
             services.AddControllers();
             services.AddHttpContextAccessor();
             services.RegisterServices();
-            services.AddAuthentication(appSettings);
+            services.AddAuthenticationLead(appSettings.Secret);
+            services.AddAuthorizationLeads();
 
             services.AddMassTransit(x =>
             {

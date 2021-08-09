@@ -13,6 +13,7 @@ namespace CRMLite.CRMServices.Services
 {
     public class AuthService : IAuthService
     {
+
         private readonly IMailExchangeService _mailExchangeService;
         private readonly ILeadRepository _leadRepository;
         private readonly IRoleRepository _roleRepository;
@@ -38,14 +39,14 @@ namespace CRMLite.CRMServices.Services
             var modelToSerialize = JsonSerializer.Serialize(confirmationMessage);
             var messageToSend = EncryptionHelper.Encrypt(modelToSerialize);
 
-            var confirmationString = $"http://localhost:1234/Auth/confirm?message={messageToSend}";
+            var confirmationString = $"http://localhost:1234/api/Auth/confirm?message={messageToSend}";
 
             _mailExchangeService.SendMessage(lead.Email, lead.FirstName, confirmationString);
         }
 
         public async Task<bool> MailConfirmationResultAsync(string message)
         {
-            if(!(message is null))
+            if (!(message is null))
             {
                 var decrypted = EncryptionHelper.Decrypt(message);
                 var model = JsonSerializer.Deserialize<ConfirmationMessageModel>(decrypted);
@@ -61,12 +62,13 @@ namespace CRMLite.CRMServices.Services
 
                 return false;
             }
+
             throw new ArgumentException("Message is empty");
         }
 
         public async Task<bool> RegistrationLeadAsync(Lead lead)
         {
-            if(!(lead is null))
+            if (!(lead is null))
             {
                 if (IsPasswordValid(lead.Password))
                 {
@@ -78,12 +80,11 @@ namespace CRMLite.CRMServices.Services
 
                     return true;
                 }
+
                 return false;
             }
-           else
-            {
-                throw new ArgumentException("Lead is null");
-            }
+
+            throw new ArgumentNullException("Lead is null");
         }
 
         public async Task<Lead> LoginAsync(AuthentificationModel authenticationModel)
@@ -91,11 +92,20 @@ namespace CRMLite.CRMServices.Services
             if (!(authenticationModel is null))
             {
                 var lead = await _leadRepository.GetLeadByEmailAsync(authenticationModel.Email);
-                lead.Role = new List<RoleType>(await _roleRepository.GetAllRollesByIdAsync(lead.Id));
+
+                if (!(lead is null))
+                {
+                    lead.Role = new List<RoleType>(await _roleRepository.GetAllRolesByIdAsync(lead.Id));
+                }
+                else
+                {
+                    throw new ArgumentNullException("Lead is null");
+                }
+
                 return lead;
             }
 
-                throw new ArgumentException("AuthentificationModel is null");
+            throw new ArgumentNullException("AuthentificationModel is null");
         }
 
         private bool IsPasswordValid(string password)
@@ -104,5 +114,6 @@ namespace CRMLite.CRMServices.Services
 
             return regEx.IsMatch(password);
         }
+
     }
 }
