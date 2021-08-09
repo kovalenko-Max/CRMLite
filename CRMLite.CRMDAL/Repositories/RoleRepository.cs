@@ -43,16 +43,15 @@ namespace CRMLite.CRMDAL.Repositories
             }
         }
 
-        public async Task<IEnumerable<RoleType>> GetAllRollesByIdAsync(Guid id)
+        public async Task<IEnumerable<RoleType>> GetAllRolesByIdAsync(Guid id)
         {
             if (id != Guid.Empty)
             {
-                return await _roleRepository.GetAllRollesByIdAsync(id);
+                return await _roleRepository.GetAllRolesByIdAsync(id);
             }
 
             throw new ArgumentException("Guid Role Id is Empty");
         }
-
         public async Task<int> GetRoleID(int typeRole)
         {
             return await _roleRepository.GetRoleID(typeRole);

@@ -8,7 +8,7 @@ using System;
 namespace CRMLite.CRMAPI.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class AuthController : ControllerBase
     {
         private IAuthService _registrationService;
@@ -58,9 +58,9 @@ namespace CRMLite.CRMAPI.Controllers
             {
                 var lead = await _registrationService.LoginAsync(authenticationModel);
 
-                if (!BCrypt.Net.BCrypt.Verify(authenticationModel.Password, lead.Password))
+                if ((lead is null) || !BCrypt.Net.BCrypt.Verify(authenticationModel.Password, lead.Password))
                 {
-                    return BadRequest("Uncorected Password");
+                    return BadRequest("Uncorected Email or Password");
                 }
 
                 var token = await _sessionService.CreateAuthTokenAsync(lead);
@@ -68,7 +68,7 @@ namespace CRMLite.CRMAPI.Controllers
                 return Ok(token);
             }
 
-                throw new ArgumentException("AuthentificationModel is null");
+            throw new ArgumentNullException("AuthentificationModel is null");
         }
     }
 }

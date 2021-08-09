@@ -1,5 +1,6 @@
 ﻿using CRMLite.CRMCore.Entities;
 using CRMLite.CRMServices.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,8 @@ using System.Threading.Tasks;
 namespace CRMLite.CRMAPI.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
+    [Authorize(Policy = "PermissionForAdminAndUserRoles")]
     public class LeadController : ControllerBase
     {
         private ILeadService _leadService;
@@ -51,7 +53,7 @@ namespace CRMLite.CRMAPI.Controllers
         [HttpDelete("{id}")]
         public async Task DeleteLeadAsync(Guid id)
         {
-            if (!(id != Guid.Empty))
+            if (id != Guid.Empty)
             {
                 await _leadService.DeleteLeadByIDAsync(id);
             }

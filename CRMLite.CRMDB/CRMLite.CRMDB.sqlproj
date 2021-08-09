@@ -79,9 +79,9 @@
     <Build Include="dbo\Stored Procedures\DeleteConfirmMessage.sql" />
     <Build Include="dbo\Tables\Lead_Role.sql" />
     <Build Include="dbo\Tables\Roles.sql" />
-    <Build Include="dbo\Stored Procedures\GetAllRollesById.sql" />
+    <Build Include="dbo\Stored Procedures\GetAllRolesById.sql" />
     <Build Include="dbo\Stored Procedures\DeleteLeadRoleById.sql" />
-    <Build Include="dbo\Stored Procedures\AddRolesToLead.sql" />
+    <Build Include="dbo\Stored Procedures\AddRoleToLead.sql" />
     <Build Include="dbo\Stored Procedures\GetRoleID.sql" />
   </ItemGroup>
   <ItemGroup>

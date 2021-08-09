@@ -52,8 +52,10 @@ namespace CRMLite.CRMDAL.Repositories
             {
                 await _leadRepository.RegistrationLeadAsync(lead);
             }
-
-            throw new ArgumentNullException("Lead is null");
+            else
+            {
+                throw new ArgumentNullException("Lead is null");
+            }
         }
 
         public async Task UpdateLeadAsync(Lead lead)
@@ -62,8 +64,10 @@ namespace CRMLite.CRMDAL.Repositories
             {
                 await _leadRepository.UpdateLeadAsync(lead);
             }
-
-            throw new ArgumentNullException("Lead is null");
+            else
+            {
+                throw new ArgumentNullException("Lead is null");
+            }
         }
         public async Task<Lead> GetLeadByEmailAsync(string email)
         {

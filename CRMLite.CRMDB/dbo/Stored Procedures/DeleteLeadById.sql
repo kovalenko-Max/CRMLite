@@ -5,3 +5,6 @@ WHERE [LeadID] = @ID
 
 DELETE [CRMLite].[Leads]
 WHERE [ID] = @ID
+
+DELETE [CRMLite].[ConfirmMessage]
+WHERE [LeadID] = @ID

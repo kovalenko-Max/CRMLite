@@ -5,7 +5,7 @@
 	@TIN NVARCHAR(12),
 	@Email NVARCHAR(255),
 	@Password NVARCHAR(255),
-	@Status NVARCHAR(255)
+	@StatusType NVARCHAR(255)
 AS
 UPDATE [CRMLite].[Leads]
 SET [Id] = @Id,
@@ -15,5 +15,5 @@ SET [Id] = @Id,
 	[TIN] = @TIN,
 	[Email] = @Email,
 	[Password] = @Password,
-	[Status] = @Status
+	[Status] = @StatusType
 WHERE [Id] = @Id
