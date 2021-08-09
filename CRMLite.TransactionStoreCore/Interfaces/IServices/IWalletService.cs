@@ -7,7 +7,7 @@ namespace CRMLite.TransactionStoreDomain.Interfaces.IServices
 {
     public interface IWalletService
     {
-        Task CreateWalletWithinLeadAsync(Wallet wallet);
+        Task CreateWalletWithinLeadAsync(Guid leadID, Wallet wallet);
         Task<IEnumerable<Wallet>> GetAllWalletsByLeadIDAsync(Guid leadID);
         Task<Wallet> GetWalletByIDAsync(Guid id);
     }

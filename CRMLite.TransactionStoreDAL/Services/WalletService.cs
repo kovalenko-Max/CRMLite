@@ -16,15 +16,19 @@ namespace CRMLite.TransactionStoreBLL.Services
             _walletRepository = walletRepository;
         }
 
-        public async Task CreateWalletWithinLeadAsync(Wallet wallet)
+        public async Task CreateWalletWithinLeadAsync(Guid leadID, Wallet wallet)
         {
-            if (wallet != null)
+            if (wallet != null && leadID != Guid.Empty)
             {
-                await _walletRepository.CreateWalletWithinLeadAsync(wallet);
+                await _walletRepository.CreateWalletWithinLeadAsync(leadID, wallet);
             }
-            else
+            else if (wallet == null)
             {
                 throw new ArgumentNullException("Wallet is null");
+            }
+            else if (leadID == Guid.Empty)
+            {
+                throw new ArgumentException("Guid leadID is empty");
             }
         }
 

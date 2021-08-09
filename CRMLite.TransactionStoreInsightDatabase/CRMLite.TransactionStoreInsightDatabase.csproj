@@ -5,7 +5,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Insight.Database.Core" Version="6.3.7" />
+    <PackageReference Include="Insight.Database" Version="6.3.7" />
+    <PackageReference Include="Insight.Database.Providers.Default" Version="6.3.7" />
   </ItemGroup>
 
   <ItemGroup>
