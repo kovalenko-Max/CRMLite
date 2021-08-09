@@ -11,6 +11,6 @@ namespace CRMLite.TransactionStoreDomain.Interfaces.IRepositories
     {
         Task<IEnumerable<Wallet>> GetAllWalletsByLeadIDAsync(Guid leadID);
         Task<Wallet> GetWalletByIDAsync(Guid id);
-        Task CreateWalletWithinLeadAsync(Wallet wallet);
+        Task CreateWalletWithinLeadAsync(Guid leadID, Wallet wallet);
     }
 }

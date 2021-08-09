@@ -18,7 +18,7 @@ namespace CRMLite.TransactionStoreAPI.Controllers
             _walletService = walletService;
         }
 
-        [HttpGet("{leadID}")]
+        [HttpGet("leadID")]
         public async Task<IEnumerable<Wallet>> GetAllWalletsByLeadIDAsync(Guid leadID)
         {
             if (leadID != Guid.Empty)
@@ -31,7 +31,7 @@ namespace CRMLite.TransactionStoreAPI.Controllers
             throw new ArgumentException("Guid leadID is empty");
         }
 
-        [HttpGet("{walletID}")]
+        [HttpGet("walletID")]
         public async Task<Wallet> GetWalletByIDAsync(Guid walletID)
         {
             if (walletID != Guid.Empty)
@@ -42,19 +42,6 @@ namespace CRMLite.TransactionStoreAPI.Controllers
             }
 
             throw new ArgumentException("Guid walletID is empty");
-        }
-
-        [HttpPost]
-        public async Task CreateWalletWithinLeadAsync(Wallet wallet)
-        {
-            if (wallet != null)
-            {
-                await _walletService.CreateWalletWithinLeadAsync(wallet);
-            }
-            else
-            {
-                throw new ArgumentNullException("Wallet is null");
-            }
         }
     }
 }

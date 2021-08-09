@@ -11,7 +11,9 @@ Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "CRMLite.TransactionStoreDB"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CRMLite.TransactionStoreBLL", "CRMLite.TransactionStoreDAL\CRMLite.TransactionStoreBLL.csproj", "{25B53CA1-7B9D-4AF4-B63B-63485FF59A5C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CRMLite.TransactionStoreInsightDatabase", "CRMLite.TransactionStoreInsightDatabase\CRMLite.TransactionStoreInsightDatabase.csproj", "{44F89C6A-1151-45D5-86FD-85069EA9CB76}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CRMLite.TransactionStoreInsightDatabase", "CRMLite.TransactionStoreInsightDatabase\CRMLite.TransactionStoreInsightDatabase.csproj", "{44F89C6A-1151-45D5-86FD-85069EA9CB76}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CRMLite.TransactionStore.IntegrationTests", "CRMLite.TransactionStore.IntegrationTests\CRMLite.TransactionStore.IntegrationTests.csproj", "{21D51EF4-C1B9-4735-A19E-E50D93FA8A53}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,6 +43,10 @@ Global
 		{44F89C6A-1151-45D5-86FD-85069EA9CB76}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{44F89C6A-1151-45D5-86FD-85069EA9CB76}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{44F89C6A-1151-45D5-86FD-85069EA9CB76}.Release|Any CPU.Build.0 = Release|Any CPU
+		{21D51EF4-C1B9-4735-A19E-E50D93FA8A53}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{21D51EF4-C1B9-4735-A19E-E50D93FA8A53}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{21D51EF4-C1B9-4735-A19E-E50D93FA8A53}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{21D51EF4-C1B9-4735-A19E-E50D93FA8A53}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
