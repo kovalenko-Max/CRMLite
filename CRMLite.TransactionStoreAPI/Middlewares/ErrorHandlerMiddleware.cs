@@ -29,7 +29,7 @@ namespace CRMLite.TransactionStoreAPI.Middlewares
                 _logger.LogError(e, null, null);
 
                 context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
-                await context.Response.WriteAsync("Server is not available");
+                await context.Response.WriteAsync(e.Message);
             }
         }
     }
