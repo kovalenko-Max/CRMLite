@@ -7,5 +7,6 @@ namespace CRMLite.CRMDAL.Interfaces
         IDbConnection DBConnection { get; }
         ILeadRepository LeadRepository { get; }
         IConfirmMessageRepository ConfirmMessageRepository { get; }
+        IRoleRepository RoleRepository { get; }
     }
 }

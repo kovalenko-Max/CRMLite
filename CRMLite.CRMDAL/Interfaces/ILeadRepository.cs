@@ -11,7 +11,7 @@ namespace CRMLite.CRMDAL.Interfaces
     {
         Task<Lead> GetLeadByIDAsync(Guid ID);
         Task<IEnumerable<Lead>> GetAllLeadsAsync();
-        Task<Guid> RegistrationLeadAsync(Lead lead);
+        Task RegistrationLeadAsync(Lead lead);
         Task UpdateLeadAsync(Lead lead);
         Task DeleteLeadByIDAsync(Guid ID);
         Task<Lead> GetLeadByEmailAsync(string email);

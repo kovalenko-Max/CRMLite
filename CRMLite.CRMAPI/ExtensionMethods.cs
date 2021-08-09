@@ -20,7 +20,8 @@ namespace CRMLite.CRMAPI
             services.AddSingleton<IDBContext, DBContext>();
             services.AddScoped<ISessionService, SessionService>();
             services.AddScoped<ILeadService, LeadService>();
-            services.AddScoped<IRegistrationService, RegistrationService>();
+            services.AddScoped<IRoleService, RoleService>();
+            services.AddScoped<IAuthService, AuthService>();
             services.AddScoped<IMailExchangeService, MailExchangeService>();
         }
 
