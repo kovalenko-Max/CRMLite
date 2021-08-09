@@ -2,6 +2,7 @@
 using CRMLite.CRMServices.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
+using System;
 
 namespace CRMLite.CRMAPI.Controllers
 {
@@ -19,15 +20,19 @@ namespace CRMLite.CRMAPI.Controllers
         [HttpPost]
         public async Task<IActionResult> RegistrationLeadAsync(Lead lead)
         {
-            var response = await _registrationService.RegistrationLeadAsync(
-                lead, $"{Request.Scheme}://{Request.Host}");
-
-            if (!response)
+            if (!(lead is null))
             {
-                return BadRequest("Uncorrected data");
+                var response = await _registrationService.RegistrationLeadAsync(lead);
+
+                if (!response)
+                {
+                    return BadRequest("Uncorrect data");
+                }
+
+                return Ok(response);
             }
 
-            return Ok(response);
+            throw new ArgumentNullException("Lead is null");
         }
 
         [HttpGet("confirm")]
@@ -37,7 +42,7 @@ namespace CRMLite.CRMAPI.Controllers
 
             if (!response)
             {
-                return BadRequest("Uncorrected data");
+                return BadRequest("Uncorrect data");
             }
 
             return Ok(response);
