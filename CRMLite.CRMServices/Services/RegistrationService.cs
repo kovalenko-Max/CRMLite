@@ -46,42 +46,52 @@ namespace CRMLite.CRMServices.Services
 
         public async Task CreateMailConfirmationAsync(Lead lead)
         {
-            var confirmationMessage = new ConfirmationMessageModel
+            if (!(lead is null))
             {
-                ConfirmMessage = StringGenerator.GenerateString(),
-                LeadID = lead.Id
-            };
+                var confirmationMessage = new ConfirmationMessageModel
+                {
+                    ConfirmMessage = StringGenerator.GenerateString(),
+                    LeadID = lead.Id
+                };
 
-            await _confirmMessageRepository.CreateConfirmMessageAsync(confirmationMessage);
-            var modelToSerialize = JsonSerializer.Serialize(confirmationMessage);
-            var messageToSend = EncryptionHelper.Encrypt(modelToSerialize);
+                await _confirmMessageRepository.CreateConfirmMessageAsync(confirmationMessage);
+                var modelToSerialize = JsonSerializer.Serialize(confirmationMessage);
+                var messageToSend = EncryptionHelper.Encrypt(modelToSerialize);
 
-            var confirmationString = $"http://localhost:1234/Lead/confirm?message={messageToSend}";
+                var confirmationString = $"http://localhost:1234/Lead/confirm?message={messageToSend}";
 
-            _mailExchangeService.SendMessage(lead.Email, lead.FirstName, confirmationString);
+                _mailExchangeService.SendMessage(lead.Email, lead.FirstName, confirmationString); 
+            }
+
+            throw new ArgumentNullException("Lead is null");
         }
 
         public async Task<bool> MailConfirmationResultAsync(string message)
         {
-            var decrypted = EncryptionHelper.Decrypt(message);
-            var model = JsonSerializer.Deserialize<ConfirmationMessageModel>(decrypted);
-            var confirmMessageDB = await _confirmMessageRepository.GetConfirmMessageByLeadIDAsync(model.LeadID);
-
-            if (model.ConfirmMessage == confirmMessageDB.ConfirmMessage)
+            if (!(message is null))
             {
-                var lead = await _leadRepository.GetLeadByIDAsync(model.LeadID);
-                lead.Role.Add(RoleType.User);
-                await _leadRepository.UpdateLeadAsync(lead);
+                var decrypted = EncryptionHelper.Decrypt(message);
+                var model = JsonSerializer.Deserialize<ConfirmationMessageModel>(decrypted);
+                var confirmMessageDB = await _confirmMessageRepository.GetConfirmMessageByLeadIDAsync(model.LeadID);
 
-                return true;
+                if (model.ConfirmMessage == confirmMessageDB.ConfirmMessage)
+                {
+                    var lead = await _leadRepository.GetLeadByIDAsync(model.LeadID);
+                    lead.Role.Add(RoleType.User);
+                    await _leadRepository.UpdateLeadAsync(lead);
+
+                    return true;
+                }
+
+                return false; 
             }
 
-            return false;
+            throw new ArgumentNullException("Message is null");
         }
 
-        public async Task<bool> RegistrationLeadAsync(Lead lead, string path)
+        public async Task<bool> RegistrationLeadAsync(Lead lead)
         {
-            try
+            if(!(lead is null))
             {
                 if (IsPasswordValid(lead.Password))
                 {
@@ -92,12 +102,11 @@ namespace CRMLite.CRMServices.Services
 
                     return true;
                 }
+
                 return false;
             }
-            catch (Exception)
-            {
-                throw;
-            }
+
+            throw new ArgumentNullException("Lead is null");
         }
 
         private bool IsPasswordValid(string password)

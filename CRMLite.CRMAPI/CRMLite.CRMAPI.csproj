@@ -22,4 +22,8 @@
     <ProjectReference Include="..\CRMLite.CRMServices\CRMLite.CRMServices.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Middleware\" />
+  </ItemGroup>
+
 </Project>

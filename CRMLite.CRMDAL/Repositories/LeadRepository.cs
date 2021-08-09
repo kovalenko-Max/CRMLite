@@ -21,75 +21,58 @@ namespace CRMLite.CRMDAL.Repositories
 
         public async Task DeleteLeadByIDAsync(Guid id)
         {
-            try
+            if (id != Guid.Empty)
             {
                 await _leadRepository.DeleteLeadByIDAsync(id);
             }
-            catch (Exception)
+            else
             {
-                throw;
+                throw new ArgumentException("Guid is empty");
             }
         }
 
         public async Task<IEnumerable<Lead>> GetAllLeadsAsync()
         {
-            try
-            {
-                return await _leadRepository.GetAllLeadsAsync();
-            }
-            catch (Exception e)
-            {
-                throw e;
-            }
+            return await _leadRepository.GetAllLeadsAsync();
         }
 
         public async Task<Lead> GetLeadByIDAsync(Guid id)
         {
-            try
+            if (id != Guid.Empty)
             {
                 return await _leadRepository.GetLeadByIDAsync(id);
             }
-            catch (Exception)
-            {
-                throw;
-            }
+
+            throw new ArgumentException("Guid is empty");
         }
 
         public async Task<Guid> RegistrationLeadAsync(Lead lead)
         {
-            try
+            if (!(lead is null))
             {
                 return await _leadRepository.RegistrationLeadAsync(lead);
             }
-            catch (Exception)
-            {
-                throw;
-            }
+
+            throw new ArgumentNullException("Lead is null");
         }
 
         public async Task UpdateLeadAsync(Lead lead)
         {
-            try
+            if (!(lead is null))
             {
                 await _leadRepository.UpdateLeadAsync(lead);
             }
-            catch (Exception)
-            {
-                throw;
-            }
+
+            throw new ArgumentNullException("Lead is null");
         }
         public async Task<Lead> GetLeadByEmailAsync(string email)
         {
-            try
+            if (!(email is null))
             {
-                var lead = _leadRepository.GetLeadByEmailAsync(email);
+                return await _leadRepository.GetLeadByEmailAsync(email);
+            }
 
-                return await lead;
-            }
-            catch (Exception e)
-            {
-                throw e;
-            }
+            throw new ArgumentNullException("Email is null");
         }
     }
 }
