@@ -1,5 +1,6 @@
 ﻿using CRMLite.TransactionStoreDomain.Entities;
 using CRMLite.TransactionStoreDomain.Interfaces.IRepositories;
+using CRMLite.TransactionStoreInsightDatabase.Extension;
 using Insight.Database;
 using System;
 using System.Collections.Generic;
@@ -19,15 +20,19 @@ namespace CRMLite.TransactionStoreInsightDatabase.Repositories
             _walletRepository = DBConnection.As<IWalletRepository>();
         }
 
-        public async Task CreateWalletWithinLeadAsync(Wallet wallet)
+        public async Task CreateWalletWithinLeadAsync(Guid leadID, Wallet wallet)
         {
-            if (wallet != null)
+            if (wallet != null && leadID != Guid.Empty)
             {
-                await _walletRepository.CreateWalletWithinLeadAsync(wallet);
+                await _walletRepository.CreateWalletWithinLeadAsync(leadID, wallet);
             }
-            else
+            else if (wallet == null)
             {
                 throw new ArgumentNullException("Wallet is null");
+            }
+            else if (leadID == Guid.Empty)
+            {
+                throw new ArgumentException("Guid leadID is empty");
             }
         }
 

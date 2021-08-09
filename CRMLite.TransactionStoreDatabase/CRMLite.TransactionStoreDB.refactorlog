@@ -139,6 +139,20 @@
     <Property Name="NewSchema" Value="CRMLite" />
     <Property Name="IsNewSchemaExternal" Value="False" />
   </Operation>
+  <Operation Name="Rename Refactor" Key="afbc5bda-4c14-4f48-b13d-a297a35eb062" ChangeDateTime="08/06/2021 09:57:22">
+    <Property Name="ElementName" Value="[CRMLite].[Currency].[Name]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[CRMLite].[Currency]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Title" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="d64f77c8-1dee-4d6e-a396-da65658a060a" ChangeDateTime="08/06/2021 10:04:38">
+    <Property Name="ElementName" Value="[CRMLite].[Wallets].[Currency]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[CRMLite].[Wallets]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="CurrencyID" />
+  </Operation>
   <Operation Name="Move Schema" Key="618bf844-3032-4a52-b18d-766fd8fde51e" ChangeDateTime="08/06/2021 10:28:31">
     <Property Name="ElementName" Value="[dbo].[GetAllTransactionByWalletID]" />
     <Property Name="ElementType" Value="SqlProcedure" />

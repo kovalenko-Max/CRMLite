@@ -1,0 +1,6 @@
+﻿CREATE TABLE [CRMLite].[Currencies] (
+    [ID]   INT      NOT NULL identity,
+    [Title] NVARCHAR(50) NOT NULL,
+    CONSTRAINT [PK_CURRENCY] PRIMARY KEY CLUSTERED ([ID] ASC),
+    UNIQUE NONCLUSTERED ([Title] ASC)
+);
