@@ -46,11 +46,11 @@ namespace CRMLite.CRMDAL.Repositories
             throw new ArgumentException("Guid is empty");
         }
 
-        public async Task<Guid> RegistrationLeadAsync(Lead lead)
+        public async Task RegistrationLeadAsync(Lead lead)
         {
             if (!(lead is null))
             {
-                return await _leadRepository.RegistrationLeadAsync(lead);
+                await _leadRepository.RegistrationLeadAsync(lead);
             }
 
             throw new ArgumentNullException("Lead is null");

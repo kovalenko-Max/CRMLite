@@ -11,7 +11,7 @@ namespace CRMLite.CRMCore.Entities
         public string LastName { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }
-        public string PasportNumber { get; set; }
+        public string PassportNumber { get; set; }
         public string TIN { get; set; }
         public StatusType StatusType { get; set; }
         public List<RoleType> Role { get; set; }

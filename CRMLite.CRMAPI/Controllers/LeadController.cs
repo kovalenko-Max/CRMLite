@@ -1,5 +1,4 @@
-﻿using CRMLite.CRMAPI.JWT;
-using CRMLite.CRMCore.Entities;
+﻿using CRMLite.CRMCore.Entities;
 using CRMLite.CRMServices.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -13,12 +12,10 @@ namespace CRMLite.CRMAPI.Controllers
     public class LeadController : ControllerBase
     {
         private ILeadService _leadService;
-        private ISessionService _jWTTokenHelper;
 
-        public LeadController(ILeadService leadService, ISessionService jWTTokenHelper)
+        public LeadController(ILeadService leadService)
         {
             _leadService = leadService;
-            _jWTTokenHelper = jWTTokenHelper;
         }
 
         [HttpGet]
@@ -36,26 +33,6 @@ namespace CRMLite.CRMAPI.Controllers
             }
 
             throw new ArgumentException("Guid ID is empty");
-        }
-
-        [HttpPost("login")]
-        public async Task<IActionResult> Login(AuthentificationModel authenticationModel)
-        {
-            if (!(authenticationModel is null))
-            {
-                var lead = await _leadService.LoginAsync(authenticationModel);
-
-                if (!BCrypt.Net.BCrypt.Verify(authenticationModel.Password, lead.Password))
-                {
-                    return BadRequest("Uncorect password");
-                }
-
-                var token = await _jWTTokenHelper.CreateAuthTokenAsync(lead);
-
-                return Ok(token);
-            }
-
-            throw new ArgumentNullException("AuthentificationModel is null");
         }
 
         [HttpPut]
