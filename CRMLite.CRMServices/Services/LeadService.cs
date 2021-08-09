@@ -3,7 +3,6 @@ using CRMLite.CRMDAL.Interfaces;
 using CRMLite.CRMServices.Interfaces;
 using System;
 using System.Collections.Generic;
-using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace CRMLite.CRMServices.Services
@@ -19,67 +18,51 @@ namespace CRMLite.CRMServices.Services
 
         public async Task<Lead> GetLeadByIdAsync(Guid Id)
         {
-            try
+            if (Id != Guid.Empty)
             {
-                var lead = await _leadRepository.GetLeadByIDAsync(Id);
+                return await _leadRepository.GetLeadByIDAsync(Id);
+            }
 
-                return lead;
-            }
-            catch (Exception)
-            {
-                throw;
-            }
+            throw new ArgumentException("Guid leadID is empty");
         }
 
         public async Task<Lead> LoginAsync(AuthentificationModel authenticationModel)
         {
-            try
+            if (!(authenticationModel is null))
             {
-                var lead = await _leadRepository.GetLeadByEmailAsync(authenticationModel.Email);
+                return await _leadRepository.GetLeadByEmailAsync(authenticationModel.Email);
+            }
 
-                return lead;
-            }
-            catch (Exception e)
-            {
-                throw e;
-            }
+            throw new ArgumentNullException("AuthentificationModel is null");
         }
 
         public async Task UpdateLeadAsync(Lead lead)
         {
-            try
+            if (!(lead is null))
             {
                 await _leadRepository.UpdateLeadAsync(lead);
             }
-            catch (Exception)
+            else
             {
-                throw;
+                throw new ArgumentNullException("Lead is null");
             }
-
         }
 
         public async Task DeleteLeadByIDAsync(Guid Id)
         {
-            try
+            if (Id != Guid.Empty)
             {
                 await _leadRepository.DeleteLeadByIDAsync(Id);
             }
-            catch (Exception)
+            else
             {
-                throw;
+                throw new ArgumentException("Guid Id is empty");
             }
         }
 
         public async Task<IEnumerable<Lead>> GetAllLeadsAsync()
         {
-            try
-            {
-                return await _leadRepository.GetAllLeadsAsync();
-            }
-            catch (Exception)
-            {
-                throw;
-            }
+            return await _leadRepository.GetAllLeadsAsync();
         }
     }
 }

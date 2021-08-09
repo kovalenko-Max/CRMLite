@@ -12,6 +12,6 @@ namespace CRMLite.CRMServices.Interfaces
         public Task DeleteConfirmMessageAsync(Guid ID);
         public Task CreateMailConfirmationAsync(Lead lead);
         public Task<bool> MailConfirmationResultAsync(string message);
-        public Task<bool> RegistrationLeadAsync(Lead lead, string path);
+        public Task<bool> RegistrationLeadAsync(Lead lead);
     }
 }

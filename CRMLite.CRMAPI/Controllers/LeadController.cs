@@ -1,7 +1,6 @@
 ﻿using CRMLite.CRMAPI.JWT;
 using CRMLite.CRMCore.Entities;
 using CRMLite.CRMServices.Interfaces;
-using MassTransit;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -25,44 +24,64 @@ namespace CRMLite.CRMAPI.Controllers
         [HttpGet]
         public async Task<IEnumerable<Lead>> GetAllLeadsAsync()
         {
-            var response = await _leadService.GetAllLeadsAsync();
-
-            return response;
+            return await _leadService.GetAllLeadsAsync();
         }
 
         [HttpGet("{id}")]
         public async Task<Lead> GetLeadByIdAsync(Guid id)
         {
-            var response = await _leadService.GetLeadByIdAsync(id);
+            if (id != Guid.Empty)
+            {
+                return await _leadService.GetLeadByIdAsync(id);
+            }
 
-            return response;
+            throw new ArgumentException("Guid ID is empty");
         }
 
         [HttpPost("login")]
         public async Task<IActionResult> Login(AuthentificationModel authenticationModel)
         {
-            var lead = await _leadService.LoginAsync(authenticationModel);
-
-            if(!BCrypt.Net.BCrypt.Verify(authenticationModel.Password, lead.Password))
+            if (!(authenticationModel is null))
             {
-                return BadRequest("Uncorected Password");
+                var lead = await _leadService.LoginAsync(authenticationModel);
+
+                if (!BCrypt.Net.BCrypt.Verify(authenticationModel.Password, lead.Password))
+                {
+                    return BadRequest("Uncorect password");
+                }
+
+                var token = await _jWTTokenHelper.CreateAuthTokenAsync(lead);
+
+                return Ok(token);
             }
 
-            var token = await _jWTTokenHelper.CreateAuthTokenAsync(lead);
-
-            return Ok(token);
+            throw new ArgumentNullException("AuthentificationModel is null");
         }
 
         [HttpPut]
         public async Task UpdateLeadAsync(Lead lead)
         {
-            await _leadService.UpdateLeadAsync(lead);
+            if (!(lead is null))
+            {
+                await _leadService.UpdateLeadAsync(lead);
+            }
+            else
+            {
+                throw new ArgumentNullException("Lead is null");
+            }
         }
 
         [HttpDelete("{id}")]
         public async Task DeleteLeadAsync(Guid id)
         {
-            await _leadService.DeleteLeadByIDAsync(id);
+            if (!(id != Guid.Empty))
+            {
+                await _leadService.DeleteLeadByIDAsync(id);
+            }
+            else
+            {
+                throw new ArgumentException("LeadID is empty");
+            }
         }
     }
 }

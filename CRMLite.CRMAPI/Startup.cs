@@ -1,25 +1,17 @@
 using CRMLite.CRMAPI.JWT;
 using CRMLite.CRMCore.Entities;
-using CRMLite.CRMDAL;
-using CRMLite.CRMDAL.Interfaces;
-using CRMLite.CRMServices.Interfaces;
-using CRMLite.CRMServices.Services;
+using CRMLite.TransactionStoreAPI.Middlewares;
 using MassTransit;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Serilog;
-using System;
 using System.Data;
 using System.Data.Common;
 using System.Data.SqlClient;
-using System.Text;
-using System.Threading;
 
 namespace CRMLite.CRMAPI
 {
@@ -75,6 +67,9 @@ namespace CRMLite.CRMAPI
             }
 
             app.UseHttpsRedirection();
+
+            app.UseMiddleware<ErrorHandlerMiddleware>();
+            app.UseMiddleware<ArgumentExceptionHandlerMiddleware>();
 
             app.UseRouting();
 

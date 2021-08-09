@@ -20,22 +20,48 @@ namespace CRMLite.CRMDAL.Repositories
 
         public async Task CreateConfirmMessageAsync(ConfirmationMessageModel confirmationMessage)
         {
-            await _confirmMessageRepository.CreateConfirmMessageAsync(confirmationMessage);
+            if (!(confirmationMessage is null))
+            {
+                await _confirmMessageRepository.CreateConfirmMessageAsync(confirmationMessage);
+            }
+            else
+            {
+                throw new ArgumentNullException("ConfirmationMessageModel is null");
+            }
         }
 
         public async Task<ConfirmationMessageModel> GetConfirmMessageByLeadIDAsync(Guid LeadID)
         {
-           return await _confirmMessageRepository.GetConfirmMessageByLeadIDAsync(LeadID);
+            if (LeadID != Guid.Empty)
+            {
+                return await _confirmMessageRepository.GetConfirmMessageByLeadIDAsync(LeadID);
+            }
+
+            throw new ArgumentException("Guid LeadID is empty");
         }
 
         public async Task UpdateConfirmMessageAsync(ConfirmationMessageModel confirmationMessage)
         {
-            await _confirmMessageRepository.UpdateConfirmMessageAsync(confirmationMessage);
+            if (!(confirmationMessage is null))
+            {
+                await _confirmMessageRepository.UpdateConfirmMessageAsync(confirmationMessage);
+            }
+            else
+            {
+                throw new ArgumentNullException("ConfirmationMessageModel is null");
+            }
         }
 
         public async Task DeleteConfirmMessageAsync(Guid ID)
         {
-            await _confirmMessageRepository.DeleteConfirmMessageAsync(ID);
+            if (ID != Guid.Empty)
+            {
+                await _confirmMessageRepository.DeleteConfirmMessageAsync(ID);
+            }
+            else
+            {
+                throw new ArgumentException("Guid is empty");
+            }
         }
     }
 }
