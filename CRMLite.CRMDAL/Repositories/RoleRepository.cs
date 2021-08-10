@@ -19,11 +19,11 @@ namespace CRMLite.CRMDAL.Repositories
             _roleRepository = DBConnection.As<IRoleRepository>();
         }
 
-        public async Task AddRoleToLeadAsync(Guid leadId, int roleId)
+        public async Task AddRoleToLeadAsync(Guid leadId, RoleType roleType)
         {
             if (leadId != Guid.Empty)
             {
-                await _roleRepository.AddRoleToLeadAsync(leadId, roleId);
+                await _roleRepository.AddRoleToLeadAsync(leadId, roleType);
             }
             else
             {
@@ -31,11 +31,11 @@ namespace CRMLite.CRMDAL.Repositories
             }
         }
 
-        public async Task DeleteLeadRoleByIdAsync(Guid id, int roleId)
+        public async Task DeleteLeadRoleByIdAsync(Guid id, RoleType roleType)
         {
             if (id != Guid.Empty)
             {
-                await _roleRepository.DeleteLeadRoleByIdAsync(id, roleId);
+                await _roleRepository.DeleteLeadRoleByIdAsync(id, roleType);
             }
             else
             {
@@ -52,9 +52,15 @@ namespace CRMLite.CRMDAL.Repositories
 
             throw new ArgumentException("Guid Role Id is Empty");
         }
+
         public async Task<int> GetRoleID(int typeRole)
         {
             return await _roleRepository.GetRoleID(typeRole);
+        }
+
+        public async Task CreateRoleAsync(int RoleType)
+        {
+            await _roleRepository.CreateRoleAsync(RoleType);
         }
     }
 }

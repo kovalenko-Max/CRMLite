@@ -32,11 +32,11 @@ namespace CRMLite.CRMAPI.Controllers
         }
 
         [HttpPost]
-        public async Task AddRoleToLead(Guid leadId, int roleId)
+        public async Task AddRoleToLead(Guid leadId, RoleType roleType)
         {
             if (leadId != Guid.Empty)
             {
-                await _roleService.AddRoleToLeadAsync(leadId, roleId);
+                await _roleService.AddRoleToLeadAsync(leadId, roleType);
             }
             else
             {
@@ -45,11 +45,11 @@ namespace CRMLite.CRMAPI.Controllers
         }
 
         [HttpDelete]
-        public async Task DeleteLeadRoleById(Guid id, int roleId)
+        public async Task DeleteLeadRoleById(Guid id, RoleType roleType)
         {
             if (id != Guid.Empty)
             {
-                await _roleService.DeleteLeadRoleByIdAsync(id, roleId);
+                await _roleService.DeleteLeadRoleByIdAsync(id, roleType);
             }
             else
             {

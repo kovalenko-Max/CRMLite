@@ -44,7 +44,7 @@ namespace CRMLite.CRM.IntegrationTests.ControllerTests
 
         protected abstract Task InitializeEnvironmentData();
 
-        protected virtual async Task<HttpResponseMessage> SendRequesToCreate(object obj, string postRoute)
+        protected virtual async Task<HttpResponseMessage> SendRequestToCreate(object obj, string postRoute)
         {
             var postResponse = await _client.PostAsync(postRoute,
                 new StringContent(JsonConvert.SerializeObject(obj), Encoding.UTF8, "application/json"));
@@ -52,14 +52,21 @@ namespace CRMLite.CRM.IntegrationTests.ControllerTests
             return postResponse;
         }
 
-        protected virtual async Task<HttpResponseMessage> SendRequesToGetByID(string getRoute)
+        protected virtual async Task<HttpResponseMessage> SendRequestToDelete(string postRoute)
+        {
+            var postResponse = await _client.DeleteAsync(postRoute);
+
+            return postResponse;
+        }
+
+        protected virtual async Task<HttpResponseMessage> SendRequestToGetByID(string getRoute)
         {
             var getResponse = await _client.GetAsync(getRoute);
 
             return getResponse;
         }
 
-        protected virtual async Task<HttpResponseMessage> SendRequesToGetAll(string getRoute)
+        protected virtual async Task<HttpResponseMessage> SendRequestToGetAll(string getRoute)
         {
             var getResponse = await _client.GetAsync(getRoute);
 
