@@ -83,8 +83,16 @@
     <Build Include="dbo\Stored Procedures\DeleteLeadRoleById.sql" />
     <Build Include="dbo\Stored Procedures\AddRolesToLead.sql" />
     <Build Include="dbo\Stored Procedures\GetRoleID.sql" />
+    <Build Include="dbo\Stored Procedures\ResetIdentityInAllTables.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="CRMLite.CRMDB.refactorlog" />
+  </ItemGroup>
+  <ItemGroup>
+    <ArtifactReference Include="$(DacPacRootPath)\Extensions\Microsoft\SQLDB\Extensions\SqlServer\130\SqlSchemas\master.dacpac">
+      <HintPath>$(DacPacRootPath)\Extensions\Microsoft\SQLDB\Extensions\SqlServer\130\SqlSchemas\master.dacpac</HintPath>
+      <SuppressMissingDependenciesErrors>False</SuppressMissingDependenciesErrors>
+      <DatabaseVariableLiteralValue>master</DatabaseVariableLiteralValue>
+    </ArtifactReference>
   </ItemGroup>
 </Project>
