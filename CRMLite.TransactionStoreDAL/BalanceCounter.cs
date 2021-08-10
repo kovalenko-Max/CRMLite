@@ -21,7 +21,7 @@ namespace CRMLite.TransactionStoreBLL
 
             foreach (Wallet w in _wallets)
             {
-                decimal rate = GetRateForCurrency(w.Currency);
+                decimal rate = GetRateForCurrency(w.CurrencyID.ToString());
                 balance += (w.Amount * rate);
             }
 
