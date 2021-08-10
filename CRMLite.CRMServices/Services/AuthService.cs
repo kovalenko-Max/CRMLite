@@ -54,8 +54,7 @@ namespace CRMLite.CRMServices.Services
 
                 if (model.ConfirmMessage == confirmMessageDB.ConfirmMessage)
                 {
-                    var roleId = await _roleRepository.GetRoleID(Convert.ToInt32(RoleType.User));
-                    await _roleRepository.AddRoleToLeadAsync(confirmMessageDB.LeadID, roleId);
+                    await _roleRepository.AddRoleToLeadAsync(confirmMessageDB.LeadID, RoleType.User);
 
                     return true;
                 }

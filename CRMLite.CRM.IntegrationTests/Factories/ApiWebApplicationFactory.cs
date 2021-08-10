@@ -1,5 +1,11 @@
 ﻿using CRMLite.CRM.IntegrationTests.SharedDatabaseFixtures;
 using CRMLite.CRMAPI;
+using CRMLite.CRMDAL.Interfaces;
+using CRMLite.CRMDAL.Repositories;
+using CRMLite.CRMServices.Interfaces;
+using CRMLite.CRMServices.Services;
+using Education_Core.WebApi.IntegrationTests;
+using Microsoft.AspNetCore.Authorization.Policy;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.AspNetCore.TestHost;
@@ -54,10 +60,14 @@ namespace CRMLite.CRM.IntegrationTests.Factories
 
         private void AddRepositories(IServiceCollection services)
         {
+            services.AddTransient<IRoleRepository, RoleRepository>();
+            services.AddTransient<ILeadRepository, LeadRepository>();
         }
 
         private void AddServices(IServiceCollection services)
         {
+            services.AddTransient<IRoleService, RoleService>();
+            services.AddSingleton<IPolicyEvaluator, FakePolicyEvaluator>();
         }
     }
 }
