@@ -1,4 +1,6 @@
+using CRMLite.TransactionStoreAPI.Extensions;
 using CRMLite.TransactionStoreAPI.Middlewares;
+using CRMLite.TransactionStoreAPI.RabbitMQ;
 using CRMLite.TransactionStoreBLL.Services;
 using CRMLite.TransactionStoreDomain.Interfaces.IRepositories;
 using CRMLite.TransactionStoreDomain.Interfaces.IServices;
@@ -26,11 +28,13 @@ namespace CRMLite.TransactionStoreAPI
 
         public void ConfigureServices(IServiceCollection services)
         {
+            var rabbitMQHostConfig = Configuration.GetSection("RabbitMQHostConfig").Get<RabbitMQHostConfig>();
             var connectionString = Configuration.GetConnectionString("Default");
             DbConnection connection = new SqlConnection(connectionString);
 
             services.AddHttpContextAccessor();
             services.AddControllers();
+            services.AddMassTransitWithinRabbitMQ(rabbitMQHostConfig);
 
             services.AddSingleton<IDbConnection>(conn => connection);
 
