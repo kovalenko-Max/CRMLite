@@ -1,4 +1,4 @@
-﻿CREATE PROCEDURE [CRMLite].[GetLeadByID] @LeadID UNIQUEIDENTIFIER
+﻿CREATE PROCEDURE [CRMLite].[GetLeadByID] @ID UNIQUEIDENTIFIER
 AS
 SELECT [ID],
 	[Firstname],
@@ -9,4 +9,4 @@ SELECT [ID],
 	[TIN],
 	[Status]
 FROM [CRMLite].[Leads]
-WHERE [Id] = @LeadID
+WHERE [ID] = @ID

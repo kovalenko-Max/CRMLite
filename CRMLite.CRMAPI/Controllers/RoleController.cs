@@ -1,5 +1,6 @@
 ﻿using CRMLite.Core.Contracts.Authorization.Roles;
 using CRMLite.CRMServices.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -9,6 +10,7 @@ namespace CRMLite.CRMAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize(Policy = "PermissionJustForAdminRole")]
     public class RoleController : ControllerBase
     {
         private IRoleService _roleService { get; set; }
@@ -23,7 +25,7 @@ namespace CRMLite.CRMAPI.Controllers
         {
             if (id != Guid.Empty)
             {
-                return await _roleService.GetAllRolesByIDAsync(id);
+                return await _roleService.GetAllRolesByIdAsync(id);
             }
 
             throw new ArgumentException("Guid Role Id is Empty");

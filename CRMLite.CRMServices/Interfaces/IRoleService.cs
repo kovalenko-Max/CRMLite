@@ -9,7 +9,7 @@ namespace CRMLite.CRMServices.Interfaces
     {
         public Task AddRoleToLeadAsync(Guid leadId, int roleId);
         public Task DeleteLeadRoleByIdAsync(Guid id,int roleId);
-        public Task<IEnumerable<RoleType>> GetAllRolesByIDAsync(Guid id);
+        public Task<IEnumerable<RoleType>> GetAllRolesByIdAsync(Guid id);
         public Task<int> GetRoleID(int typeRole);
     }
 }
