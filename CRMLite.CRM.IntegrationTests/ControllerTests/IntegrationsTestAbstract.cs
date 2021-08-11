@@ -72,6 +72,14 @@ namespace CRMLite.CRM.IntegrationTests.ControllerTests
 
             return getResponse;
         }
+
+        protected virtual async Task<HttpResponseMessage> SendRequestToUpdate(object obj, string putRoute)
+        {
+            var putResponse = await _client.PutAsync(putRoute,
+                new StringContent(JsonConvert.SerializeObject(obj), Encoding.UTF8, "application/json"));
+
+            return putResponse;
+        }
     }
 }
 

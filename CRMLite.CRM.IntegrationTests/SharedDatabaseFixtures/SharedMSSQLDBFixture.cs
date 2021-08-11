@@ -18,7 +18,8 @@ namespace CRMLite.CRM.IntegrationTests.SharedDatabaseFixtures
 
                 ProcessStartInfo procStartInfo = new ProcessStartInfo();
                 procStartInfo.FileName = projectPath + @"\sqlpackege\sqlpackage.exe";
-                procStartInfo.Arguments = @$"/sf:{dacpacFilePath} /a:Publish /p:CreateNewDatabase=true /tsn:. /tdn:{_testDBName} /v:DbType=production  /v:DbVer=1.0.0 /p:ScriptNewConstraintValidation=False /p:GenerateSmartDefaults=True /of:True /p:BlockOnPossibleDataLoss=False";
+                procStartInfo.FileName = projectPath + @"\sqlpackege\sqlpackage.exe";
+                procStartInfo.Arguments = @$"/sf:{dacpacFilePath} /a:Publish /p:CreateNewDatabase=true /tsn:(LocalDB)\MSSQLLocalDB /tdn:{_testDBName} /v:DbType=production  /v:DbVer=1.0.0 /p:ScriptNewConstraintValidation=False /p:GenerateSmartDefaults=True /of:True /p:BlockOnPossibleDataLoss=False";
 
                 using (Process process = new Process())
                 {
