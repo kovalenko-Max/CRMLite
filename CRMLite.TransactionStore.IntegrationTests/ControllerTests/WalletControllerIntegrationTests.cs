@@ -29,7 +29,6 @@ namespace CRMLite.TransactionStore.IntegrationTests.ControllerTests
             await CreateWallet(Guid.NewGuid(), wallet);
 
             var getRoute = $"/api/Wallet/walletID?walletID={wallet.ID}";
-
             var getResponse = await SendRequestToGetByID(getRoute);
             var actual = JsonConvert.DeserializeObject<Wallet>(await getResponse.Content.ReadAsStringAsync());
 

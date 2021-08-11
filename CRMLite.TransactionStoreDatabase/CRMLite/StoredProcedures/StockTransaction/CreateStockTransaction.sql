@@ -1,11 +1,10 @@
-﻿CREATE PROCEDURE [CRMLite].[CreateStockTransaction]
-	@ID UNIQUEIDENTIFIER,
-	@IsDeposit bit,
+﻿CREATE PROCEDURE [CRMLite].[CreateStockTransaction] @ID UNIQUEIDENTIFIER,
+	@IsDeposit BIT,
 	@StockPortfolioID UNIQUEIDENTIFIER,
 	@StockID UNIQUEIDENTIFIER,
-	@Quontity int,
-	@StockPrice decimal(18,0),
-	@Timestamp datetime
+	@Quontity INT,
+	@StockPrice DECIMAL(18, 0),
+	@Timestamp DATETIME
 AS
 INSERT INTO [CRMLite].[StockTransactions] (
 	ID,
@@ -14,7 +13,7 @@ INSERT INTO [CRMLite].[StockTransactions] (
 	StockID,
 	Quontity,
 	StockPrice,
-	Timestamp
+	[Timestamp]
 	)
 VALUES (
 	@ID,

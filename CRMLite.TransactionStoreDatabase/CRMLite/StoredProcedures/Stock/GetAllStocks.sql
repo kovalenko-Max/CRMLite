@@ -1,8 +1,6 @@
 ﻿CREATE PROCEDURE [CRMLite].[GetAllStocks]
 AS
-	SELECT 
-	ID,
+SELECT ID,
 	Title,
 	IsDividend
-
-	from [CRMLite].[Stock]
+FROM [CRMLite].[Stock]

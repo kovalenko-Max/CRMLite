@@ -1,10 +1,9 @@
-﻿CREATE PROCEDURE [CRMLite].[CreateTransaction]
-	@ID UNIQUEIDENTIFIER,
-	@OperationType tinyint,
+﻿CREATE PROCEDURE [CRMLite].[CreateTransaction] @ID UNIQUEIDENTIFIER,
+	@OperationType TINYINT,
 	@WalletFrom UNIQUEIDENTIFIER,
 	@WalletTo UNIQUEIDENTIFIER,
-	@Amount decimal(18,0),
-	@Timestamp datetime
+	@Amount DECIMAL(18, 0),
+	@Timestamp DATETIME
 AS
 INSERT INTO [CRMLite].[Transactions] (
 	ID,
@@ -12,7 +11,7 @@ INSERT INTO [CRMLite].[Transactions] (
 	WalletFrom,
 	WalletTo,
 	Amount,
-	Timestamp
+	TIMESTAMP
 	)
 VALUES (
 	@ID,
