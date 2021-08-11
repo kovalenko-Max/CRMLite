@@ -1,7 +1,9 @@
 ﻿CREATE PROCEDURE [CRMLite].[GetWalletByID] @ID UNIQUEIDENTIFIER
 AS
-SELECT [ID],
-	[CurrencyID],
-	[Amount]
-FROM [CRMLite].[Wallets]
-WHERE ID = @ID
+SELECT W.ID,
+	W.Amount,
+	C.ID,
+	C.Title
+FROM [CRMLite].[Wallets] W
+LEFT JOIN [CRMLite].[Currencies] C ON W.CurrencyID = C.ID
+WHERE W.ID = @ID

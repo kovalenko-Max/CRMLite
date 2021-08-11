@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace CRMLite.TransactionStoreDomain.Entities
+﻿namespace CRMLite.TransactionStoreDomain.Entities
 {
     public class Currency
     {

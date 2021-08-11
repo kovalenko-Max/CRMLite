@@ -18,7 +18,7 @@ namespace CRMLite.TransactionStore.IntegrationTests.SourceData.TestSourceData
             {
                 ID = Guid.NewGuid(),
                 Amount = 100,
-                CurrencyID = currency.ID
+                Currency = currency
             };
         }
 
@@ -35,13 +35,14 @@ namespace CRMLite.TransactionStore.IntegrationTests.SourceData.TestSourceData
             var leadID = Guid.NewGuid();
             var wallets = new List<Wallet>();
             var currency = CurrencyEnvironmentData.GetCurrencies(1).FirstOrDefault();
+
             for (int i = 0; i < 5; i++)
             {
                 wallets.Add(new Wallet()
                 {
                     ID = Guid.NewGuid(),
                     Amount = 100,
-                    CurrencyID = currency.ID
+                    Currency = currency
                 });
             }
 

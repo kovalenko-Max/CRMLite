@@ -1,5 +1,6 @@
 ﻿using CRMLite.TransactionStoreDomain.Entities;
 using CRMLite.TransactionStoreDomain.Interfaces.IRepositories;
+using CRMLite.TransactionStoreInsightDatabase.Extension;
 using Insight.Database;
 using System;
 using System.Collections.Generic;
@@ -23,7 +24,16 @@ namespace CRMLite.TransactionStoreInsightDatabase.Repositories
         {
             if (wallet != null && leadID != Guid.Empty)
             {
-                await _walletRepository.CreateWalletWithinLeadAsync(leadID, wallet);
+                var currencyID = wallet.Currency.ID;
+
+                await DBConnection.QueryAsync(nameof(CreateWalletWithinLeadAsync).GetStoredProcedureName(),
+                    new
+                    {
+                        leadID,
+                        wallet.ID,
+                        currencyID,
+                        wallet.Amount
+                    });
             }
             else if (wallet == null)
             {

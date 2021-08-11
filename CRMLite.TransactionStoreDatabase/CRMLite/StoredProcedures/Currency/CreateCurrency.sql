@@ -2,4 +2,3 @@
 AS
 INSERT INTO [CRMLite].[Currencies] (Title)
 VALUES (@Title)
-

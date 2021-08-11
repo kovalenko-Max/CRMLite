@@ -2,4 +2,4 @@
 AS
 SELECT cur.[ID],
 	cur.[Title]
-FROM [CRMLite].[Currencies] as cur
+FROM [CRMLite].[Currencies] AS cur
