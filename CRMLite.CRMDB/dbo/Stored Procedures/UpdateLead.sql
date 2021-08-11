@@ -8,9 +8,9 @@
 	@StatusType NVARCHAR(255)
 AS
 UPDATE [CRMLite].[Leads]
-SET [Id] = @Id,
-	[Lastname] = @Lastname,
-	[Firstname] = @Firstname,
+SET [ID] = @ID,
+	[LastName] = @LastName,
+	[FirstName] = @FirstName,
 	[PassportNumber] = @PassportNumber,
 	[TIN] = @TIN,
 	[Email] = @Email,

@@ -1,4 +1,4 @@
-﻿using CRMLite.Core.Contracts.Authorization.Roles;
+﻿using CRMLite.Core.Contracts.RolesAndStatuses;
 using CRMLite.CRMDAL.Interfaces;
 using Insight.Database;
 using System;

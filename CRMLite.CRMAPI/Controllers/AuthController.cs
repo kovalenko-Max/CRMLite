@@ -4,7 +4,6 @@ using CRMLite.CRMServices.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using System;
-using Microsoft.AspNetCore.Cors;
 
 namespace CRMLite.CRMAPI.Controllers
 {
@@ -64,9 +63,10 @@ namespace CRMLite.CRMAPI.Controllers
                     return BadRequest("Uncorected Email or Password");
                 }
 
-                var token = await _sessionService.CreateAuthTokenAsync(lead);
-
-                return Ok(token);
+                LeadAccessInfo leadAccessInfo = new LeadAccessInfo();
+                leadAccessInfo.LeadID = lead.Id;
+                leadAccessInfo.Token = await _sessionService.CreateAuthTokenAsync(lead);
+                return Ok(leadAccessInfo);
             }
 
             throw new ArgumentNullException("AuthentificationModel is null");
