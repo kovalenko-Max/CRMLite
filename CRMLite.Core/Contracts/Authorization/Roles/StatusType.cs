@@ -2,7 +2,7 @@
 {
     public enum StatusType 
     {
-        Regular=0,
+        Regular,
         VIP,
         Blocked
     }

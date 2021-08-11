@@ -5,7 +5,7 @@ using System.Text;
 
 namespace CRMLite.Core.Contracts.Authentification
 {
-    public static class CreateToken
+    public static class StarupExrension
     {
         public static void AddAuthenticationLead(this IServiceCollection services, string secretKey)
         {
