@@ -1,6 +1,7 @@
 ﻿using CRMLite.TransactionStoreDomain.Entities;
 using CRMLite.TransactionStoreDomain.Interfaces.IRepositories;
 using Insight.Database;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Threading.Tasks;
@@ -23,6 +24,18 @@ namespace CRMLite.TransactionStoreInsightDatabase.Repositories
             var response = await _stockRepository.GetAllStocksAsync();
 
             return response;
+        }
+
+        public async Task CreateStockAsync(Stock stock)
+        {
+            if (stock != null)
+            {
+                await _stockRepository.CreateStockAsync(stock);
+            }
+            else if (stock == null)
+            {
+                throw new ArgumentNullException("Stock is null");
+            }
         }
     }
 }

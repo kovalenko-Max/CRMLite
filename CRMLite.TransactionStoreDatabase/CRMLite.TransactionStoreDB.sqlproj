@@ -96,6 +96,7 @@
     <Build Include="CRMLite\StoredProcedures\Transaction\GetAllTransactionsByLeadID.sql" />
     <Build Include="CRMLite\StoredProcedures\Transaction\GetAllTransactionsByWalletID.sql" />
     <Build Include="CRMLite\StoredProcedures\SystemSP\ResetIdentityInAllTables.sql" />
+    <Build Include="CRMLite\StoredProcedures\Stock\CreateStock.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="CRMLite.TransactionStoreDB.refactorlog" />

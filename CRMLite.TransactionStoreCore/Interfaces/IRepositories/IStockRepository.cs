@@ -9,5 +9,6 @@ namespace CRMLite.TransactionStoreDomain.Interfaces.IRepositories
     public interface IStockRepository
     {
         Task<IEnumerable<Stock>> GetAllStocksAsync();
+        Task CreateStockAsync(Stock stock);
     }
 }

@@ -30,7 +30,7 @@ namespace CRMLite.TransactionStore.IntegrationTests.ControllerTests
 
             var getRoute = $"/api/Wallet/walletID?walletID={wallet.ID}";
 
-            var getResponse = await SendRequesToGetByID(getRoute);
+            var getResponse = await SendRequestToGetByID(getRoute);
             var actual = JsonConvert.DeserializeObject<Wallet>(await getResponse.Content.ReadAsStringAsync());
 
             actual.Should().BeEquivalentTo(wallet);
@@ -49,7 +49,7 @@ namespace CRMLite.TransactionStore.IntegrationTests.ControllerTests
             }
 
             var getRoute = $"/api/Wallet/leadID?leadID={leadID}";
-            var getResponse = await SendRequesToGetAll(getRoute);
+            var getResponse = await SendRequestToGetAll(getRoute);
             var actual = JsonConvert.DeserializeObject<IEnumerable<Wallet>>(await getResponse.Content.ReadAsStringAsync());
 
             actual.Should().BeEquivalentTo(wallets);
