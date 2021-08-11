@@ -1,9 +1,5 @@
-﻿using CRMLite.Core.Contracts.Authorization.Roles;
-using System;
+﻿using CRMLite.Core.Contracts.RolesAndStatuses;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CRMLite.CRM.IntegrationTests.SourceData.TestSourceData
 {

@@ -5,9 +5,10 @@ using CRMLite.CRMServices.Interfaces;
 using System;
 using System.Text.Json;
 using System.Threading.Tasks;
-using CRMLite.Core.Contracts.Authorization.Roles;
+using CRMLite.Core.Contracts.RolesAndStatuses;
 using System.Text.RegularExpressions;
 using System.Collections.Generic;
+using MassTransit;
 
 namespace CRMLite.CRMServices.Services
 {
@@ -17,14 +18,16 @@ namespace CRMLite.CRMServices.Services
         private readonly IMailExchangeService _mailExchangeService;
         private readonly ILeadRepository _leadRepository;
         private readonly IRoleRepository _roleRepository;
+        private IBusControl _busControl;
         private IConfirmMessageRepository _confirmMessageRepository { get; set; }
 
-        public AuthService(IDBContext dBContext, IMailExchangeService mailExchangeService)
+        public AuthService(IDBContext dBContext, IMailExchangeService mailExchangeService, IBusControl busControl)
         {
             _confirmMessageRepository = dBContext.ConfirmMessageRepository;
             _mailExchangeService = mailExchangeService;
             _leadRepository = dBContext.LeadRepository;
             _roleRepository = dBContext.RoleRepository;
+            _busControl = busControl;
         }
 
         public async Task CreateMailConfirmationAsync(Lead lead)
@@ -56,6 +59,7 @@ namespace CRMLite.CRMServices.Services
                 {
                     await _roleRepository.AddRoleToLeadAsync(confirmMessageDB.LeadID, RoleType.User);
 
+                    await _busControl.Publish(model.LeadID);
                     return true;
                 }
 

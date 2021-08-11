@@ -1,8 +1,8 @@
 ﻿CREATE PROCEDURE [CRMLite].[GetLeadByEmail] @Email NVARCHAR(255)
 AS
 SELECT [ID],
-	[Firstname],
-	[Lastname],
+	[FirstName],
+	[LastName],
 	[Email],
 	[PassportNumber],
 	[Password],

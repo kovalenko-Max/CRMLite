@@ -1,8 +1,7 @@
-﻿using CRMLite.Core.Contracts.Authorization.Roles;
+﻿using CRMLite.Core.Contracts.RolesAndStatuses;
 using CRMLite.CRM.IntegrationTests.Factories;
 using CRMLite.CRM.IntegrationTests.SourceData.EnvironmentSourceData;
 using CRMLite.CRM.IntegrationTests.SourceData.TestSourceData;
-using CRMLite.CRMCore.Entities;
 using CRMLite.CRMDAL.Repositories;
 using FluentAssertions;
 using Insight.Database;

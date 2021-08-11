@@ -1,5 +1,4 @@
-﻿using CRMLite.Core.Contracts.Authorization.Roles;
-using CRMLite.CRM.IntegrationTests.Factories;
+﻿using CRMLite.CRM.IntegrationTests.Factories;
 using CRMLite.CRM.IntegrationTests.SourceData.TestSourceData;
 using CRMLite.CRMCore.Entities;
 using CRMLite.CRMDAL.Repositories;
@@ -7,10 +6,7 @@ using FluentAssertions;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Net;
-using System.Net.Http;
-using System.Text;
 using System.Threading.Tasks;
 using Xunit;
 

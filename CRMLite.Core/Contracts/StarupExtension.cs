@@ -1,11 +1,12 @@
-﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
+﻿using CRMLite.Core.Contracts.RolesAndStatuses;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 
-namespace CRMLite.Core.Contracts.Authentification
+namespace CRMLite.Core.Contracts
 {
-    public static class StarupExrension
+    public static class StarupExtension
     {
         public static void AddAuthenticationLead(this IServiceCollection services, string secretKey)
         {
@@ -27,6 +28,17 @@ namespace CRMLite.Core.Contracts.Authentification
                         ValidateAudience = false
                     };
                 });
+        }
+
+        public static void AddAuthorizationLeads(this IServiceCollection services)
+        {
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("PermissionJustForAdminRole",
+                    policy => policy.RequireRole(RoleType.Admin.ToString()));
+                options.AddPolicy("PermissionForAdminAndUserRoles",
+                    policy => policy.RequireRole(RoleType.User.ToString(), RoleType.Admin.ToString()));
+            });
         }
     }
 }

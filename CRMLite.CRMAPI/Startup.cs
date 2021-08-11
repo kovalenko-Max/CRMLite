@@ -1,9 +1,7 @@
-using CRMLite.Core.Contracts.Authentification;
-using CRMLite.Core.Contracts.Authorization;
+using CRMLite.Core.Contracts;
 using CRMLite.CRMAPI.JWT;
 using CRMLite.CRMCore.Entities;
 using CRMLite.TransactionStoreAPI.Middlewares;
-using MassTransit;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -22,6 +20,7 @@ namespace CRMLite.CRMAPI
         public IConfiguration Configuration { get; }
 
         readonly string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -32,7 +31,7 @@ namespace CRMLite.CRMAPI
             var smtpOptions = Configuration.GetSection("SmtpOptions");
             services.Configure<SmtpOption>(smtpOptions);
 
-            var options = Configuration.GetSection("Bus").Get<BusOptions>();
+            var rabbitMQHostConfig = Configuration.GetSection("RabbitMQHostConfig").Get<RabbitMQHostConfig>();
 
             var appSettingsSection = Configuration.GetSection("AppSettings");
             services.Configure<AppSettings>(appSettingsSection);
@@ -57,12 +56,9 @@ namespace CRMLite.CRMAPI
             services.AddAuthenticationLead(appSettings.Secret);
             services.AddAuthorizationLeads();
 
-            services.AddMassTransit(x =>
-            {
-                x.UsingRabbitMq();
-            });
+           
 
-            services.AddRabbitMQ(options);
+            services.AddRabbitMQ(rabbitMQHostConfig);
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "CRMLite.CRMAPI", Version = "v1" });
