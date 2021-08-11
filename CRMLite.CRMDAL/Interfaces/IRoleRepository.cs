@@ -10,8 +10,9 @@ namespace CRMLite.CRMDAL.Interfaces
     public interface IRoleRepository:IRepository
     {
         public Task<IEnumerable<RoleType>> GetAllRolesByIdAsync(Guid id);
-        public Task DeleteLeadRoleByIdAsync(Guid id, int roleId);
-        public Task AddRoleToLeadAsync(Guid leadId, int roleId);
+        public Task DeleteLeadRoleByIdAsync(Guid id, RoleType roleType);
+        public Task AddRoleToLeadAsync(Guid leadId, RoleType roleType);
+        public Task CreateRoleAsync(int RoleType);
         public Task<int> GetRoleID(int typeRole);
     }
 }

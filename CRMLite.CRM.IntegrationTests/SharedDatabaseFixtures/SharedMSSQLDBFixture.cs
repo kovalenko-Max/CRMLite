@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Diagnostics;
 
 namespace CRMLite.CRM.IntegrationTests.SharedDatabaseFixtures
 {
@@ -22,8 +17,8 @@ namespace CRMLite.CRM.IntegrationTests.SharedDatabaseFixtures
                 string dacpacFilePath = @$"{solutionPath}\CRMLite.CRMDB\bin\Debug\CRMLite.CRMDB.dacpac";
 
                 ProcessStartInfo procStartInfo = new ProcessStartInfo();
-                procStartInfo.FileName = projectPath + @"\sqlpackage\sqlpackage.exe";
-                procStartInfo.Arguments = @$"/sf:{dacpacFilePath} /a:Publish /p:CreateNewDatabase=true /tsn:(LocalDB)\MSSQLLocalDB /tdn:{_testDBName} /v:DbType=production  /v:DbVer=1.0.0 /p:ScriptNewConstraintValidation=False /p:GenerateSmartDefaults=True /of:True /p:BlockOnPossibleDataLoss=False";
+                procStartInfo.FileName = projectPath + @"\sqlpackege\sqlpackage.exe";
+                procStartInfo.Arguments = @$"/sf:{dacpacFilePath} /a:Publish /p:CreateNewDatabase=true /tsn:. /tdn:{_testDBName} /v:DbType=production  /v:DbVer=1.0.0 /p:ScriptNewConstraintValidation=False /p:GenerateSmartDefaults=True /of:True /p:BlockOnPossibleDataLoss=False";
 
                 using (Process process = new Process())
                 {
@@ -31,6 +26,7 @@ namespace CRMLite.CRM.IntegrationTests.SharedDatabaseFixtures
                     process.Start();
                     process.WaitForExit();
                 }
+
                 isCreatedDB = true;
             }
         }

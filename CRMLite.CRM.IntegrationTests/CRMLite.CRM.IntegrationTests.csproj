@@ -13,6 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="FluentAssertions" Version="5.10.3" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" Version="5.0.8" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.7.1" />
     <PackageReference Include="Respawn" Version="4.0.0" />
@@ -29,14 +30,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\CRMLite.CRMAPI\CRMLite.CRMAPI.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="SourceData\" />
-  </ItemGroup>
-  
-  <ItemGroup>
-    <Folder Include="SourceData\" />
   </ItemGroup> <ItemGroup>
     <Content Include="xunit.runner.json" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>  
@@ -45,6 +38,10 @@
     <None Update="appsettings.test.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+  </ItemGroup>  
+
+  <ItemGroup>
+    <Folder Include="SharedDatabaseFixtures\SourceData\" />
   </ItemGroup>
 
 </Project>
