@@ -1,4 +1,5 @@
-﻿using CRMLite.TransactionStoreDomain.Interfaces.IRepositories;
+﻿using CRMLite.TransactionStoreDomain.Entities;
+using CRMLite.TransactionStoreDomain.Interfaces.IRepositories;
 using CRMLite.TransactionStoreDomain.Interfaces.IServices;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -14,7 +15,7 @@ namespace CRMLite.TransactionStoreBLL.Services
             _repository = currencyRepository;
         }
 
-        public async Task<List<string>> GetAllCurrencyAsync()
+        public async Task<List<Currency>> GetAllCurrencyAsync()
         {
             var responce = await _repository.GetAllCurrencyAsync();
 

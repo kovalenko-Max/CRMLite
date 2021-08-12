@@ -1,4 +1,5 @@
-﻿using CRMLite.TransactionStoreDomain.Interfaces.IServices;
+﻿using CRMLite.TransactionStoreDomain.Entities;
+using CRMLite.TransactionStoreDomain.Interfaces.IServices;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -17,7 +18,7 @@ namespace CRMLite.TransactionStoreAPI.Controllers
         }
 
         [HttpGet]
-        public async Task<List<string>> GetAllCurrencyAsync()
+        public async Task<List<Currency>> GetAllCurrencyAsync()
         {
             return await _currencyService.GetAllCurrencyAsync();
         }

@@ -22,7 +22,7 @@ namespace CRMLite.TransactionStore.IntegrationTests.SourceData.TestSourceData
         {
             var stocks = new List<Stock>();
 
-            for (int i = 0; i < 5; i++)
+            for (int i = 1; i < 6; i++)
             {
                 stocks.Add(new Stock()
                 {

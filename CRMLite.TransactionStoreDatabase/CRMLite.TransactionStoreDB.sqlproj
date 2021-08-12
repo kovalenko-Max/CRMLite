@@ -98,6 +98,7 @@
     <Build Include="CRMLite\StoredProcedures\SystemSP\ResetIdentityInAllTables.sql" />
     <Build Include="CRMLite\StoredProcedures\StockPortfolio\CreateStockPortfolio.sql" />
     <Build Include="CRMLite\StoredProcedures\Stock\CreateStock.sql" />
+    <Build Include="CRMLite\StoredProcedures\Currency\CRMLite.CreateCurrencyId.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="CRMLite.TransactionStoreDB.refactorlog" />
