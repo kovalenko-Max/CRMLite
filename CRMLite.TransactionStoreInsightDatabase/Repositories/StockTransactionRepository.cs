@@ -19,14 +19,14 @@ namespace CRMLite.TransactionStoreInsightDatabase.Repositories
             _stockTransactionRepository = DBConnection.As<IStockTransactionRepository>();
         }
 
-        public async Task<IEnumerable<StockTransaction>> GetAllStockTransactionByStockID(Guid stockID)
+        public async Task<IEnumerable<StockTransaction>> GetAllStockTransactionByStockPortfolioIDAsync(Guid stockPortfolioID)
         {
-            if (stockID != Guid.Empty)
+            if (stockPortfolioID != Guid.Empty)
             {
-                return await _stockTransactionRepository.GetAllStockTransactionByStockID(stockID);
+                return await _stockTransactionRepository.GetAllStockTransactionByStockPortfolioIDAsync(stockPortfolioID);
             }
 
-            throw new ArgumentException("Guid stockID is empty");
+            throw new ArgumentException("Guid StockPortfolioID is empty");
         }
 
         public async Task<IEnumerable<StockTransaction>> GetAllTransactionByLeadIDAsync(Guid leadID)

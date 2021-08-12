@@ -8,7 +8,7 @@ namespace CRMLite.TransactionStoreDomain.Interfaces.IServices
     public interface IStockTransactionService
     {
         Task<IEnumerable<StockTransaction>> GetAllTransactionByLeadIDAsync(Guid leadID);
-        Task<IEnumerable<StockTransaction>> GetAllStockTransactionByStockID(Guid stockID);
+        Task<IEnumerable<StockTransaction>> GetAllStockTransactionByStockPortfolioIDAsync(Guid stockPortfolioID);
         Task CreateStockTransactionAsync(StockTransaction stockTransaction);
     }
 }

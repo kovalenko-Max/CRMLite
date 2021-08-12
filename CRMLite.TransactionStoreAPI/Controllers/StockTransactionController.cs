@@ -18,7 +18,7 @@ namespace CRMLite.TransactionStoreAPI.Controllers
             _stockTransactionService = stockTransactionService;
         }
 
-        [HttpGet("{leadID}")]
+        [HttpGet("leadID")]
         public async Task<IEnumerable<StockTransaction>> GetAllTransactionByLeadIDAsync(Guid leadID)
         {
             if (leadID != Guid.Empty)
@@ -28,20 +28,20 @@ namespace CRMLite.TransactionStoreAPI.Controllers
                 return response;
             }
 
-            throw new ArgumentException("Guid leadID is empty");
+            throw new ArgumentException("Guid LeadID is empty");
         }
 
-        [HttpGet("{stockID}")]
-        public async Task<IEnumerable<StockTransaction>> GetAllStockTransactionByStockID(Guid stockID)
+        [HttpGet("stockPortfolioID")]
+        public async Task<IEnumerable<StockTransaction>> GetAllStockTransactionByStockPortfolioIDAsync(Guid stockPortfolioID)
         {
-            if (stockID != Guid.Empty)
+            if (stockPortfolioID != Guid.Empty)
             {
-                var response = await _stockTransactionService.GetAllStockTransactionByStockID(stockID);
+                var response = await _stockTransactionService.GetAllStockTransactionByStockPortfolioIDAsync(stockPortfolioID);
 
                 return response;
             }
 
-            throw new ArgumentException("Guid stockID is empty");
+            throw new ArgumentException("Guid StockPortfolioID is empty");
         }
 
         [HttpPost]
@@ -53,7 +53,7 @@ namespace CRMLite.TransactionStoreAPI.Controllers
             }
             else
             {
-                throw new ArgumentNullException("stockTransaction is null");
+                throw new ArgumentNullException("StockTransaction is null");
             }
         }
     }

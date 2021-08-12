@@ -91,7 +91,7 @@
     <Build Include="CRMLite\StoredProcedures\StockPortfolio\GetAllStockPortfoliosByLeadID.sql" />
     <Build Include="CRMLite\StoredProcedures\StockTransaction\CreateStockTransaction.sql" />
     <Build Include="CRMLite\StoredProcedures\StockTransaction\GetAllStockTransactionsByLeadID.sql" />
-    <Build Include="CRMLite\StoredProcedures\StockTransaction\GetAllStockTransactionsByStockID.sql" />
+    <Build Include="CRMLite\StoredProcedures\StockTransaction\GetAllStockTransactionsByStockPortfolioID.sql" />
     <Build Include="CRMLite\StoredProcedures\Transaction\CreateTransaction.sql" />
     <Build Include="CRMLite\StoredProcedures\Transaction\GetAllTransactionsByLeadID.sql" />
     <Build Include="CRMLite\StoredProcedures\Transaction\GetAllTransactionsByWalletID.sql" />
