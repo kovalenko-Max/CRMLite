@@ -69,25 +69,26 @@ namespace CRMLite.TransactionStoreAPI
 
         private void AddRepositories(IServiceCollection services)
         {
-            services.AddTransient<ITransactionRepository, TransactionRepository>();
-            services.AddTransient<IStockPortfolioRepository, StockPortfolioRepository>();
-            services.AddTransient<IWalletRepository, WalletRepository>();
-            services.AddTransient<IOperationTypeRepository, OperationTypeRepository>();
             services.AddTransient<ICurrencyRepository, CurrencyRepository>();
+            services.AddTransient<IOperationTypeRepository, OperationTypeRepository>();
+            services.AddTransient<IStockPortfolioRepository, StockPortfolioRepository>();
             services.AddTransient<IStockRepository, StockRepository>();
             services.AddTransient<IStockTransactionRepository, StockTransactionRepository>();
+            services.AddTransient<ITransactionRepository, TransactionRepository>();
+            services.AddTransient<IWalletRepository, WalletRepository>();
         }
 
         private void AddServices(IServiceCollection services)
         {
-            services.AddTransient<ITransactionService, TransactionService>();
-            services.AddTransient<IStockPortfolioService, StockPortfolioService>();
-            services.AddTransient<IWalletService, WalletService>();
-            services.AddTransient<IOperationTypeService, OperationTypeService>();
             services.AddTransient<IBalanceService, BalanceService>();
             services.AddTransient<ICurrencyService, CurrencyService>();
+            services.AddTransient<IOperationTypeService, OperationTypeService>();
+            services.AddTransient<IStockBalanceService, StockBalanceService>();
+            services.AddTransient<IStockPortfolioService, StockPortfolioService>();
             services.AddTransient<IStockService, StockService>();
             services.AddTransient<IStockTransactionService, StockTransactionService>();
+            services.AddTransient<ITransactionService, TransactionService>();
+            services.AddTransient<IWalletService, WalletService>();
         }
     }
 }
