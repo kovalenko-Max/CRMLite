@@ -9,7 +9,7 @@ namespace CRMLite.TransactionStoreAPI.Controllers
     [Route("api/[controller]")]
     public class CurrencyController : Controller
     {
-        private ICurrencyService _currencyService;
+        private readonly ICurrencyService _currencyService;
 
         public CurrencyController(ICurrencyService currencyService)
         {

@@ -36,7 +36,7 @@ namespace CRMLite.TransactionStore.IntegrationTests.Factories
             {
                 config.AddConfiguration(Configuration);
             });
-
+            
             var connectionString = Configuration["ConnectionStrings:TestDB"];
             DbConnection connection = new SqlConnection(connectionString);
 
