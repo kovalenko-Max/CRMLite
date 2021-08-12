@@ -8,7 +8,7 @@ namespace CRMLite.TransactionStore.IntegrationTests.SourceData.TestSourceData
 {
     public static class WalletTestData
     {
-        private static Wallet _wallet;
+        private static readonly Wallet _wallet;
 
         static WalletTestData()
         {

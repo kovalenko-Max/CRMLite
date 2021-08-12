@@ -7,7 +7,7 @@ namespace CRMLite.TransactionStoreBLL.Services
 {
     public class CurrencyService : ICurrencyService
     {
-        private ICurrencyRepository _repository;
+        private readonly ICurrencyRepository _repository;
 
         public CurrencyService(ICurrencyRepository currencyRepository)
         {

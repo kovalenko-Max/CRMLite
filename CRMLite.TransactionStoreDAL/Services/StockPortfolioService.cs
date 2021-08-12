@@ -16,11 +16,11 @@ namespace CRMLite.TransactionStoreBLL.Services
             _stockPortfolioRepository = stockPortfolioRepository;
         }
 
-        public async Task<IEnumerable<StockPortfolio>> GetStockPortfolioByLeadAsync(Guid leadID)
+        public async Task<IEnumerable<StockPortfolio>> GetAllStockPortfoliosByLeadIDAsync(Guid leadID)
         {
             if (leadID != Guid.Empty)
             {
-                var response = await _stockPortfolioRepository.GetAllStocksByLeadIDAsync(leadID);
+                var response = await _stockPortfolioRepository.GetAllStockPortfoliosByLeadIDAsync(leadID);
 
                 return response;
             }

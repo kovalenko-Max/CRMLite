@@ -7,8 +7,10 @@ using System.Threading.Tasks;
 namespace CRMLite.TransactionStoreDomain.Interfaces.IRepositories
 {
     [Sql(Schema = "CRMLite")]
-    public interface IStockPortfolioRepository
+    public interface IStockPortfolioRepository : IRepository
     {
-        Task<IEnumerable<StockPortfolio>> GetAllStocksByLeadIDAsync(Guid leadID);
+        Task CreateStockPortfolioAsync(StockPortfolio stockPortfolio);
+        [Recordset(typeof(StockPortfolio), typeof(Stock))]
+        Task<IEnumerable<StockPortfolio>> GetAllStockPortfoliosByLeadIDAsync(Guid leadID);
     }
 }

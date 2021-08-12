@@ -10,7 +10,7 @@ namespace CRMLite.TransactionStoreAPI.Controllers
     [Route("api/[controller]")]
     public class StockController : Controller
     {
-        private IStockService _stockService;
+        private readonly IStockService _stockService;
 
         public StockController(IStockService stockService)
         {

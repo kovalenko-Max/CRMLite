@@ -11,19 +11,19 @@ namespace CRMLite.TransactionStoreAPI.Controllers
     [Route("api/[controller]")]
     public class StockPortfolioController : Controller
     {
-        private IStockPortfolioService _stockPortfolioService;
+        private readonly IStockPortfolioService _stockPortfolioService;
 
         public StockPortfolioController(IStockPortfolioService stockPortfolioService)
         {
             _stockPortfolioService = stockPortfolioService;
         }
 
-        [HttpGet("{leadID}")]
-        public async Task<IEnumerable<StockPortfolio>> GetAllStocksByLeadIDAsync(Guid leadID)
+        [HttpGet("leadID")]
+        public async Task<IEnumerable<StockPortfolio>> GetAllStockPortfoliosByLeadIDAsync(Guid leadID)
         {
             if (leadID != Guid.Empty)
             {
-                var response = await _stockPortfolioService.GetStockPortfolioByLeadAsync(leadID);
+                var response = await _stockPortfolioService.GetAllStockPortfoliosByLeadIDAsync(leadID);
 
                 return response;
             }

@@ -88,7 +88,7 @@
     <Build Include="CRMLite\StoredProcedures\Stock\GetAllStocks.sql" />
     <Build Include="CRMLite\StoredProcedures\OperationType\GetAllOperationTypes.sql" />
     <Build Include="CRMLite\StoredProcedures\Currency\CreateCurrency.sql" />
-    <Build Include="CRMLite\StoredProcedures\StockPortfolio\GetStockPortfolioByLead.sql" />
+    <Build Include="CRMLite\StoredProcedures\StockPortfolio\GetAllStockPortfoliosByLeadID.sql" />
     <Build Include="CRMLite\StoredProcedures\StockTransaction\CreateStockTransaction.sql" />
     <Build Include="CRMLite\StoredProcedures\StockTransaction\GetAllStockTransactionsByLeadID.sql" />
     <Build Include="CRMLite\StoredProcedures\StockTransaction\GetAllStockTransactionsByStockID.sql" />
@@ -96,6 +96,7 @@
     <Build Include="CRMLite\StoredProcedures\Transaction\GetAllTransactionsByLeadID.sql" />
     <Build Include="CRMLite\StoredProcedures\Transaction\GetAllTransactionsByWalletID.sql" />
     <Build Include="CRMLite\StoredProcedures\SystemSP\ResetIdentityInAllTables.sql" />
+    <Build Include="CRMLite\StoredProcedures\StockPortfolio\CreateStockPortfolio.sql" />
     <Build Include="CRMLite\StoredProcedures\Stock\CreateStock.sql" />
   </ItemGroup>
   <ItemGroup>

@@ -11,7 +11,7 @@ namespace CRMLite.TransactionStoreAPI.Controllers
     [Route("api/[controller]")]
     public class WalletController : Controller
     {
-        IWalletService _walletService;
+        private readonly IWalletService _walletService;
 
         public WalletController(IWalletService walletService)
         {
