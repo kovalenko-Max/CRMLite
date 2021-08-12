@@ -1,4 +1,5 @@
-﻿using CRMLite.TransactionStoreDomain.Interfaces.IServices;
+﻿using CRMLite.TransactionStoreDomain.Entities;
+using CRMLite.TransactionStoreDomain.Interfaces.IServices;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -17,7 +18,7 @@ namespace CRMLite.TransactionStoreAPI.Controllers
         }
 
         [HttpGet]
-        public async Task<IEnumerable<string>> GetAllOperationTypesAsync()
+        public async Task<IEnumerable<OperationType>> GetAllOperationTypesAsync()
         {
             return await _operationTypeService.GetAllOperationTypesAsync();
         }
