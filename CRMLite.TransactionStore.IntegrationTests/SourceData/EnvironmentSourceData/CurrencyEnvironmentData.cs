@@ -16,6 +16,7 @@ namespace CRMLite.TransactionStore.IntegrationTests.SourceData.EnvironmentSource
                 _currencies.Add(new Currency()
                 {
                     ID = i+1,
+                    Code = $"Currency code #{i+1}",
                     Title = $"Currency title #{i+1}"
                 });
             }

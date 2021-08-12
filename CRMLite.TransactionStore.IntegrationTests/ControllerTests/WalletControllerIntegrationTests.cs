@@ -60,7 +60,7 @@ namespace CRMLite.TransactionStore.IntegrationTests.ControllerTests
 
             foreach (var currency in currencies)
             {
-                await _dbConnection.QueryAsync("[CRMLite].[CreateCurrency]", new { currency.Title });
+                await _dbConnection.QueryAsync("[CRMLite].[CreateCurrency]", new { currency.Code, currency.Title });
             }
         }
 
