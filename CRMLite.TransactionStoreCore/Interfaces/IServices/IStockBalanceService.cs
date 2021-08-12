@@ -3,8 +3,8 @@ using System.Threading.Tasks;
 
 namespace CRMLite.TransactionStoreDomain.Interfaces.IServices
 {
-    public interface IBalanceService
+    public interface IStockBalanceService
     {
-        Task<decimal> GetBalanceByLeadIDAsync(Guid leadID);
+        Task<decimal> GetStockBalanceByLeadIDAsync(Guid leadID);
     }
 }

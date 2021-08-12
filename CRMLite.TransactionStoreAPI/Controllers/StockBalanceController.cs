@@ -7,21 +7,21 @@ namespace CRMLite.TransactionStoreAPI.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class BalanceController : Controller
+    public class StockBalanceController : Controller
     {
-        private IBalanceService _balanceService;
+        private IStockBalanceService _stockBalanceService;
 
-        public BalanceController(IBalanceService balanceService)
+        public StockBalanceController(IStockBalanceService stockBalanceService)
         {
-            _balanceService = balanceService;
+            _stockBalanceService = stockBalanceService;
         }
 
-        [HttpGet("{leadID}")]
-        public async Task<decimal> GetBalanceByLeadIDAsync(Guid leadID)
+        [HttpGet("leadID")]
+        public async Task<decimal> GetStockBalanceByLeadIDAsync(Guid leadID)
         {
             if (leadID != Guid.Empty)
             {
-                var response = await _balanceService.GetBalanceByLeadIDAsync(leadID);
+                var response = await _stockBalanceService.GetStockBalanceByLeadIDAsync(leadID);
 
                 return response;
             }
