@@ -7,8 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="SharedDatabaseFixtures\SourceData\**" />
     <Compile Remove="sqlpackege\**" />
+    <EmbeddedResource Remove="SharedDatabaseFixtures\SourceData\**" />
     <EmbeddedResource Remove="sqlpackege\**" />
+    <None Remove="SharedDatabaseFixtures\SourceData\**" />
     <None Remove="sqlpackege\**" />
   </ItemGroup>
 
@@ -38,10 +41,6 @@
     <None Update="appsettings.test.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-  </ItemGroup>  
-
-  <ItemGroup>
-    <Folder Include="SharedDatabaseFixtures\SourceData\" />
   </ItemGroup>
 
 </Project>

@@ -68,6 +68,7 @@ namespace CRMLite.CRM.IntegrationTests.Factories
         {
             services.AddTransient<IRoleService, RoleService>();
             services.AddSingleton<IPolicyEvaluator, FakePolicyEvaluator>();
+            services.AddTransient<ILeadService, LeadService>();
         }
     }
 }
