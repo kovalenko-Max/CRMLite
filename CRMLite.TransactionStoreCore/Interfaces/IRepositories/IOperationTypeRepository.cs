@@ -1,12 +1,14 @@
-﻿using Insight.Database;
+﻿using CRMLite.TransactionStoreDomain.Entities;
+using Insight.Database;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace CRMLite.TransactionStoreDomain.Interfaces.IRepositories
 {
+    [Sql(Schema = "CRMLite")]
     public interface IOperationTypeRepository : IRepository
     {
-        [Sql(Schema = "CRMLite")]
-        Task<IEnumerable<string>> GetAllOperationTypesAsync();
+        Task<IEnumerable<OperationType>> GetAllOperationTypesAsync();
+        Task CreateOperationTypeAsync(OperationType operationType);
     }
 }
