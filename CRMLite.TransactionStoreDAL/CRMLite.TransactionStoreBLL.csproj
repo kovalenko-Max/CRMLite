@@ -5,6 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="GoogleAuthenticator" Version="2.2.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\CRMLite.TransactionStoreCore\CRMLite.TransactionStoreDomain.csproj" />
   </ItemGroup>
 

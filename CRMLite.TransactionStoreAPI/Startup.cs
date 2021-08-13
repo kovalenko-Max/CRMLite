@@ -5,6 +5,7 @@ using CRMLite.TransactionStoreBLL.Services;
 using CRMLite.TransactionStoreDomain.Interfaces.IRepositories;
 using CRMLite.TransactionStoreDomain.Interfaces.IServices;
 using CRMLite.TransactionStoreInsightDatabase.Repositories;
+using CRMLite.TransactionStoreAPI.TFA;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -29,18 +30,20 @@ namespace CRMLite.TransactionStoreAPI
         public void ConfigureServices(IServiceCollection services)
         {
             var rabbitMQHostConfig = Configuration.GetSection("RabbitMQHostConfig").Get<RabbitMQHostConfig>();
+            var TFAConfig = Configuration.GetSection("TFAConfig").Get<TFAConfig>();
+
             var connectionString = Configuration.GetConnectionString("Default");
             DbConnection connection = new SqlConnection(connectionString);
 
             services.AddHttpContextAccessor();
             services.AddControllers();
-            services.AddMassTransitWithinRabbitMQ(rabbitMQHostConfig);
-
-            services.AddSingleton<IDbConnection>(conn => connection);
-
             AddRepositories(services);
             AddServices(services);
 
+            services.AddMassTransitWithinRabbitMQ(rabbitMQHostConfig);
+            services.AddTFA(TFAConfig);
+
+            services.AddSingleton<IDbConnection>(conn => connection);
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -76,6 +79,7 @@ namespace CRMLite.TransactionStoreAPI
             services.AddTransient<IStockTransactionRepository, StockTransactionRepository>();
             services.AddTransient<ITransactionRepository, TransactionRepository>();
             services.AddTransient<IWalletRepository, WalletRepository>();
+            services.AddTransient<ILeadTFAKeyRepository, LeadTFAKeyRepository>();
         }
 
         private void AddServices(IServiceCollection services)
@@ -89,6 +93,7 @@ namespace CRMLite.TransactionStoreAPI
             services.AddTransient<IStockTransactionService, StockTransactionService>();
             services.AddTransient<ITransactionService, TransactionService>();
             services.AddTransient<IWalletService, WalletService>();
+            services.AddTransient<ITFAService, GoogleTFAService>();
         }
     }
 }

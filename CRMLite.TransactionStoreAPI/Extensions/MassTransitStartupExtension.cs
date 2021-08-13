@@ -5,7 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace CRMLite.TransactionStoreAPI.Extensions
 {
-    public static class StartupExtension
+    public static class MassTransitStartupExtension
     {
         public static void AddMassTransitWithinRabbitMQ(this IServiceCollection services, RabbitMQHostConfig options)
         {
