@@ -36,7 +36,7 @@ namespace CRMLite.TransactionStore.IntegrationTests.SourceData.TestSourceData
             var wallets = new List<Wallet>();
             var currency = CurrencyEnvironmentData.GetCurrencies(1).FirstOrDefault();
 
-            for (int i = 0; i < 5; i++)
+            for (int i = 1; i < 6; i++)
             {
                 wallets.Add(new Wallet()
                 {

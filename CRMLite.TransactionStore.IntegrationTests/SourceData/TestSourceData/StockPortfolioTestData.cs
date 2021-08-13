@@ -29,7 +29,7 @@ namespace CRMLite.TransactionStore.IntegrationTests.SourceData.TestSourceData
             var stockPorfolios = new List<StockPortfolio>();
             var stock = StockEnvironmentData.Stocks.FirstOrDefault();
 
-            for (int i = 0; i < 5; i++)
+            for (int i = 1; i < 6; i++)
             {
                 stockPorfolios.Add(new StockPortfolio()
                 {
