@@ -1,4 +1,6 @@
-﻿CREATE PROCEDURE [CRMLite].[CreateCurrency] @Title NVARCHAR(50)
+﻿CREATE PROCEDURE [CRMLite].[CreateCurrency] 
+@Code NVARCHAR(50),
+@Title NVARCHAR(255)
 AS
-INSERT INTO [CRMLite].[Currencies] (Title)
-VALUES (@Title)
+INSERT INTO [CRMLite].[Currencies] (Code, Title)
+VALUES (@Code, @Title)

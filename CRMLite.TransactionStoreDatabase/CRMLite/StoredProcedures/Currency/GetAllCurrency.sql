@@ -1,5 +1,7 @@
 ﻿CREATE PROCEDURE [CRMLite].[GetAllCurrency]
 AS
-SELECT cur.[ID],
-	cur.[Title]
-FROM [CRMLite].[Currencies] AS cur
+SELECT 
+	ID,
+	Code,
+	Title
+FROM [CRMLite].[Currencies]

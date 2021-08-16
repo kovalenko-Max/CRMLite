@@ -3,6 +3,7 @@ AS
 SELECT W.ID,
     W.Amount,
 	C.ID,
+	C.Code,
 	C.Title
 FROM [CRMLite].[Wallets] W
 LEFT JOIN [CRMLite].[Balance] B ON W.ID = B.WalletID
