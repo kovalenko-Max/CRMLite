@@ -24,7 +24,8 @@ namespace CRMLite.TransactionStore.IntegrationTests.SourceData.TestSourceData
             {
                 currencies.Add(new Currency()
                 {
-                    ID = i ,
+                    ID = i,
+                    Code = $"Code {i}",
                     Title = $"Currency title# {i}"
                 });
             }
