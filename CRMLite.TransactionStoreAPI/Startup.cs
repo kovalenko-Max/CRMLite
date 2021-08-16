@@ -44,6 +44,19 @@ namespace CRMLite.TransactionStoreAPI
             services.AddTFA(TFAConfig);
 
             services.AddSingleton<IDbConnection>(conn => connection);
+
+            services.AddCors(options =>
+            {
+                options.AddDefaultPolicy(
+                    builder =>
+                    {
+                        builder.WithOrigins("http://localhost:3000", "http://localhost:5050");
+                    });
+            });
+
+            AddRepositories(services);
+            AddServices(services);
+
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -59,6 +72,8 @@ namespace CRMLite.TransactionStoreAPI
             app.UseMiddleware<ArgumentExceptionHandlerMiddleware>();
 
             app.UseRouting();
+
+            app.UseCors();
 
             app.UseAuthorization();
 
