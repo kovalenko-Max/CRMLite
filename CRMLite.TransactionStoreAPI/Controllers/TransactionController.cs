@@ -1,4 +1,5 @@
-﻿using CRMLite.TransactionStoreDomain.Entities;
+﻿using CRMLite.TransactionStoreAPI.Filters.Attributes;
+using CRMLite.TransactionStoreDomain.Entities;
 using CRMLite.TransactionStoreDomain.Interfaces.IServices;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -45,6 +46,7 @@ namespace CRMLite.TransactionStoreAPI.Controllers
         }
 
         [HttpPost]
+        [TypeFilter(typeof(TwoFactorAuthorizeAttribute))]
         public async Task CreateTransactionAsync(Transaction transaction)
         {
             if (transaction != null)
