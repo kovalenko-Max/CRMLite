@@ -2,7 +2,7 @@
 	@IsDeposit BIT,
 	@StockPortfolioID UNIQUEIDENTIFIER,
 	@Quontity INT,
-	@StockPrice DECIMAL(18, 0),
+	@StockPrice DECIMAL(18, 6),
 	@Timestamp DATETIME
 AS
 INSERT INTO [CRMLite].[StockTransactions] (
