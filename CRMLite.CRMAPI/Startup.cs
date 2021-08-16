@@ -21,6 +21,7 @@ namespace CRMLite.CRMAPI
     {
         public IConfiguration Configuration { get; }
 
+        readonly string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -32,11 +33,23 @@ namespace CRMLite.CRMAPI
             services.Configure<SmtpOption>(smtpOptions);
 
             var options = Configuration.GetSection("Bus").Get<BusOptions>();
-            
+
             var appSettingsSection = Configuration.GetSection("AppSettings");
             services.Configure<AppSettings>(appSettingsSection);
-            
+
             var appSettings = appSettingsSection.Get<AppSettings>();
+
+            services.AddCors(options =>
+            {
+                options.AddPolicy(name: MyAllowSpecificOrigins,
+                  builder =>
+                  {
+                      builder.WithOrigins("http://localhost:3000", "http://localhost:1234")
+                     .AllowAnyHeader()
+                     .AllowAnyMethod()
+                     .AllowAnyOrigin();
+                  });
+            });
 
             services.AddControllers();
             services.AddHttpContextAccessor();
@@ -75,6 +88,9 @@ namespace CRMLite.CRMAPI
             app.UseMiddleware<ArgumentExceptionHandlerMiddleware>();
 
             app.UseRouting();
+            app.UseCors(
+         options => options.WithOrigins("http://localhost:3000").AllowAnyMethod()
+     );
 
             app.UseAuthentication();
             app.UseAuthorization();

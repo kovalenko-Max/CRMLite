@@ -50,7 +50,7 @@ namespace CRMLite.CRMDAL.Repositories
         {
             if (!(lead is null))
             {
-                await _leadRepository.RegistrationLeadAsync(lead);
+                    await _leadRepository.RegistrationLeadAsync(lead);
             }
             else
             {
