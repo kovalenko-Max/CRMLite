@@ -30,17 +30,24 @@ namespace CRMLite.TransactionStoreAPI
         {
             var rabbitMQHostConfig = Configuration.GetSection("RabbitMQHostConfig").Get<RabbitMQHostConfig>();
             var connectionString = Configuration.GetConnectionString("Default");
-            DbConnection connection = new SqlConnection(connectionString);
 
             services.AddHttpContextAccessor();
             services.AddControllers();
             services.AddMassTransitWithinRabbitMQ(rabbitMQHostConfig);
 
-            services.AddSingleton<IDbConnection>(conn => connection);
+            services.AddTransient<IDbConnection>(conn => new SqlConnection(connectionString));
+
+            services.AddCors(options =>
+            {
+                options.AddDefaultPolicy(
+                    builder =>
+                    {
+                        builder.WithOrigins("http://localhost:3000", "http://localhost:5050");
+                    });
+            });
 
             AddRepositories(services);
             AddServices(services);
-
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -56,6 +63,8 @@ namespace CRMLite.TransactionStoreAPI
             app.UseMiddleware<ArgumentExceptionHandlerMiddleware>();
 
             app.UseRouting();
+
+            app.UseCors();
 
             app.UseAuthorization();
 
