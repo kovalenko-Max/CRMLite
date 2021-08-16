@@ -33,7 +33,6 @@ namespace CRMLite.TransactionStoreAPI
             var TFAConfig = Configuration.GetSection("TFAConfig").Get<TFAConfig>();
 
             var connectionString = Configuration.GetConnectionString("Default");
-            DbConnection connection = new SqlConnection(connectionString);
 
             services.AddHttpContextAccessor();
             services.AddControllers();
@@ -43,7 +42,16 @@ namespace CRMLite.TransactionStoreAPI
             services.AddMassTransitWithinRabbitMQ(rabbitMQHostConfig);
             services.AddTFA(TFAConfig);
 
-            services.AddSingleton<IDbConnection>(conn => connection);
+            services.AddTransient<IDbConnection>(conn => new SqlConnection(connectionString));
+
+            services.AddCors(options =>
+            {
+                options.AddDefaultPolicy(
+                    builder =>
+                    {
+                        builder.WithOrigins("http://localhost:3000", "http://localhost:5050");
+                    });
+            });
 
             services.AddCors(options =>
             {
@@ -56,7 +64,6 @@ namespace CRMLite.TransactionStoreAPI
 
             AddRepositories(services);
             AddServices(services);
-
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
