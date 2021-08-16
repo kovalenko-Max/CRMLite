@@ -20,11 +20,11 @@ namespace CRMLite.TransactionStoreAPI.Controllers
         }
 
         [HttpGet("leadID")]
-        public async Task<IEnumerable<StockTransaction>> GetAllTransactionByLeadIDAsync(Guid leadID)
+        public async Task<IEnumerable<StockTransaction>> GetAllStockTransactionsByLeadIDAsync(Guid leadID)
         {
             if (leadID != Guid.Empty)
             {
-                var response = await _stockTransactionService.GetAllTransactionByLeadIDAsync(leadID);
+                var response = await _stockTransactionService.GetAllStockTransactionsByLeadIDAsync(leadID);
 
                 return response;
             }
@@ -33,11 +33,11 @@ namespace CRMLite.TransactionStoreAPI.Controllers
         }
 
         [HttpGet("stockPortfolioID")]
-        public async Task<IEnumerable<StockTransaction>> GetAllStockTransactionByStockPortfolioIDAsync(Guid stockPortfolioID)
+        public async Task<IEnumerable<StockTransaction>> GetAllStockTransactionsByStockPortfolioIDAsync(Guid stockPortfolioID)
         {
             if (stockPortfolioID != Guid.Empty)
             {
-                var response = await _stockTransactionService.GetAllStockTransactionByStockPortfolioIDAsync(stockPortfolioID);
+                var response = await _stockTransactionService.GetAllStockTransactionsByStockPortfolioIDAsync(stockPortfolioID);
 
                 return response;
             }

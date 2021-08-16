@@ -28,11 +28,11 @@ namespace CRMLite.TransactionStoreBLL.Services
             }
         }
 
-        public async Task<IEnumerable<StockTransaction>> GetAllStockTransactionByStockPortfolioIDAsync(Guid stockPortfolioID)
+        public async Task<IEnumerable<StockTransaction>> GetAllStockTransactionsByStockPortfolioIDAsync(Guid stockPortfolioID)
         {
             if (stockPortfolioID != Guid.Empty)
             {
-                var response = await _stockTransactionRepository.GetAllStockTransactionByStockPortfolioIDAsync(stockPortfolioID);
+                var response = await _stockTransactionRepository.GetAllStockTransactionsByStockPortfolioIDAsync(stockPortfolioID);
 
                 return response;
             }
@@ -40,11 +40,11 @@ namespace CRMLite.TransactionStoreBLL.Services
             throw new ArgumentException("Guid StockPortfolioID is empty");
         }
 
-        public async Task<IEnumerable<StockTransaction>> GetAllTransactionByLeadIDAsync(Guid leadID)
+        public async Task<IEnumerable<StockTransaction>> GetAllStockTransactionsByLeadIDAsync(Guid leadID)
         {
             if (leadID != Guid.Empty)
             {
-                var response = await _stockTransactionRepository.GetAllTransactionByLeadIDAsync(leadID);
+                var response = await _stockTransactionRepository.GetAllStockTransactionsByLeadIDAsync(leadID);
 
                 return response;
             }
