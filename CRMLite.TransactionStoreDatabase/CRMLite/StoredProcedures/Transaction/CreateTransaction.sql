@@ -2,7 +2,7 @@
 	@OperationType TINYINT,
 	@WalletFrom UNIQUEIDENTIFIER,
 	@WalletTo UNIQUEIDENTIFIER,
-	@Amount DECIMAL(18, 0),
+	@Amount DECIMAL(18, 6),
 	@Timestamp DATETIME
 AS
 INSERT INTO [CRMLite].[Transactions] (
