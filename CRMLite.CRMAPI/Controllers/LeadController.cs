@@ -19,6 +19,12 @@ namespace CRMLite.CRMAPI.Controllers
             _leadService = leadService;
         }
 
+        [HttpGet("pagination")]
+        public async Task<IEnumerable<Lead>> PaginateLeadsAsync(int startItem, int countItems)
+        {
+            return await _leadService.PaginateLeadsAsync(startItem, countItems);
+        }
+
         [HttpGet]
         public async Task<IEnumerable<Lead>> GetAllLeadsAsync()
         {
