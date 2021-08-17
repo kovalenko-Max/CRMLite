@@ -1,4 +1,5 @@
-﻿using CRMLite.TransactionStoreDomain.Entities;
+﻿using CRMLite.TransactionStoreAPI.Filters.Attributes;
+using CRMLite.TransactionStoreDomain.Entities;
 using CRMLite.TransactionStoreDomain.Interfaces.IServices;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -29,6 +30,20 @@ namespace CRMLite.TransactionStoreAPI.Controllers
             }
 
             throw new ArgumentException("Guid LeadID is empty");
+        }
+
+        [HttpPost]
+        [TypeFilter(typeof(TwoFactorAuthorizeAttribute))]
+        public async Task CreateStockPortfolioAsync(StockPortfolio stockPortfolio)
+        {
+            if (stockPortfolio != null)
+            {
+                await _stockPortfolioService.CreateStockPortfolioAsync(stockPortfolio);
+            }
+            else
+            {
+                throw new ArgumentNullException("StockPortfolio is null");
+            }
         }
     }
 }
