@@ -15,6 +15,7 @@ using Serilog;
 using System.Data;
 using System.Data.Common;
 using System.Data.SqlClient;
+using Microsoft.OpenApi.Models;
 
 namespace CRMLite.TransactionStoreAPI
 {
@@ -36,8 +37,6 @@ namespace CRMLite.TransactionStoreAPI
 
             services.AddHttpContextAccessor();
             services.AddControllers();
-            AddRepositories(services);
-            AddServices(services);
 
             services.AddMassTransitWithinRabbitMQ(rabbitMQHostConfig);
             services.AddTFA(TFAConfig);
@@ -53,17 +52,13 @@ namespace CRMLite.TransactionStoreAPI
                     });
             });
 
-            services.AddCors(options =>
-            {
-                options.AddDefaultPolicy(
-                    builder =>
-                    {
-                        builder.WithOrigins("http://localhost:3000", "http://localhost:5050");
-                    });
-            });
-
             AddRepositories(services);
             AddServices(services);
+
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "CRMLite.TransactionStoreAPI", Version = "v1" });
+            });
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -90,6 +85,13 @@ namespace CRMLite.TransactionStoreAPI
             {
                 endpoints.MapControllers();
             });
+
+            if (env.IsDevelopment())
+            {
+                app.UseDeveloperExceptionPage();
+                app.UseSwagger();
+                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "CRMLite.TransactionStoreAPI v1"));
+            }
         }
 
         private void AddRepositories(IServiceCollection services)
@@ -99,9 +101,9 @@ namespace CRMLite.TransactionStoreAPI
             services.AddTransient<IStockPortfolioRepository, StockPortfolioRepository>();
             services.AddTransient<IStockRepository, StockRepository>();
             services.AddTransient<IStockTransactionRepository, StockTransactionRepository>();
-            services.AddTransient<ITransactionRepository, TransactionRepository>();
             services.AddTransient<IWalletRepository, WalletRepository>();
             services.AddTransient<ILeadTFAKeyRepository, LeadTFAKeyRepository>();
+            services.AddTransient<ITransactionRepository, TransactionRepository>();
         }
 
         private void AddServices(IServiceCollection services)
@@ -113,9 +115,9 @@ namespace CRMLite.TransactionStoreAPI
             services.AddTransient<IStockPortfolioService, StockPortfolioService>();
             services.AddTransient<IStockService, StockService>();
             services.AddTransient<IStockTransactionService, StockTransactionService>();
-            services.AddTransient<ITransactionService, TransactionService>();
             services.AddTransient<IWalletService, WalletService>();
             services.AddTransient<ITFAService, GoogleTFAService>();
+            services.AddTransient<ITransactionService, TransactionService>();
         }
     }
 }

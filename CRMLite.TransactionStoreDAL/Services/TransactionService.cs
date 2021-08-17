@@ -16,11 +16,11 @@ namespace CRMLite.TransactionStoreBLL.Services
             _repository = transactionRepository;
         }
 
-        public async Task CreateTransactionAsync(Transaction transaction)
+        public async Task CreateTransactionAsync(Transaction currencyTransaction)
         {
-            if (transaction != null)
+            if (currencyTransaction != null)
             {
-                await _repository.CreateTransactionAsync(transaction);
+                await _repository.CreateTransactionAsync(currencyTransaction);
             }
             else
             {
@@ -28,11 +28,11 @@ namespace CRMLite.TransactionStoreBLL.Services
             }
         }
 
-        public async Task<IEnumerable<Transaction>> GetAllTransactionByLeadID(Guid leadID)
+        public async Task<IEnumerable<Transaction>> GetAllTransactionsByLeadID(Guid leadID)
         {
             if(leadID != Guid.Empty)
             {
-                var response = await _repository.GetAllTransactionByLeadIDAsync(leadID);
+                var response = await _repository.GetAllTransactionsByLeadIDAsync(leadID);
 
                 return response;
             }
@@ -40,11 +40,11 @@ namespace CRMLite.TransactionStoreBLL.Services
             throw new ArgumentException("Guid  LeadID is empty");
         }
 
-        public async Task<IEnumerable<Transaction>> GetAllTransactionByWalletID(Guid walletID)
+        public async Task<IEnumerable<Transaction>> GetAllTransactionsByWalletID(Guid walletID)
         {
             if (walletID != Guid.Empty)
             {
-                var response = await _repository.GetAllTransactionByWalletIDAsync(walletID);
+                var response = await _repository.GetAllTransactionsByWalletIDAsync(walletID);
 
                 return response;
             }
