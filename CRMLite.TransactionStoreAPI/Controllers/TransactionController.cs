@@ -12,19 +12,19 @@ namespace CRMLite.TransactionStoreAPI.Controllers
     [Route("api/[controller]")]
     public class TransactionController : Controller
     {
-        ITransactionService _transactionService;
+        private readonly ITransactionService _transactionService;
 
         public TransactionController(ITransactionService transactionService)
         {
             _transactionService = transactionService;
         }
 
-        [HttpGet("{leadID}")]
-        public async Task<IEnumerable<Transaction>> GetAllTransactionByLeadIDAsync(Guid leadID)
+        [HttpGet("leadID")]
+        public async Task<IEnumerable<Transaction>> GetAllTransactionsByLeadIDAsync(Guid leadID)
         {
             if (leadID != Guid.Empty)
             {
-                var response = await _transactionService.GetAllTransactionByLeadID(leadID);
+                var response = await _transactionService.GetAllTransactionsByLeadID(leadID);
 
                 return response;
             }
@@ -32,12 +32,12 @@ namespace CRMLite.TransactionStoreAPI.Controllers
             throw new ArgumentException("Guid  LeadID is empty");
         }
 
-        [HttpGet("{walletID}")]
-        public async Task<IEnumerable<Transaction>> GetAllTransactionByWalletIDAsync(Guid walletID)
+        [HttpGet("walletID")]
+        public async Task<IEnumerable<Transaction>> GetAllTransactionsByWalletIDAsync(Guid walletID)
         {
             if (walletID != Guid.Empty)
             {
-                var response = await _transactionService.GetAllTransactionByWalletID(walletID);
+                var response = await _transactionService.GetAllTransactionsByWalletID(walletID);
 
                 return response;
             }
@@ -47,11 +47,11 @@ namespace CRMLite.TransactionStoreAPI.Controllers
 
         [HttpPost]
         [TypeFilter(typeof(TwoFactorAuthorizeAttribute))]
-        public async Task CreateTransactionAsync(Transaction transaction)
+        public async Task CreateTransactionAsync(Transaction currencyTransaction)
         {
-            if (transaction != null)
+            if (currencyTransaction != null)
             {
-                await _transactionService.CreateTransactionAsync(transaction);
+                await _transactionService.CreateTransactionAsync(currencyTransaction);
             }
             else
             {

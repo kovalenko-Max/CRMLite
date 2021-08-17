@@ -17,7 +17,7 @@ namespace CRMLite.TransactionStoreInsightDatabase.Repositories
         public WalletRepository(IDbConnection dbConnection)
         {
             DBConnection = dbConnection;
-            _walletRepository = DBConnection.As<IWalletRepository>();
+            _walletRepository = dbConnection.As<IWalletRepository>();
         }
 
         public async Task CreateWalletWithinLeadAsync(Guid leadID, Wallet wallet)

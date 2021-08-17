@@ -10,8 +10,8 @@ namespace CRMLite.TransactionStoreInsightDatabase.Repositories
 {
     public class TransactionRepository : ITransactionRepository
     {
-        private readonly ITransactionRepository _transactionRepository;
         public IDbConnection DBConnection { get; }
+        private readonly ITransactionRepository _transactionRepository;
 
         public TransactionRepository(IDbConnection dbConnection)
         {
@@ -29,21 +29,21 @@ namespace CRMLite.TransactionStoreInsightDatabase.Repositories
             throw new ArgumentNullException("Transaction is null");
         }
 
-        public async Task<IEnumerable<Transaction>> GetAllTransactionByLeadIDAsync(Guid leadID)
+        public async Task<IEnumerable<Transaction>> GetAllTransactionsByLeadIDAsync(Guid leadID)
         {
             if (leadID != Guid.Empty)
             {
-                return await _transactionRepository.GetAllTransactionByLeadIDAsync(leadID);
+                return await _transactionRepository.GetAllTransactionsByLeadIDAsync(leadID);
             }
 
             throw new ArgumentException("Guid  LeadID is empty");
         }
 
-        public async Task<IEnumerable<Transaction>> GetAllTransactionByWalletIDAsync(Guid walletID)
+        public async Task<IEnumerable<Transaction>> GetAllTransactionsByWalletIDAsync(Guid walletID)
         {
             if (walletID != Guid.Empty)
             {
-                return await _transactionRepository.GetAllTransactionByWalletIDAsync(walletID);
+                return await _transactionRepository.GetAllTransactionsByWalletIDAsync(walletID);
             }
 
             throw new ArgumentException("Guid  walletID is empty");
