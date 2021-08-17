@@ -1,15 +1,11 @@
 ﻿using CRMLite.CRMAPI.JWT;
+using CRMLite.CRMAPI.RabbitMQ.Consumer;
 using CRMLite.CRMDAL;
 using CRMLite.CRMDAL.Interfaces;
 using CRMLite.CRMServices.Interfaces;
 using CRMLite.CRMServices.Services;
 using MassTransit;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.IdentityModel.Tokens;
-using System;
-using System.Text;
-using System.Threading;
 
 namespace CRMLite.CRMAPI
 {
@@ -25,24 +21,29 @@ namespace CRMLite.CRMAPI
             services.AddScoped<IMailExchangeService, MailExchangeService>();
         }
 
-        public static void AddRabbitMQ(this IServiceCollection services,BusOptions options)
+        public static void AddRabbitMQ(this IServiceCollection services, RabbitMQHostConfig options)
         {
-            var busControl = Bus.Factory.CreateUsingRabbitMq(cfg =>
+            services.AddMassTransit(x =>
             {
-                cfg.Host(options.Host, options.LocalHost, h =>
-                {
-                    h.Username(options.Username);
-                    h.Password(options.Password);
-                });
+                x.AddConsumer<ConsumerMock>();
 
-                cfg.ReceiveEndpoint(options.Queue, e =>
+                x.UsingRabbitMq((context, cfg) =>
                 {
-                    e.Consumer<LeadSubmittedEventConsumer>();
+                    cfg.ReceiveEndpoint(options.Queue, e =>
+                    {
+                        e.ConfigureConsumer<ConsumerMock>(context);
+                    });
+
+                    cfg.Host(options.Host, options.LocalHost, h =>
+                    {
+                        h.Username(options.Username);
+                        h.Password(options.Password);
+                    });
                 });
             });
 
-            var source = new CancellationTokenSource(TimeSpan.FromSeconds(10));
-            busControl.Start();
+            services.AddMassTransitHostedService();
         }
+
     }
 }

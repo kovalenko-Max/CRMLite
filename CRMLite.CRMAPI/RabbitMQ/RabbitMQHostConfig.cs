@@ -1,6 +1,6 @@
 ﻿namespace CRMLite.CRMAPI
 {
-    public class BusOptions
+    public class RabbitMQHostConfig
     {
         public string Host { get; set; }
         public string LocalHost { get; set; }

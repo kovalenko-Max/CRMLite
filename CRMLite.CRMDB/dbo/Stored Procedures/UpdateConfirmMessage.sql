@@ -3,4 +3,4 @@
 AS
 UPDATE [CRMLite].[ConfirmMessage]
 SET [ConfirmMessage] = @ConfimMessage
-WHERE [LeadId] = @LeadID
+WHERE [LeadID] = @LeadID
