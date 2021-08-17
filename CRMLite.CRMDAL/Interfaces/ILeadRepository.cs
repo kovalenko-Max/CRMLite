@@ -15,5 +15,6 @@ namespace CRMLite.CRMDAL.Interfaces
         Task UpdateLeadAsync(Lead lead);
         Task DeleteLeadByIDAsync(Guid ID);
         Task<Lead> GetLeadByEmailAsync(string email);
+        Task<IEnumerable<Lead>> PaginateLeadsAsync(int startItem, int countItems);
     }
 }

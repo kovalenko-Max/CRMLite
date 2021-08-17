@@ -19,6 +19,22 @@ namespace CRMLite.CRMDAL.Repositories
             _leadRepository = DBConnection.As<ILeadRepository>();
         }
 
+        public async Task<IEnumerable<Lead>> PaginateLeadsAsync(int startItem, int countItems)
+        {
+            if (startItem >= 0 && countItems > 0)
+            {
+                return await _leadRepository.PaginateLeadsAsync(startItem, countItems);
+            }
+            else if (startItem < 0)
+            {
+                throw new ArgumentException("Invalid StartItem index");
+            }
+            else
+            {
+                throw new ArgumentException("Invalid CountItem index");
+            }
+        }
+
         public async Task DeleteLeadByIDAsync(Guid id)
         {
             if (id != Guid.Empty)
@@ -50,7 +66,7 @@ namespace CRMLite.CRMDAL.Repositories
         {
             if (!(lead is null))
             {
-                    await _leadRepository.RegistrationLeadAsync(lead);
+                await _leadRepository.RegistrationLeadAsync(lead);
             }
             else
             {
