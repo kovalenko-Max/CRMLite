@@ -19,11 +19,11 @@ namespace CRMLite.TransactionStoreInsightDatabase.Repositories
             _currencyRepository = DBConnection.As<ICurrencyRepository>();
         }
 
-        public async Task<List<Currency>> GetAllCurrencyAsync()
+        public async Task<List<Currency>> GetAllCurrenciesAsync()
         {
             try
             {
-                return await _currencyRepository.GetAllCurrencyAsync();
+                return await _currencyRepository.GetAllCurrenciesAsync();
             }
             catch (Exception e)
             {
@@ -40,6 +40,18 @@ namespace CRMLite.TransactionStoreInsightDatabase.Repositories
             else if (currency == null)
             {
                 throw new ArgumentNullException("Currency is null");
+            }
+        }
+
+        public async Task<Currency> GetCurrencyByCodeAsync(string code)
+        {
+            if (code!=null)
+            {
+                return await _currencyRepository.GetCurrencyByCodeAsync(code);
+            }
+            else
+            {
+                throw new ArgumentNullException("Code is null");
             }
         }
     }
