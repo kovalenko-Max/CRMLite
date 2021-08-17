@@ -16,6 +16,18 @@ namespace CRMLite.TransactionStoreBLL.Services
             _stockPortfolioRepository = stockPortfolioRepository;
         }
 
+        public async Task CreateStockPortfolioAsync(StockPortfolio stockPortfolio)
+        {
+            if (stockPortfolio != null)
+            {
+                await _stockPortfolioRepository.CreateStockPortfolioAsync(stockPortfolio);
+            }
+            else
+            {
+                throw new ArgumentNullException("StockPortfolio is null");
+            }
+        }
+
         public async Task<IEnumerable<StockPortfolio>> GetAllStockPortfoliosByLeadIDAsync(Guid leadID)
         {
             if (leadID != Guid.Empty)
