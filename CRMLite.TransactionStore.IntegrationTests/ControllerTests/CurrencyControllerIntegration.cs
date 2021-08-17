@@ -18,7 +18,7 @@ namespace CRMLite.TransactionStore.IntegrationTests.ControllerTests
 
         [Theory]
         [MemberData(nameof(CurrencyTestData.GetTestDataForGetAll), MemberType = typeof(CurrencyTestData))]
-        public async Task GetAllCurrencies_WhenValidTestPassed_ShouldReturnIEnumerableCurrency(List<Currency> currencies)
+        public async Task GetAllCurrencies_WhenValidTestPassed_ShouldReturnIEnumerableCurrencies(List<Currency> currencies)
         {
             Initialize();
 

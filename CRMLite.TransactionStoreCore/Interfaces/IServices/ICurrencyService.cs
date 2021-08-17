@@ -6,6 +6,8 @@ namespace CRMLite.TransactionStoreDomain.Interfaces.IServices
 {
     public interface ICurrencyService
     {
-        Task<List<Currency>> GetAllCurrencyAsync();
+        Task<List<Currency>> GetAllCurrenciesAsync();
+        Task<Currency> GetCurrencyByCodeAsync(string code);
+        Task CreateCurrency(Currency currency);
     }
 }

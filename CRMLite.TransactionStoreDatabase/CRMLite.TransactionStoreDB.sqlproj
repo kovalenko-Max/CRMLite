@@ -88,7 +88,6 @@
     <Build Include="CRMLite\StoredProcedures\Currency\GetAllCurrency.sql" />
     <Build Include="CRMLite\StoredProcedures\Stock\GetAllStocks.sql" />
     <Build Include="CRMLite\StoredProcedures\OperationType\GetAllOperationTypes.sql" />
-    <Build Include="CRMLite\StoredProcedures\Currency\CreateCurrency.sql" />
     <Build Include="CRMLite\StoredProcedures\StockPortfolio\GetAllStockPortfoliosByLeadID.sql" />
     <Build Include="CRMLite\StoredProcedures\StockTransaction\CreateStockTransaction.sql" />
     <Build Include="CRMLite\StoredProcedures\StockTransaction\GetAllStockTransactionsByLeadID.sql" />
@@ -100,10 +99,12 @@
     <Build Include="CRMLite\StoredProcedures\StockPortfolio\CreateStockPortfolio.sql" />
     <Build Include="CRMLite\StoredProcedures\Stock\CreateStock.sql" />
     <Build Include="CRMLite\StoredProcedures\OperationType\CreateOperationType.sql" />
-    <Build Include="CRMLite\StoredProcedures\Currency\CRMLite.CreateCurrencyId.sql" />
     <Build Include="CRMLite\Tables\CRMLite.LeadsTFA.sql" />
     <Build Include="CRMLite\StoredProcedures\LeadsTFA\AddTFAToLead.sql" />
     <Build Include="CRMLite\StoredProcedures\LeadsTFA\CRMLite.GetTFAKeyByLeadID.sql" />
+    <Build Include="CRMLite\StoredProcedures\Wallet\GetUSDWalletsByLeadID.sql" />
+    <Build Include="CRMLite\StoredProcedures\Currency\GetCurrencyByCode.sql" />
+    <Build Include="CRMLite\StoredProcedures\Currency\CRMLite.CreateCurrency.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="CRMLite.TransactionStoreDB.refactorlog" />

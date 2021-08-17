@@ -14,5 +14,6 @@ namespace CRMLite.TransactionStoreDomain.Interfaces.IRepositories
         [Recordset(typeof(Wallet), typeof(Currency))]
         Task<Wallet> GetWalletByIDAsync(Guid id);
         Task CreateWalletWithinLeadAsync(Guid leadID, Wallet wallet);
+        Task<Wallet> GetUSDWalletByLeadIDAsync(Guid leadID);
     }
 }

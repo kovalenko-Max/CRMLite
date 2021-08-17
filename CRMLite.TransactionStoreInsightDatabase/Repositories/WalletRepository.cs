@@ -41,7 +41,7 @@ namespace CRMLite.TransactionStoreInsightDatabase.Repositories
             }
             else if (leadID == Guid.Empty)
             {
-                throw new ArgumentException("Guid leadID is empty");
+                throw new ArgumentException("Guid LeadID is empty");
             }
         }
 
@@ -63,6 +63,16 @@ namespace CRMLite.TransactionStoreInsightDatabase.Repositories
             }
 
             throw new ArgumentException("Guid ID is empty");
+        }
+
+        public async Task<Wallet> GetUSDWalletByLeadIDAsync(Guid leadID)
+        {
+            if (leadID != Guid.Empty)
+            {
+                return await _walletRepository.GetUSDWalletByLeadIDAsync(leadID);
+            }
+
+            throw new ArgumentException("Guid LeadID is empty");
         }
     }
 }

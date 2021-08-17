@@ -18,9 +18,9 @@ namespace CRMLite.TransactionStoreAPI.Controllers
         }
 
         [HttpGet]
-        public async Task<List<Currency>> GetAllCurrencyAsync()
+        public async Task<List<Currency>> GetAllCurrenciesAsync()
         {
-            return await _currencyService.GetAllCurrencyAsync();
+            return await _currencyService.GetAllCurrenciesAsync();
         }
     }
 }
