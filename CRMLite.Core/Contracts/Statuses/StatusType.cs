@@ -1,4 +1,4 @@
-﻿namespace CRMLite.Core.Contracts.RolesAndStatuses
+﻿namespace CRMLite.Core.Contracts.Statuses
 {
     public enum StatusType 
     {

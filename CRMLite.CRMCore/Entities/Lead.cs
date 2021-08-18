@@ -1,6 +1,7 @@
-﻿using CRMLite.Core.Contracts.RolesAndStatuses;
+﻿using CRMLite.Core.Contracts.Roles;
 using System;
 using System.Collections.Generic;
+using CRMLite.Core.Contracts.Statuses;
 
 namespace CRMLite.CRMCore.Entities
 {

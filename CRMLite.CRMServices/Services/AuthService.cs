@@ -5,9 +5,10 @@ using CRMLite.CRMServices.Interfaces;
 using System;
 using System.Text.Json;
 using System.Threading.Tasks;
-using CRMLite.Core.Contracts.RolesAndStatuses;
+using CRMLite.Core.Contracts.Roles;
 using System.Text.RegularExpressions;
 using System.Collections.Generic;
+using CRMLite.Core.Messages;
 using MassTransit;
 
 namespace CRMLite.CRMServices.Services
@@ -18,8 +19,8 @@ namespace CRMLite.CRMServices.Services
         private readonly IMailExchangeService _mailExchangeService;
         private readonly ILeadRepository _leadRepository;
         private readonly IRoleRepository _roleRepository;
-        private IBusControl _busControl;
-        private IConfirmMessageRepository _confirmMessageRepository { get; set; }
+        private readonly IBusControl _busControl;
+        private IConfirmMessageRepository _confirmMessageRepository { get;}
 
         public AuthService(IDBContext dBContext, IMailExchangeService mailExchangeService, IBusControl busControl)
         {
@@ -35,7 +36,8 @@ namespace CRMLite.CRMServices.Services
             var confirmationMessage = new ConfirmationMessageModel
             {
                 ConfirmMessage = StringGenerator.GenerateString(),
-                LeadID = lead.Id
+                LeadID = lead.Id,
+                StatusType = lead.StatusType
             };
 
             await _confirmMessageRepository.CreateConfirmMessageAsync(confirmationMessage);
@@ -54,12 +56,17 @@ namespace CRMLite.CRMServices.Services
                 var decrypted = EncryptionHelper.Decrypt(message);
                 var model = JsonSerializer.Deserialize<ConfirmationMessageModel>(decrypted);
                 var confirmMessageDB = await _confirmMessageRepository.GetConfirmMessageByLeadIDAsync(model.LeadID);
+                NewVerifiedLeadMessage newVerifiedLeadMessage = new NewVerifiedLeadMessage()
+                {
+                    LeadID = model.LeadID
+                };
 
                 if (model.ConfirmMessage == confirmMessageDB.ConfirmMessage)
                 {
                     await _roleRepository.AddRoleToLeadAsync(confirmMessageDB.LeadID, RoleType.User);
 
-                    await _busControl.Publish(model.LeadID);
+                    await _busControl.Publish(newVerifiedLeadMessage);
+
                     return true;
                 }
 

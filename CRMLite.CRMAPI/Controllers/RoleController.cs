@@ -1,4 +1,4 @@
-﻿using CRMLite.Core.Contracts.RolesAndStatuses;
+﻿using CRMLite.Core.Contracts.Roles;
 using CRMLite.CRMServices.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
