@@ -1,6 +1,6 @@
-﻿using CRMLite.Core.Contracts.RolesAndStatuses;
-using CRMLite.CRMCore.Entities;
+﻿using CRMLite.CRMCore.Entities;
 using System;
+using CRMLite.Core.Contracts.Statuses;
 
 namespace CRMLite.CRM.IntegrationTests.SourceData.EnvironmentSourceData
 {

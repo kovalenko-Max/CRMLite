@@ -1,4 +1,4 @@
-﻿using CRMLite.Core.Contracts.RolesAndStatuses;
+﻿using CRMLite.Core.Contracts.Roles;
 using CRMLite.CRMDAL.Interfaces;
 using CRMLite.CRMServices.Interfaces;
 using System;

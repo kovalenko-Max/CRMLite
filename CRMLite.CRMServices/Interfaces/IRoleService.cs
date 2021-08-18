@@ -1,4 +1,4 @@
-﻿using CRMLite.Core.Contracts.RolesAndStatuses;
+﻿using CRMLite.Core.Contracts.Roles;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;

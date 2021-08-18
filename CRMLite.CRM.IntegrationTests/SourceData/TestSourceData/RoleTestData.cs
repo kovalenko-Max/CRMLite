@@ -1,4 +1,4 @@
-﻿using CRMLite.Core.Contracts.RolesAndStatuses;
+﻿using CRMLite.Core.Contracts.Roles;
 using System.Collections.Generic;
 
 namespace CRMLite.CRM.IntegrationTests.SourceData.TestSourceData
