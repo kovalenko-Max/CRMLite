@@ -21,3 +21,12 @@ VALUES (
 	@StockPrice,
 	@Timestamp
 	)
+
+IF @IsDeposit = (1)
+	UPDATE [CRMLite].[StockPortfolio]
+	SET Quantity = Quantity + @Quantity
+	WHERE ID = @StockPortfolioID
+ELSE
+	UPDATE [CRMLite].[StockPortfolio]
+	SET Quantity = Quantity - @Quantity
+	WHERE ID = @StockPortfolioID
