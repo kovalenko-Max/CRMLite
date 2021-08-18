@@ -5,17 +5,16 @@ using CRMLite.TransactionStoreBLL.Services;
 using CRMLite.TransactionStoreDomain.Interfaces.IRepositories;
 using CRMLite.TransactionStoreDomain.Interfaces.IServices;
 using CRMLite.TransactionStoreInsightDatabase.Repositories;
-using CRMLite.TransactionStoreAPI.TFA;
+using CRMLite.TransactionStoreBLL.TFA;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.OpenApi.Models;
 using Serilog;
 using System.Data;
-using System.Data.Common;
 using System.Data.SqlClient;
-using Microsoft.OpenApi.Models;
 
 namespace CRMLite.TransactionStoreAPI
 {
@@ -31,15 +30,14 @@ namespace CRMLite.TransactionStoreAPI
         public void ConfigureServices(IServiceCollection services)
         {
             var rabbitMQHostConfig = Configuration.GetSection("RabbitMQHostConfig").Get<RabbitMQHostConfig>();
-            var TFAConfig = Configuration.GetSection("TFAConfig").Get<TFAConfig>();
-
             var connectionString = Configuration.GetConnectionString("Default");
+            services.Configure<TFAConfig>(Configuration.GetSection("TFAConfig"));
 
             services.AddHttpContextAccessor();
             services.AddControllers();
 
             services.AddMassTransitWithinRabbitMQ(rabbitMQHostConfig);
-            services.AddTFA(TFAConfig);
+            services.AddTFA();
 
             services.AddTransient<IDbConnection>(conn => new SqlConnection(connectionString));
 

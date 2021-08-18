@@ -8,7 +8,7 @@ namespace CRMLite.TransactionStoreDomain.Interfaces.IServices
     {
         Task<bool> IsLeadTFAExistAsync(Guid leadID);
         Task<TFAModel> GetTFAModelAsync(Guid leadID);
-        Task AddTFAKeyToLeadAsync(Guid leadID, string key);
         Task<bool> ConfirmPinAsync(Guid leadID, string pin);
+        Task<bool> ConfirmConnectTFAToLeadAsync(Guid leadID, string pin);
     }
 }

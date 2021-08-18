@@ -100,11 +100,14 @@
     <Build Include="CRMLite\StoredProcedures\Stock\CreateStock.sql" />
     <Build Include="CRMLite\StoredProcedures\OperationType\CreateOperationType.sql" />
     <Build Include="CRMLite\Tables\CRMLite.LeadsTFA.sql" />
-    <Build Include="CRMLite\StoredProcedures\LeadsTFA\AddTFAToLead.sql" />
+    <Build Include="CRMLite\StoredProcedures\LeadsTFA\AddTFAKeyToLead.sql" />
     <Build Include="CRMLite\StoredProcedures\LeadsTFA\CRMLite.GetTFAKeyByLeadID.sql" />
     <Build Include="CRMLite\StoredProcedures\Wallet\GetUSDWalletsByLeadID.sql" />
     <Build Include="CRMLite\StoredProcedures\Currency\GetCurrencyByCode.sql" />
     <Build Include="CRMLite\StoredProcedures\Currency\CreateCurrency.sql" />
+    <Build Include="CRMLite\StoredProcedures\Currency\CRMLite.CreateCurrency.sql" />
+    <Build Include="CRMLite\StoredProcedures\LeadsTFA\SetExistTFAByLeadID.sql" />
+    <Build Include="CRMLite\StoredProcedures\LeadsTFA\CRMLite.GetIsExistTFAByLeadID.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="CRMLite.TransactionStoreDB.refactorlog" />

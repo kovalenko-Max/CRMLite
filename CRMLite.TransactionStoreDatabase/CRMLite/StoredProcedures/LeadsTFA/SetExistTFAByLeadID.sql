@@ -1,0 +1,5 @@
+﻿CREATE PROCEDURE [CRMLite].[SetExistTFAByLeadID] @LeadID UNIQUEIDENTIFIER
+AS
+UPDATE [CRMLite].[LeadsTFA]
+SET IsExist = 1
+WHERE [CRMLite].[LeadsTFA].LeadID = @LeadID

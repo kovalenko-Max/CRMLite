@@ -13,6 +13,11 @@ namespace CRMLite.TransactionStore.IntegrationTests.Mocks
             
         }
 
+        public async Task<bool> ConfirmConnectTFAToLeadAsync(Guid leadID, string pin)
+        {
+            return true;
+        }
+
         public async Task<bool> ConfirmPinAsync(Guid leadID, string pin)
         {
             return true;
