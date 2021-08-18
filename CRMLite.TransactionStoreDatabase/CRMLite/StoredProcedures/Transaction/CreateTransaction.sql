@@ -21,3 +21,11 @@ VALUES (
 	@Amount,
 	@Timestamp
 	)
+
+UPDATE CRMLite.Wallets
+SET Amount = Amount - @Amount
+WHERE ID = @WalletFrom
+
+UPDATE CRMLite.Wallets
+SET Amount = Amount + @Amount
+WHERE ID = @WalletTo
