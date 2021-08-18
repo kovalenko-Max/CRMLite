@@ -1,0 +1,4 @@
+﻿CREATE TABLE [CRMLite].[ConfirmMessage] (
+	[LeadID] UNIQUEIDENTIFIER NOT NULL,
+	[ConfirmMessage] NVARCHAR(20) NOT NULL
+	)

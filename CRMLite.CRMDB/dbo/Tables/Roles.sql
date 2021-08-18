@@ -1,0 +1,4 @@
+﻿CREATE TABLE [CRMLite].[Roles] (
+	[ID] INT IDENTITY(1, 1) NOT NULL PRIMARY KEY,
+	[Title] INT NOT NULL
+	)
