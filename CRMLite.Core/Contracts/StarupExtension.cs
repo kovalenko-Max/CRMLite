@@ -1,4 +1,4 @@
-﻿using CRMLite.Core.Contracts.RolesAndStatuses;
+﻿using CRMLite.Core.Contracts.Roles;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;

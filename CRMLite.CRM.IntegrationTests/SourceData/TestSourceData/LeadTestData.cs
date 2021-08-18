@@ -1,7 +1,7 @@
-﻿using CRMLite.Core.Contracts.RolesAndStatuses;
-using CRMLite.CRMCore.Entities;
+﻿using CRMLite.CRMCore.Entities;
 using System;
 using System.Collections.Generic;
+using CRMLite.Core.Contracts.Statuses;
 
 namespace CRMLite.CRM.IntegrationTests.SourceData.TestSourceData
 {
