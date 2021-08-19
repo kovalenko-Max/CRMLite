@@ -12,8 +12,8 @@ namespace CRMLite.TransactionStore.IntegrationTests.SourceData.TestSourceData
             _currency = new Currency()
             {
                 ID = 0,
-                Title = "Stock title",
-                Code = "USD"
+                Code = "USD",
+                Title = "Stock title"
             };
         }
 
