@@ -24,7 +24,7 @@ namespace CRMLite.TransactionStoreAPI.Controllers
         {
             if (leadID != Guid.Empty)
             {
-                var response = await _transactionService.GetAllTransactionsByLeadID(leadID);
+                var response = await _transactionService.GetAllTransactionsByLeadIDAsync(leadID);
 
                 return response;
             }
@@ -37,7 +37,7 @@ namespace CRMLite.TransactionStoreAPI.Controllers
         {
             if (walletID != Guid.Empty)
             {
-                var response = await _transactionService.GetAllTransactionsByWalletID(walletID);
+                var response = await _transactionService.GetAllTransactionsByWalletIDAsync(walletID);
 
                 return response;
             }
@@ -47,11 +47,11 @@ namespace CRMLite.TransactionStoreAPI.Controllers
 
         [HttpPost]
         [TypeFilter(typeof(TwoFactorAuthorizeAttribute))]
-        public async Task CreateTransactionAsync(Transaction currencyTransaction)
+        public async Task CreateTransactionAsync(Transaction transaction)
         {
-            if (currencyTransaction != null)
+            if (transaction != null)
             {
-                await _transactionService.CreateTransactionAsync(currencyTransaction);
+                await _transactionService.CreateTransactionAsync(transaction);
             }
             else
             {

@@ -1,5 +1,6 @@
 ﻿using CRMLite.TransactionStoreDomain.Entities;
 using CRMLite.TransactionStoreDomain.Interfaces.IRepositories;
+using CRMLite.TransactionStoreInsightDatabase.Extension;
 using Insight.Database;
 using System;
 using System.Collections.Generic;
@@ -23,13 +24,28 @@ namespace CRMLite.TransactionStoreInsightDatabase.Repositories
         {
             if (transaction != null)
             {
-                await _transactionRepository.CreateTransactionAsync(transaction);
-            }
+                var walletFrom = transaction.WalletFrom.ID;
+                var walletTo = transaction.WalletTo.ID;
+                var operationType = transaction.OperationType.ID;
 
-            throw new ArgumentNullException("Transaction is null");
+                await DBConnection.QueryAsync(nameof(CreateTransactionAsync).GetStoredProcedureName(), new
+                {
+                    transaction.ID,
+                    transaction.LeadID,
+                    transaction.Amount,
+                    transaction.Timestamp,
+                    walletFrom,
+                    walletTo,
+                    operationType
+                });
+            }
+            else
+            {
+                throw new ArgumentNullException("Transaction is null");
+            }
         }
 
-        public async Task<IEnumerable<Transaction>> GetAllTransactionsByLeadIDAsync(Guid leadID)
+        public async Task<IEnumerable<TransactionDTO>> GetAllTransactionsByLeadIDAsync(Guid leadID)
         {
             if (leadID != Guid.Empty)
             {
@@ -39,7 +55,7 @@ namespace CRMLite.TransactionStoreInsightDatabase.Repositories
             throw new ArgumentException("Guid  LeadID is empty");
         }
 
-        public async Task<IEnumerable<Transaction>> GetAllTransactionsByWalletIDAsync(Guid walletID)
+        public async Task<IEnumerable<TransactionDTO>> GetAllTransactionsByWalletIDAsync(Guid walletID)
         {
             if (walletID != Guid.Empty)
             {

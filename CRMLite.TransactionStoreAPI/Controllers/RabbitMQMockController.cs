@@ -7,11 +7,11 @@ namespace CRMLite.TransactionStoreAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class RebbitMQMockController : ControllerBase
+    public class RabbitMQMockController : ControllerBase
     {
         private IBusControl _busControl;
 
-        public RebbitMQMockController(IBusControl busControl)
+        public RabbitMQMockController(IBusControl busControl)
         {
             _busControl = busControl;
         }
