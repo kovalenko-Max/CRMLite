@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.31321.278
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31612.314
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CRMLite.TransactionStoreAPI", "CRMLite.TransactionStoreAPI\CRMLite.TransactionStoreAPI.csproj", "{F8D728AA-51E7-4845-9802-34632BD2DDEA}"
 EndProject
@@ -13,7 +13,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CRMLite.TransactionStoreBLL
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CRMLite.TransactionStoreInsightDatabase", "CRMLite.TransactionStoreInsightDatabase\CRMLite.TransactionStoreInsightDatabase.csproj", "{44F89C6A-1151-45D5-86FD-85069EA9CB76}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CRMLite.TransactionStore.IntegrationTests", "CRMLite.TransactionStore.IntegrationTests\CRMLite.TransactionStore.IntegrationTests.csproj", "{21D51EF4-C1B9-4735-A19E-E50D93FA8A53}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CRMLite.TransactionStore.IntegrationTests", "CRMLite.TransactionStore.IntegrationTests\CRMLite.TransactionStore.IntegrationTests.csproj", "{21D51EF4-C1B9-4735-A19E-E50D93FA8A53}"
+EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "CRMLite.RatesDB", "CRMLite.RatesDB\CRMLite.RatesDB.sqlproj", "{04597FD6-418A-4CD6-9EE6-AB3A860230A9}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CRMLite.RatesDAL", "CRMLite.RatesDAL\CRMLite.RatesDAL.csproj", "{499E1B4D-F2B9-4B1D-80D2-26E1FFFA9957}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CRMLite.RatesAPI", "CRMLite.RatesAPI\CRMLite.RatesAPI.csproj", "{14520A40-E3DC-4BDD-B535-9EFB31F78DF9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CRMLite.RatesService", "CRMLite.RatesService\CRMLite.RatesService.csproj", "{4556E87C-A4E8-45D4-AEC9-FA2FCC70042F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -47,6 +55,24 @@ Global
 		{21D51EF4-C1B9-4735-A19E-E50D93FA8A53}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{21D51EF4-C1B9-4735-A19E-E50D93FA8A53}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{21D51EF4-C1B9-4735-A19E-E50D93FA8A53}.Release|Any CPU.Build.0 = Release|Any CPU
+		{04597FD6-418A-4CD6-9EE6-AB3A860230A9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{04597FD6-418A-4CD6-9EE6-AB3A860230A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{04597FD6-418A-4CD6-9EE6-AB3A860230A9}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{04597FD6-418A-4CD6-9EE6-AB3A860230A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{04597FD6-418A-4CD6-9EE6-AB3A860230A9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{04597FD6-418A-4CD6-9EE6-AB3A860230A9}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{499E1B4D-F2B9-4B1D-80D2-26E1FFFA9957}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{499E1B4D-F2B9-4B1D-80D2-26E1FFFA9957}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{499E1B4D-F2B9-4B1D-80D2-26E1FFFA9957}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{499E1B4D-F2B9-4B1D-80D2-26E1FFFA9957}.Release|Any CPU.Build.0 = Release|Any CPU
+		{14520A40-E3DC-4BDD-B535-9EFB31F78DF9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{14520A40-E3DC-4BDD-B535-9EFB31F78DF9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{14520A40-E3DC-4BDD-B535-9EFB31F78DF9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{14520A40-E3DC-4BDD-B535-9EFB31F78DF9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4556E87C-A4E8-45D4-AEC9-FA2FCC70042F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4556E87C-A4E8-45D4-AEC9-FA2FCC70042F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4556E87C-A4E8-45D4-AEC9-FA2FCC70042F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4556E87C-A4E8-45D4-AEC9-FA2FCC70042F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
