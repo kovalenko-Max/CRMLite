@@ -1,4 +1,4 @@
-﻿CREATE PROCEDURE [CRMLite].[GetAllCurrency]
+﻿CREATE PROCEDURE [CRMLite].[GetAllCurrencies]
 AS
 SELECT 
 	ID,
