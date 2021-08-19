@@ -14,9 +14,9 @@ using Xunit;
 
 namespace CRMLite.TransactionStore.IntegrationTests.ControllerTests
 {
-    public class StockTransactionIntegrationTests : IntegrationTestAbstract
+    public class StockTransactionControllerIntegrationTests : IntegrationTestAbstract
     {
-        public StockTransactionIntegrationTests(ApiWebApplicationFactory fixture) : base(fixture)
+        public StockTransactionControllerIntegrationTests(ApiWebApplicationFactory fixture) : base(fixture)
         {
         }
 

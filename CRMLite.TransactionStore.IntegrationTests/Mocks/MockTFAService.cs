@@ -1,5 +1,4 @@
 ﻿using CRMLite.TransactionStoreDomain.Entities;
-using CRMLite.TransactionStoreDomain.Interfaces.IRepositories;
 using CRMLite.TransactionStoreDomain.Interfaces.IServices;
 using System;
 using System.Threading.Tasks;
