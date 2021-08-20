@@ -1,0 +1,123 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <Name>CRMLite.TransactionStoreDB</Name>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectVersion>4.1</ProjectVersion>
+    <ProjectGuid>{4d5511f2-6d27-460c-8745-1fbdace44415}</ProjectGuid>
+    <DSP>Microsoft.Data.Tools.Schema.Sql.SqlAzureV12DatabaseSchemaProvider</DSP>
+    <OutputType>Database</OutputType>
+    <RootPath>
+    </RootPath>
+    <RootNamespace>CRMLite.TransactionStoreDatabase</RootNamespace>
+    <AssemblyName>CRMLite.TransactionStoreDatabase</AssemblyName>
+    <ModelCollation>1033, CI</ModelCollation>
+    <DefaultFileStructure>BySchemaAndSchemaType</DefaultFileStructure>
+    <DeployToDatabase>True</DeployToDatabase>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetLanguage>CS</TargetLanguage>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <SqlServerVerification>False</SqlServerVerification>
+    <IncludeCompositeObjects>True</IncludeCompositeObjects>
+    <TargetDatabaseSet>True</TargetDatabaseSet>
+    <DefaultSchema>CRMLite</DefaultSchema>
+    <IncludeSchemaNameInFileName>True</IncludeSchemaNameInFileName>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">11.0</VisualStudioVersion>
+    <!-- Default to the v11.0 targets path if the targets file for the current VS version is not found -->
+    <SSDTExists Condition="Exists('$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets')">True</SSDTExists>
+    <VisualStudioVersion Condition="'$(SSDTExists)' == ''">11.0</VisualStudioVersion>
+  </PropertyGroup>
+  <Import Condition="'$(SQLDBExtensionsRefPath)' != ''" Project="$(SQLDBExtensionsRefPath)\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
+  <Import Condition="'$(SQLDBExtensionsRefPath)' == ''" Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
+  <ItemGroup>
+    <Folder Include="Properties" />
+    <Folder Include="CRMLite" />
+    <Folder Include="CRMLite\Tables" />
+    <Folder Include="Security" />
+    <Folder Include="CRMLite\StoredProcedures" />
+    <Folder Include="CRMLite\StoredProcedures\Wallet" />
+    <Folder Include="CRMLite\StoredProcedures\Stock" />
+    <Folder Include="CRMLite\StoredProcedures\Currency" />
+    <Folder Include="CRMLite\StoredProcedures\OperationType" />
+    <Folder Include="CRMLite\StoredProcedures\StockPortfolio" />
+    <Folder Include="CRMLite\StoredProcedures\StockTransaction" />
+    <Folder Include="CRMLite\StoredProcedures\Transaction" />
+    <Folder Include="CRMLite\StoredProcedures\SystemSP" />
+    <Folder Include="CRMLite\StoredProcedures\LeadsTFA" />
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="CRMLite\Tables\Balance.sql" />
+    <Build Include="CRMLite\Tables\Currencies.sql" />
+    <Build Include="CRMLite\Tables\OperationTypes.sql" />
+    <Build Include="CRMLite\Tables\Stock.sql" />
+    <Build Include="CRMLite\Tables\StockPortfolio.sql" />
+    <Build Include="CRMLite\Tables\StockTransactions.sql" />
+    <Build Include="CRMLite\Tables\Transactions.sql" />
+    <Build Include="CRMLite\Tables\Wallets.sql" />
+    <Build Include="Security\CRMLite.sql" />
+    <Build Include="CRMLite\StoredProcedures\Wallet\GetWalletByID.sql" />
+    <Build Include="CRMLite\StoredProcedures\Wallet\CreateWalletWithinLead.sql" />
+    <Build Include="CRMLite\StoredProcedures\Wallet\GetAllWalletsByLeadID.sql" />
+    <Build Include="CRMLite\StoredProcedures\Currency\GetAllCurrencies.sql" />
+    <Build Include="CRMLite\StoredProcedures\Stock\GetAllStocks.sql" />
+    <Build Include="CRMLite\StoredProcedures\OperationType\GetAllOperationTypes.sql" />
+    <Build Include="CRMLite\StoredProcedures\StockPortfolio\GetAllStockPortfoliosByLeadID.sql" />
+    <Build Include="CRMLite\StoredProcedures\StockTransaction\CreateStockTransaction.sql" />
+    <Build Include="CRMLite\StoredProcedures\StockTransaction\GetAllStockTransactionsByLeadID.sql" />
+    <Build Include="CRMLite\StoredProcedures\StockTransaction\GetAllStockTransactionsByStockPortfolioID.sql" />
+    <Build Include="CRMLite\StoredProcedures\Transaction\CreateTransaction.sql" />
+    <Build Include="CRMLite\StoredProcedures\Transaction\GetAllTransactionsByLeadID.sql" />
+    <Build Include="CRMLite\StoredProcedures\Transaction\GetAllTransactionsByWalletID.sql" />
+    <Build Include="CRMLite\StoredProcedures\SystemSP\ResetIdentityInAllTables.sql" />
+    <Build Include="CRMLite\StoredProcedures\StockPortfolio\CreateStockPortfolio.sql" />
+    <Build Include="CRMLite\StoredProcedures\Stock\CreateStock.sql" />
+    <Build Include="CRMLite\StoredProcedures\OperationType\CreateOperationType.sql" />
+    <Build Include="CRMLite\Tables\CRMLite.LeadsTFA.sql" />
+    <Build Include="CRMLite\StoredProcedures\LeadsTFA\AddTFAToLead.sql" />
+    <Build Include="CRMLite\StoredProcedures\LeadsTFA\CRMLite.GetTFAKeyByLeadID.sql" />
+    <Build Include="CRMLite\StoredProcedures\Wallet\GetUSDWalletsByLeadID.sql" />
+    <Build Include="CRMLite\StoredProcedures\Currency\GetCurrencyByCode.sql" />
+    <Build Include="CRMLite\StoredProcedures\Currency\CreateCurrency.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <RefactorLog Include="CRMLite.TransactionStoreDB.refactorlog" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="CRMLite.TransactionStoreDB.dbmdl" />
+    <None Include="CRMLite.TransactionStoreDB.sqlproj.user" />
+  </ItemGroup>
+  <ItemGroup>
+    <ArtifactReference Include="$(DacPacRootPath)\Extensions\Microsoft\SQLDB\Extensions\SqlServer\130\SqlSchemas\master.dacpac">
+      <HintPath>$(DacPacRootPath)\Extensions\Microsoft\SQLDB\Extensions\SqlServer\130\SqlSchemas\master.dacpac</HintPath>
+      <SuppressMissingDependenciesErrors>False</SuppressMissingDependenciesErrors>
+      <DatabaseVariableLiteralValue>master</DatabaseVariableLiteralValue>
+    </ArtifactReference>
+  </ItemGroup>
+</Project>
