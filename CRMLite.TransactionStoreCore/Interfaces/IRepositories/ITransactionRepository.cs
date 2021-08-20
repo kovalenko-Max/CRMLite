@@ -9,7 +9,8 @@ namespace CRMLite.TransactionStoreDomain.Interfaces.IRepositories
     [Sql(Schema = "CRMLite")]
     public interface ITransactionRepository : IRepository
     {
-        Task<IEnumerable<Transaction>> GetAllTransactionsByLeadIDAsync(Guid leadID);
+        [Recordset(typeof(TransactionDTO))]
+        Task<IEnumerable<TransactionDTO>> GetAllTransactionsByLeadIDAsync(Guid leadID);
         Task<IEnumerable<Transaction>> GetAllTransactionsByWalletIDAsync(Guid walletID);
         Task CreateTransactionAsync(Transaction currencyTransaction);
     }

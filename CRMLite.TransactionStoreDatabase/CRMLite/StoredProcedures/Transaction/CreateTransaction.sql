@@ -1,4 +1,6 @@
-﻿CREATE PROCEDURE [CRMLite].[CreateTransaction] @ID UNIQUEIDENTIFIER,
+﻿CREATE PROCEDURE [CRMLite].[CreateTransaction] 
+	@ID UNIQUEIDENTIFIER,
+	@leadID UNIQUEIDENTIFIER,
 	@OperationType TINYINT,
 	@WalletFrom UNIQUEIDENTIFIER,
 	@WalletTo UNIQUEIDENTIFIER,
@@ -7,6 +9,7 @@
 AS
 INSERT INTO [CRMLite].[Transactions] (
 	ID,
+	LeadID,
 	OperationType,
 	WalletFrom,
 	WalletTo,
@@ -15,6 +18,7 @@ INSERT INTO [CRMLite].[Transactions] (
 	)
 VALUES (
 	@ID,
+	@leadID,
 	@OperationType,
 	@WalletFrom,
 	@WalletTo,

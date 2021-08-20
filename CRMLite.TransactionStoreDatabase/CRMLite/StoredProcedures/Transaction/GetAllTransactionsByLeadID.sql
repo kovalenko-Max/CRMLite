@@ -1,15 +1,29 @@
 ﻿CREATE PROCEDURE [CRMLite].[GetAllTransactionsByLeadID] @LeadID UNIQUEIDENTIFIER
 AS
-SELECT T.ID,
-	T.OperationType,
-	T.WalletFrom,
-	T.WalletTo,
+SELECT 
+	T.ID,
+	T.LeadID,
 	T.Amount,
-	T.TIMESTAMP
+	T.TIMESTAMP,
+	T.OperationType,
+
+	WF.ID WalletFromID,
+	WF.Amount WalletFromAmount,
+
+	CF.ID CurrencyFromID, 
+	CF.Code CurrencyFromCode,
+	CF.Title CurrencyFromTitle,
+
+	WT.ID WalletToID,
+	WT.Amount WalletToAmount,
+
+	CT.ID CurrencyToID,
+	CT.Code CurrencyToCode,
+	CT.Title CurrencyToTitle
+	
 FROM [CRMLite].[Transactions] T
-LEFT JOIN [CRMLite].[Wallets] WF ON T.WalletFrom = WF.ID
-LEFT JOIN [CRMLite].[Wallets] WT ON T.WalletTo = WT.ID
-LEFT JOIN [CRMLite].[Balance] BF ON BF.WalletID = WF.ID
-LEFT JOIN [CRMLite].[Balance] BT ON BT.WalletID = WT.ID
-WHERE BT.LeadID = @LeadID
-	OR BF.LeadID = @LeadID
+join [CRMLite].[Wallets] WF on WF.ID = T.WalletFrom
+join [CRMLite].[Currencies] CF on WF.CurrencyID = CF.ID
+join [CRMLite].[Wallets] WT on WT.ID = T.WalletTo
+join [CRMLite].[Currencies] CT on WT.CurrencyID = CT.ID
+where T.LeadID = @LeadID

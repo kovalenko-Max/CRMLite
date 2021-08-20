@@ -4,11 +4,12 @@ namespace CRMLite.TransactionStoreDomain.Entities
 {
     public class Transaction
     {
-        public string OperationName { get; set; }
-        public Wallet From { get; set; }
-        public Wallet To { get; set; }
+        public Guid ID { get; set; }
+        public Guid LeadID { get; set; }
+        public string OperationType { get; set; }
         public decimal Amount { get; set; }
         public DateTime Timestamp { get; set; }
-        public TransactionStatus Status { get; set; }
+        public Wallet WalletFrom { get; set; }
+        public Wallet WalletTo { get; set; }
     }
 }

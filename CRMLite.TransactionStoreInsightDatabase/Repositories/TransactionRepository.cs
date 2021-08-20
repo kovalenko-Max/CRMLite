@@ -1,5 +1,6 @@
 ﻿using CRMLite.TransactionStoreDomain.Entities;
 using CRMLite.TransactionStoreDomain.Interfaces.IRepositories;
+using CRMLite.TransactionStoreInsightDatabase.Extension;
 using Insight.Database;
 using System;
 using System.Collections.Generic;
@@ -29,11 +30,13 @@ namespace CRMLite.TransactionStoreInsightDatabase.Repositories
             throw new ArgumentNullException("Transaction is null");
         }
 
-        public async Task<IEnumerable<Transaction>> GetAllTransactionsByLeadIDAsync(Guid leadID)
+        public async Task<IEnumerable<TransactionDTO>> GetAllTransactionsByLeadIDAsync(Guid leadID)
         {
             if (leadID != Guid.Empty)
             {
-                return await _transactionRepository.GetAllTransactionsByLeadIDAsync(leadID);
+                var response = await _transactionRepository.GetAllTransactionsByLeadIDAsync(leadID);
+                
+                return response;
             }
 
             throw new ArgumentException("Guid  LeadID is empty");

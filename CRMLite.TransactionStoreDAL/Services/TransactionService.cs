@@ -33,8 +33,45 @@ namespace CRMLite.TransactionStoreBLL.Services
             if(leadID != Guid.Empty)
             {
                 var response = await _repository.GetAllTransactionsByLeadIDAsync(leadID);
+                var transactions = new List<Transaction>();
+                     
+                foreach(var tr in response)
+                {
+                    transactions.Add(
+                            new Transaction()
+                            {
+                                ID = tr.ID,
+                                LeadID = tr.LeadID,
+                                OperationType = tr.OperationType,
+                                Amount = tr.Amount,
+                                Timestamp = tr.Timestamp,
+                                WalletFrom = new Wallet()
+                                {
+                                    ID = tr.WalletFromID,
+                                    Amount = tr.WalletFromAmount,
+                                    Currency = new Currency()
+                                    {
+                                        ID = tr.CurrencyFromID,
+                                        Code = tr.CurrencyFromCode,
+                                        Title = tr.CurrencyFromTitle
+                                    }
+                                },
+                                WalletTo = new Wallet()
+                                {
+                                    ID = tr.WalletToID,
+                                    Amount = tr.WalletToAmount,
+                                    Currency = new Currency()
+                                    {
+                                        ID = tr.CurrencyToID,
+                                        Code = tr.CurrencyToCode,
+                                        Title = tr.CurrencyToTitle
+                                    }
+                                }
+                            }
+                        );
+                }
 
-                return response;
+                return transactions;
             }
 
             throw new ArgumentException("Guid  LeadID is empty");
