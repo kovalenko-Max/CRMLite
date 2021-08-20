@@ -19,14 +19,14 @@ namespace CRMLite.TransactionStoreBLL
             return currencies;
         }
 
-        public decimal GetRateForCurrency (string currencyTitle)
+        public decimal GetRateForCurrency(string currencyTitle)
         {
             if (currencies.ContainsKey(currencyTitle))
             {
                 return currencies[currencyTitle];
             }
-            
-            throw new ArgumentException("Wrong currency Title"); 
+
+            throw new ArgumentException("Wrong currency Title");
         }
     }
 }
