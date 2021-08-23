@@ -36,9 +36,11 @@ namespace CRMLite.TransactionStoreAPI
             var connectionString = Configuration.GetConnectionString("Default");
 
             services.AddHttpContextAccessor();
+
             services.AddControllers();
 
             services.AddMassTransitWithinRabbitMQ(rabbitMQHostConfig);
+
             services.AddTFA(TFAConfig);
 
             services.AddTransient<IDbConnection>(conn => new SqlConnection(connectionString));
