@@ -1,0 +1,20 @@
+﻿using CRMLite.Core.Contracts.Roles;
+using System;
+using System.Collections.Generic;
+using CRMLite.Core.Contracts.Statuses;
+
+namespace CRMLite.CRMCore.Entities
+{
+    public class Lead
+    {
+        public Guid Id { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string Email { get; set; }
+        public string Password { get; set; }
+        public string PassportNumber { get; set; }
+        public string TIN { get; set; }
+        public StatusType StatusType { get; set; }
+        public List<RoleType> Role { get; set; }
+    }
+}

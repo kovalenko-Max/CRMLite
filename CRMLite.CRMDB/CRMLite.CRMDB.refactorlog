@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Operations Version="1.0" xmlns="http://schemas.microsoft.com/sqlserver/dac/Serialization/2012/02">
+  <Operation Name="Rename Refactor" Key="1a52ca1b-b5fe-4bf2-b108-a3ac99273242" ChangeDateTime="08/02/2021 12:36:20">
+    <Property Name="ElementName" Value="[dbo].[Leads].[INN]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Leads]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="[TIN]" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="f85a5a25-2d36-4ba0-b44d-fbc9452bdbe2" ChangeDateTime="08/06/2021 08:41:17">
+    <Property Name="ElementName" Value="[CRMLite].[Leads].[Role]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[CRMLite].[Leads]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Status" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="af34dd92-5984-4f0c-9a20-5152cff40fcb" ChangeDateTime="08/06/2021 08:59:27">
+    <Property Name="ElementName" Value="[CRMLite].[Leads].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[CRMLite].[Leads]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="ID" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="cc687ed8-d07f-4d54-8139-954bf6b3ca3c" ChangeDateTime="08/06/2021 09:35:43">
+    <Property Name="ElementName" Value="[CRMLite].[ConfirmMessage].[LeadId]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[CRMLite].[ConfirmMessage]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="LeadID" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="76944b1f-0314-428b-89bd-0b53f71621c9" ChangeDateTime="08/06/2021 10:29:55">
+    <Property Name="ElementName" Value="[CRMLite].[Leads].[PasportNumber]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[CRMLite].[Leads]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="PassportNumber" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="8dbc4d2d-3696-499e-8b46-4cb10604aeee" ChangeDateTime="08/06/2021 11:11:40">
+    <Property Name="ElementName" Value="[CRMLite].[Leads].[Lastname]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[CRMLite].[Leads]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="LastName" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="a70f1a5d-8299-478d-b684-7fa75005b646" ChangeDateTime="08/06/2021 11:11:48">
+    <Property Name="ElementName" Value="[CRMLite].[Leads].[Firstname]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[CRMLite].[Leads]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="FirstName" />
+  </Operation>
+</Operations>
