@@ -9,7 +9,7 @@ namespace CRMLite.TransactionStoreBLL
         private Dictionary<string, decimal> _currencies;
         private IEnumerable<Wallet> _wallets;
 
-        public BalanceCounter (Dictionary<string, decimal> currencies, IEnumerable<Wallet> wallets)
+        public BalanceCounter(Dictionary<string, decimal> currencies, IEnumerable<Wallet> wallets)
         {
             _currencies = currencies;
             _wallets = wallets;
