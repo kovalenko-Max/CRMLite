@@ -17,8 +17,8 @@ namespace CRMLite.CRM.IntegrationTests.SharedDatabaseFixtures
                 string dacpacFilePath = @$"{solutionPath}\CRMLite.CRMDB\bin\Debug\CRMLite.CRMDB.dacpac";
 
                 ProcessStartInfo procStartInfo = new ProcessStartInfo();
-                procStartInfo.FileName = projectPath + @"\sqlpackege\sqlpackage.exe";
-                procStartInfo.FileName = projectPath + @"\sqlpackege\sqlpackage.exe";
+                procStartInfo.FileName = projectPath + @"\sqlpackage\sqlpackage.exe";
+                procStartInfo.FileName = projectPath + @"\sqlpackage\sqlpackage.exe";
                 procStartInfo.Arguments = @$"/sf:{dacpacFilePath} /a:Publish /p:CreateNewDatabase=true /tsn:(LocalDB)\MSSQLLocalDB /tdn:{_testDBName} /v:DbType=production  /v:DbVer=1.0.0 /p:ScriptNewConstraintValidation=False /p:GenerateSmartDefaults=True /of:True /p:BlockOnPossibleDataLoss=False";
 
                 using (Process process = new Process())
