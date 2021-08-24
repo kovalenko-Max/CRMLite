@@ -16,7 +16,7 @@ namespace CRMLite.TransactionStoreAPI.Controllers
             _balanceService = balanceService;
         }
 
-        [HttpGet("{leadID}")]
+        [HttpGet("leadID")]
         public async Task<decimal> GetBalanceByLeadIDAsync(Guid leadID)
         {
             if (leadID != Guid.Empty)

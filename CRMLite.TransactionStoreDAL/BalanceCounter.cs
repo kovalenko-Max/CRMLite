@@ -1,5 +1,4 @@
 ﻿using CRMLite.TransactionStoreDomain.Entities;
-using System;
 using System.Collections.Generic;
 
 namespace CRMLite.TransactionStoreBLL
@@ -9,7 +8,7 @@ namespace CRMLite.TransactionStoreBLL
         private Dictionary<string, decimal> _currencies;
         private IEnumerable<Wallet> _wallets;
 
-        public BalanceCounter (Dictionary<string, decimal> currencies, IEnumerable<Wallet> wallets)
+        public BalanceCounter(Dictionary<string, decimal> currencies, IEnumerable<Wallet> wallets)
         {
             _currencies = currencies;
             _wallets = wallets;
@@ -21,21 +20,23 @@ namespace CRMLite.TransactionStoreBLL
 
             foreach (Wallet w in _wallets)
             {
-                decimal rate = GetRateForCurrency(w.Currency.ID.ToString());
+                decimal rate = GetRateForCurrency(w.Currency.Code);
                 balance += (w.Amount * rate);
             }
 
             return balance;
         }
 
-        private decimal GetRateForCurrency(string currencyTitle)
+        private decimal GetRateForCurrency(string currencyCode)
         {
-            if (_currencies.ContainsKey(currencyTitle))
+            decimal result = 0;
+
+            if (_currencies.ContainsKey(currencyCode))
             {
-                return _currencies[currencyTitle];
+                result = _currencies[currencyCode];
             }
 
-            throw new ArgumentException("Wrong currency Title");
+            return result;
         }
     }
 }

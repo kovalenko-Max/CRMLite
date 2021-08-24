@@ -12,7 +12,7 @@ namespace CRMLite.TransactionStoreBLL.Services
         // TODO: Don't forget to change RatesAPIMock to real RatesAPI
         private readonly RatesAPIMock _ratesAPI;
 
-        public BalanceService (IWalletRepository walletRepository)
+        public BalanceService(IWalletRepository walletRepository)
         {
             _walletRepository = walletRepository;
             _ratesAPI = new RatesAPIMock();
