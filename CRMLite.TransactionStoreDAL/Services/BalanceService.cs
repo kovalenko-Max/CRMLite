@@ -23,9 +23,7 @@ namespace CRMLite.TransactionStoreBLL.Services
             if (leadID != Guid.Empty)
             {
                 var wallets = await _walletRepository.GetAllWalletsByLeadIDAsync(leadID);
-
                 Dictionary<string, decimal> rates = _ratesAPI.GetAllRates();
-
                 var balanceCounter = new BalanceCounter(rates, wallets);
 
                 return balanceCounter.CountBalance();

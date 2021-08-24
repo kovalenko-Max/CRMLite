@@ -22,9 +22,7 @@ namespace CRMLite.TransactionStoreBLL.Services
             if (leadID != Guid.Empty)
             {
                 var stockPortfolios = await _stockPortfolioRepository.GetAllStockPortfoliosByLeadIDAsync(leadID);
-
                 Dictionary<string, decimal> stockRates = _stockRatesAPI.GetAllRates();
-
                 var stockBalanceCounter = new StockBalanceCounter(stockRates, stockPortfolios);
 
                 return stockBalanceCounter.CountBalance();
