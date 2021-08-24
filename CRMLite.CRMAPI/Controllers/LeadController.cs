@@ -1,10 +1,11 @@
 ﻿using CRMLite.CRMCore.Entities;
 using CRMLite.CRMServices.Interfaces;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using CRMLite.Core.Pagination;
+using Microsoft.AspNetCore.Authorization;
 
 namespace CRMLite.CRMAPI.Controllers
 {
@@ -20,10 +21,16 @@ namespace CRMLite.CRMAPI.Controllers
             _leadService = leadService;
         }
 
-        [HttpGet("pagination")]
-        public async Task<IEnumerable<Lead>> PaginateLeadsAsync(int startItem, int countItems)
+        [HttpGet("count")]
+        public async Task<int> GetCountLeadsAsync()
         {
-            return await _leadService.PaginateLeadsAsync(startItem, countItems);
+            return await _leadService.GetCountLeadsAsync();
+        }
+
+        [HttpGet("pagination")]
+        public async Task<PaginationModel<Lead>> PaginateLeadsAsync(int currentPage=1)
+        {
+            return await _leadService.PaginateLeadsAsync(currentPage);
         }
 
         [HttpGet]

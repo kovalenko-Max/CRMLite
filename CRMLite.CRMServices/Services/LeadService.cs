@@ -4,6 +4,8 @@ using CRMLite.CRMServices.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using CRMLite.Core.Pagination;
+using CRMLite.CRMCore.Helper;
 
 namespace CRMLite.CRMServices.Services
 {
@@ -65,20 +67,25 @@ namespace CRMLite.CRMServices.Services
             return await _leadRepository.GetAllLeadsAsync();
         }
 
-        public async Task<IEnumerable<Lead>> PaginateLeadsAsync(int startItem, int countItems)
+        public async Task<PaginationModel<Lead>> PaginateLeadsAsync(int currentPage)
         {
-            if (startItem >= 0 && countItems > 0)
+            var pageLimit = 2;
+            var startItem = (currentPage - 1) * pageLimit;
+            var countLeads = await GetCountLeadsAsync();
+            var leads = await _leadRepository.PaginateLeadsAsync(startItem, pageLimit);
+            var paginationModel = new PaginationModel<Lead>()
             {
-                return await _leadRepository.PaginateLeadsAsync(startItem, countItems);
-            }
-            else if(startItem < 0)
-            {
-                throw new ArgumentException("Invalid StartItem index");
-            }
-            else
-            {
-                throw new ArgumentException("Invalid CountItem index");
-            }
+                CountItems = countLeads,
+                PageLimit = pageLimit,
+                Items = leads
+            };
+
+            return paginationModel;
+        }
+
+        public async Task<int> GetCountLeadsAsync()
+        {
+            return await _leadRepository.GetCountLeadsAsync();
         }
     }
 }
