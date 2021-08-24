@@ -1,9 +1,10 @@
 ﻿using System;
 
-namespace CRMLite.TransactionStoreAPI.TFA
+namespace CRMLite.TransactionStoreBLL.TFA
 {
     public class TFAConfig
     {
+        public string SecretString { get; set; }
         public string AccountTitle { get; set; }
         public string ApplicationName { get; set; }
         public bool SecretISBase32 { get; set; }

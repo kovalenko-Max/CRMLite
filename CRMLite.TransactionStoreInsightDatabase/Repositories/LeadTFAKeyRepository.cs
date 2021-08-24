@@ -1,4 +1,5 @@
 ﻿using CRMLite.TransactionStoreDomain.Interfaces.IRepositories;
+using CRMLite.TransactionStoreInsightDatabase.Extension;
 using Insight.Database;
 using System;
 using System.Data;
@@ -17,11 +18,11 @@ namespace CRMLite.TransactionStoreInsightDatabase.Repositories
             _leadTFAKeyRepository = DBConnection.As<ILeadTFAKeyRepository>();
         }
 
-        public async Task AddTFAKeyToLeadAsync(Guid leadID, string key)
+        public async Task AddTFAKeyToLeadAsync(Guid leadID, string TFAKey)
         {
-            if (leadID != Guid.Empty && key != null)
+            if (leadID != Guid.Empty && TFAKey != null)
             {
-                await _leadTFAKeyRepository.AddTFAKeyToLeadAsync(leadID, key);
+                await DBConnection.QueryAsync(nameof(AddTFAKeyToLeadAsync).GetStoredProcedureName(), new { leadID, TFAKey });
             }
             else if (leadID == Guid.Empty)
             {
@@ -41,6 +42,30 @@ namespace CRMLite.TransactionStoreInsightDatabase.Repositories
             }
 
             throw new ArgumentException("Guid leadID is empty");
+        }
+
+        public async Task<bool> GetIsExistTFAByLeadIDAsync(Guid leadID)
+        {
+            if (leadID != Guid.Empty)
+            {
+                var isExist = await _leadTFAKeyRepository.GetIsExistTFAByLeadIDAsync(leadID);
+
+                return isExist;
+            }
+
+            throw new ArgumentException("Guid leadID is empty");
+        }
+
+        public async Task SetExistTFAByLeadIDAsync(Guid leadID)
+        {
+            if (leadID != Guid.Empty)
+            {
+                await _leadTFAKeyRepository.SetExistTFAByLeadIDAsync(leadID);
+            }
+            else
+            {
+                throw new ArgumentException("Guid leadID is empty");
+            }
         }
     }
 }

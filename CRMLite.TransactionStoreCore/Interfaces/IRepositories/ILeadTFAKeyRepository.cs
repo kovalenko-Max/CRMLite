@@ -9,5 +9,7 @@ namespace CRMLite.TransactionStoreDomain.Interfaces.IRepositories
     {
         Task AddTFAKeyToLeadAsync(Guid leadID, string key);
         Task<string> GetTFAKeyByLeadIDAsync(Guid leadID);
+        Task<bool> GetIsExistTFAByLeadIDAsync(Guid leadID);
+        Task SetExistTFAByLeadIDAsync(Guid leadID);
     }
 }
