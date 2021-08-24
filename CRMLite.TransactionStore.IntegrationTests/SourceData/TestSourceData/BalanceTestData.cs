@@ -13,7 +13,7 @@ namespace CRMLite.TransactionStore.IntegrationTests.SourceData.TestSourceData
 
         public static IEnumerable<object[]> GetTestDataForGetByID()
         {
-            _balance = 3621;
+            _balance = 0;
 
             yield return new object[]
             {

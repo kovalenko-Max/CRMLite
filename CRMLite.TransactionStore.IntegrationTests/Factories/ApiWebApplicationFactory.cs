@@ -2,6 +2,7 @@
 using CRMLite.TransactionStore.IntegrationTests.SharedDatabaseFixtures;
 using CRMLite.TransactionStoreAPI;
 using CRMLite.TransactionStoreBLL.Services;
+using CRMLite.TransactionStoreDomain.Interfaces;
 using CRMLite.TransactionStoreDomain.Interfaces.IRepositories;
 using CRMLite.TransactionStoreDomain.Interfaces.IServices;
 using CRMLite.TransactionStoreInsightDatabase.Repositories;
@@ -45,11 +46,17 @@ namespace CRMLite.TransactionStore.IntegrationTests.Factories
             {
                 services.AddSingleton<IDbConnection>(conn => connection);
                 services.AddTransient<ISharedDatadaseFixture, SharedMSSQLDBFixture>();
-                services.AddTransient<ITFAService, MockTFAService>();
 
+                AddMocks(services);
                 AddRepositories(services);
                 AddServices(services);
             });
+        }
+
+        private void AddMocks(IServiceCollection services)
+        {
+            services.AddTransient<ITFAService, MockTFAService>();
+            services.AddTransient<IBalanceCounter, MockBalanceCounter>();
         }
 
         private void AddRepositories(IServiceCollection services)

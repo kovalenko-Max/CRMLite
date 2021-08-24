@@ -10,5 +10,6 @@ namespace CRMLite.RatesDAL.IRepositories
     {
         Task<ExchangeRate> GetLastCurrencyRateAsync(string code);
         Task CreateCurrencyRatesAsync(IEnumerable<ExchangeRate> exchangeRate);
+        Task<IEnumerable<ExchangeRate>> GetLastCurrencyRatesAsync(string[] codes);
     }
 }
