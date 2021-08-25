@@ -201,4 +201,18 @@
     <Property Name="ParentElementType" Value="SqlTable" />
     <Property Name="NewName" Value="Quantity" />
   </Operation>
+  <Operation Name="Rename Refactor" Key="0b493cb7-77e5-40c1-ac03-8cf5a038fc5a" ChangeDateTime="08/25/2021 08:41:07">
+    <Property Name="ElementName" Value="[CRMLite].[Balance].[IX_Balance_Column]" />
+    <Property Name="ElementType" Value="SqlIndex" />
+    <Property Name="ParentElementName" Value="[CRMLite].[Balance]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="[IX_Balance_LeadID]" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="a720dc8c-684c-44d9-b325-7806d464e9f8" ChangeDateTime="08/25/2021 08:41:24">
+    <Property Name="ElementName" Value="[CRMLite].[Balance].[IX_Balance_Column]" />
+    <Property Name="ElementType" Value="SqlIndex" />
+    <Property Name="ParentElementName" Value="[CRMLite].[Balance]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="[IX_Balance_WalletID]" />
+  </Operation>
 </Operations>
