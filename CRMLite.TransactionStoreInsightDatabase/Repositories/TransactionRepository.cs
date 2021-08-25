@@ -25,6 +25,9 @@ namespace CRMLite.TransactionStoreInsightDatabase.Repositories
             if (transaction != null)
             {
                 var walletFrom = transaction.WalletFrom.ID;
+                var walletFromAmount = transaction.WalletFrom.Amount;
+                var walletToAmount = transaction.WalletTo.Amount;
+
                 var walletTo = transaction.WalletTo.ID;
                 var operationType = transaction.OperationType.ID;
 
@@ -32,12 +35,14 @@ namespace CRMLite.TransactionStoreInsightDatabase.Repositories
                 {
                     transaction.ID,
                     transaction.LeadID,
-                    transaction.Amount,
                     transaction.Timestamp,
                     walletFrom,
+                    walletFromAmount,
                     walletTo,
+                    walletToAmount,
                     operationType
-                });
+                }, CommandType.StoredProcedure);
+
             }
             else
             {

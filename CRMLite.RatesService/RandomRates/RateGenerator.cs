@@ -51,6 +51,7 @@ namespace CRMLite.RatesService.RandomRates
         {
             var models = new List<ExchangeRandomModel>();
 
+            models.Add(new ExchangeRandomModel("USD", 1, 1));
             models.Add(new ExchangeRandomModel("UAH", 24, 30));
             models.Add(new ExchangeRandomModel("RUB", 50, 100));
             models.Add(new ExchangeRandomModel("EUR", 1, 2));

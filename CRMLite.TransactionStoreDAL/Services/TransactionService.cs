@@ -10,9 +10,9 @@ namespace CRMLite.TransactionStoreBLL.Services
 {
     public class TransactionService : ITransactionService
     {
-        private readonly ITransactionRepository _repository;
-        private readonly Dictionary<string, Guid> _startedCheckoutsCache;
+        private ITransactionRepository _repository;
         private readonly IExchangeRateService _exchangeRateService;
+        private readonly Dictionary<string, Guid> _startedCheckoutsCache;
 
         public TransactionService(ITransactionRepository transactionRepository, IExchangeRateService exchangeRateService)
         {
@@ -30,13 +30,24 @@ namespace CRMLite.TransactionStoreBLL.Services
         {
             if (transaction != null)
             {
-                var exchangeRate = await _exchangeRateService.GetExchangeRateForCurrencyAsync(
+                var exchangeRateFrom = await _exchangeRateService.GetExchangeRateForCurrencyAsync(
+                    transaction.WalletFrom.Currency.Code);
+                var exchangeRateTo = await _exchangeRateService.GetExchangeRateForCurrencyAsync(
                     transaction.WalletTo.Currency.Code);
-                transaction.WalletFrom.Amount -= transaction.Amount;
-                transaction.WalletTo.Amount += transaction.Amount *
-                                               (1 / (decimal)exchangeRate.Value);
 
-                await _repository.CreateTransactionAsync(transaction);
+                var ammountFrom = (transaction.Amount / exchangeRateTo.Value) * exchangeRateFrom.Value;
+
+                transaction.WalletFrom.Amount -= ammountFrom;
+                transaction.WalletTo.Amount += transaction.Amount;
+
+                if (transaction.WalletFrom.Amount > 0)
+                {
+                    await _repository.CreateTransactionAsync(transaction);
+                }
+                else
+                {
+                    throw new Exception("Insufficient funds in the account");
+                }
             }
             else
             {
@@ -53,42 +64,7 @@ namespace CRMLite.TransactionStoreBLL.Services
 
                 foreach (var tr in response)
                 {
-                    transactions.Add(
-                            new Transaction()
-                            {
-                                ID = tr.ID,
-                                LeadID = tr.LeadID,
-                                Amount = tr.Amount,
-                                Timestamp = tr.Timestamp,
-                                WalletFrom = new Wallet()
-                                {
-                                    ID = tr.WalletFromID,
-                                    Amount = tr.WalletFromAmount,
-                                    Currency = new Currency()
-                                    {
-                                        ID = tr.CurrencyFromID,
-                                        Code = tr.CurrencyFromCode,
-                                        Title = tr.CurrencyFromTitle
-                                    }
-                                },
-                                WalletTo = new Wallet()
-                                {
-                                    ID = tr.WalletToID,
-                                    Amount = tr.WalletToAmount,
-                                    Currency = new Currency()
-                                    {
-                                        ID = tr.CurrencyToID,
-                                        Code = tr.CurrencyToCode,
-                                        Title = tr.CurrencyToTitle
-                                    }
-                                },
-                                OperationType = new OperationType()
-                                {
-                                    ID = tr.OperationTypeID,
-                                    Type = tr.OperationTypeType
-                                }
-                            }
-                        );
+                    transactions.Add(ConvertTransactionDTOtoTransaction(tr));
                 }
 
                 return transactions;
@@ -106,42 +82,7 @@ namespace CRMLite.TransactionStoreBLL.Services
 
                 foreach (var tr in response)
                 {
-                    transactions.Add(
-                            new Transaction()
-                            {
-                                ID = tr.ID,
-                                LeadID = tr.LeadID,
-                                Amount = tr.Amount,
-                                Timestamp = tr.Timestamp,
-                                WalletFrom = new Wallet()
-                                {
-                                    ID = tr.WalletFromID,
-                                    Amount = tr.WalletFromAmount,
-                                    Currency = new Currency()
-                                    {
-                                        ID = tr.CurrencyFromID,
-                                        Code = tr.CurrencyFromCode,
-                                        Title = tr.CurrencyFromTitle
-                                    }
-                                },
-                                WalletTo = new Wallet()
-                                {
-                                    ID = tr.WalletToID,
-                                    Amount = tr.WalletToAmount,
-                                    Currency = new Currency()
-                                    {
-                                        ID = tr.CurrencyToID,
-                                        Code = tr.CurrencyToCode,
-                                        Title = tr.CurrencyToTitle
-                                    }
-                                },
-                                OperationType = new OperationType()
-                                {
-                                    ID = tr.OperationTypeID,
-                                    Type = tr.OperationTypeType
-                                }
-                            }
-                        );
+                    transactions.Add(ConvertTransactionDTOtoTransaction(tr));
                 }
 
                 return transactions;
@@ -156,6 +97,44 @@ namespace CRMLite.TransactionStoreBLL.Services
             _startedCheckoutsCache.TryGetValue(paymentId, out userGuid);
 
             return userGuid;
+        }
+
+        private Transaction ConvertTransactionDTOtoTransaction(TransactionDTO transactionDTO)
+        {
+            return new Transaction()
+            {
+                ID = transactionDTO.ID,
+                LeadID = transactionDTO.LeadID,
+                Amount = transactionDTO.Amount,
+                Timestamp = transactionDTO.Timestamp,
+                WalletFrom = new Wallet()
+                {
+                    ID = transactionDTO.WalletFromID,
+                    Amount = transactionDTO.WalletFromAmount,
+                    Currency = new Currency()
+                    {
+                        ID = transactionDTO.CurrencyFromID,
+                        Code = transactionDTO.CurrencyFromCode,
+                        Title = transactionDTO.CurrencyFromTitle
+                    }
+                },
+                WalletTo = new Wallet()
+                {
+                    ID = transactionDTO.WalletToID,
+                    Amount = transactionDTO.WalletToAmount,
+                    Currency = new Currency()
+                    {
+                        ID = transactionDTO.CurrencyToID,
+                        Code = transactionDTO.CurrencyToCode,
+                        Title = transactionDTO.CurrencyToTitle
+                    }
+                },
+                OperationType = new OperationType()
+                {
+                    ID = transactionDTO.OperationTypeID,
+                    Type = transactionDTO.OperationTypeType
+                }
+            };
         }
     }
 }

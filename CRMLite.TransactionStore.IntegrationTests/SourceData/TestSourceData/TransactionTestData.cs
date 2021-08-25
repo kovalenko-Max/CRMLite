@@ -33,7 +33,7 @@ namespace CRMLite.TransactionStore.IntegrationTests.SourceData.TestSourceData
             {
                 ID = Guid.NewGuid(),
                 LeadID = _leadID,
-                Amount = 1.0M,
+                Amount = 4.6M,
                 Timestamp = DateTime.Today,
                 WalletFrom = _walletFrom,
                 WalletTo = _walletTo,
@@ -54,7 +54,7 @@ namespace CRMLite.TransactionStore.IntegrationTests.SourceData.TestSourceData
             {
                 ID = Guid.NewGuid(),
                 LeadID = _leadID,
-                Amount = 1.0M,
+                Amount = 4.6M,
                 Timestamp = DateTime.Today,
                 WalletFrom = _walletFrom,
                 WalletTo = _walletTo,

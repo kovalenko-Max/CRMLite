@@ -29,6 +29,7 @@ namespace CRMLite.TransactionStoreAPI
         {
             Configuration = configuration;
         }
+
         readonly string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
 
         public void ConfigureServices(IServiceCollection services)
@@ -51,20 +52,20 @@ namespace CRMLite.TransactionStoreAPI
 
             services.AddRestSharpForRatesApi(restSharpConfig);
 
-
             services.AddCors(options =>
             {
                 options.AddPolicy(name: MyAllowSpecificOrigins,
                   builder =>
                   {
                       builder.WithOrigins("http://localhost:3000", "http://localhost:5050",
-                          "https://localhost:3000", "https://localhost:5050", "https://www.sandbox.paypal.com",
-                     "http://www.sandbox.paypal.com")
-                     .AllowAnyHeader()
-                     .AllowAnyMethod()
-                     .AllowAnyOrigin();
+                        "https://localhost:3000", "https://localhost:5050", "https://www.sandbox.paypal.com",
+                        "http://www.sandbox.paypal.com")
+                        .AllowAnyHeader()
+                        .AllowAnyMethod()
+                        .AllowAnyOrigin();
                   });
             });
+
             AddRepositories(services);
 
             AddServices(services);
@@ -88,15 +89,9 @@ namespace CRMLite.TransactionStoreAPI
             app.UseMiddleware<ArgumentExceptionHandlerMiddleware>();
 
             app.UseRouting();
-
-
-            app.UseCors(
-         options => options.WithOrigins("http://localhost:5050", "http://localhost:3000",
-         "https://www.sandbox.paypal.com", "http://www.sandbox.paypal.com").AllowAnyMethod()
-     );
+            app.UseCors(MyAllowSpecificOrigins);
 
             app.UseAuthorization();
-
             app.UseSerilogRequestLogging();
 
             app.UseEndpoints(endpoints =>

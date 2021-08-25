@@ -1,9 +1,11 @@
-﻿CREATE PROCEDURE [CRMLite].[CreateTransaction] @ID UNIQUEIDENTIFIER,
+﻿CREATE PROCEDURE [CRMLite].[CreateTransaction] 
+	@ID UNIQUEIDENTIFIER,
 	@LeadID UNIQUEIDENTIFIER,
-	@Amount DECIMAL(18, 6),
 	@Timestamp DATETIME,
 	@WalletFrom UNIQUEIDENTIFIER,
+	@WalletFromAmount DECIMAL(18, 6),
 	@WalletTo UNIQUEIDENTIFIER,
+	@WalletToAmount DECIMAL(18, 6),
 	@OperationType TINYINT
 AS
 INSERT INTO [CRMLite].[Transactions] (
@@ -18,7 +20,7 @@ INSERT INTO [CRMLite].[Transactions] (
 VALUES (
 	@ID,
 	@LeadID,
-	@Amount,
+	@WalletFromAmount,
 	@Timestamp,
 	@WalletFrom,
 	@WalletTo,
@@ -26,9 +28,9 @@ VALUES (
 	)
 
 UPDATE CRMLite.Wallets
-SET Amount = Amount - @Amount
+SET Amount = @WalletFromAmount
 WHERE ID = @WalletFrom
 
 UPDATE CRMLite.Wallets
-SET Amount = Amount + @Amount
+SET Amount = @WalletToAmount
 WHERE ID = @WalletTo

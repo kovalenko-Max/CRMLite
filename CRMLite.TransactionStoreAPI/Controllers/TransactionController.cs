@@ -46,7 +46,7 @@ namespace CRMLite.TransactionStoreAPI.Controllers
         }
 
         [HttpPost]
-        [TypeFilter(typeof(TwoFactorAuthorizeAttribute))]
+        //[TypeFilter(typeof(TwoFactorAuthorizeAttribute))]
         public async Task CreateTransactionAsync(Transaction transaction)
         {
             if (transaction != null)

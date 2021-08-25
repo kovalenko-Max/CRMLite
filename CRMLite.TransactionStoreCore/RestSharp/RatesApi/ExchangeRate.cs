@@ -7,6 +7,6 @@ namespace CRMLite.TransactionStoreDomain.RestSharp.RatesApi
         public Guid Id { get; set; }
         public DateTime Timestamp { get; set; }
         public string Code { get; set; }
-        public double Value { get; set; }
+        public decimal Value { get; set; }
     }
 }
