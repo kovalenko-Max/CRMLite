@@ -31,7 +31,7 @@ namespace CRMLite.RatesAPI.Controllers
             throw new ArgumentException($"Code does not be empty");
         }
 
-        [HttpGet("codes")]
+        [HttpPost("codes")]
         public async Task<IEnumerable<ExchangeRate>> GetLastCurrencyRatesAsync(string[] codes)
         {
             if (codes != null)
