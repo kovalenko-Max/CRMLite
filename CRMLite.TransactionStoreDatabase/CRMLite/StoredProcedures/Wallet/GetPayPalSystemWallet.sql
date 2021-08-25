@@ -1,10 +1,12 @@
 ﻿CREATE PROCEDURE [CRMLite].[GetPayPalSystemWallet]
 AS
 	SELECT 
-	ID, 
-	CurrencyID,
-	Amount
+	W.ID, 
+	W.CurrencyID,
+	W.Amount,
+	C.ID,
+	C.Title,
+	C.Code
 	from [CRMLite].[Wallets] W
-	join [CRMLite].[Balance] B on W.ID = B.WalletID
-
-	where B.LeadID = '471A2146-82BC-4C18-9425-2D8CC89F8540'
+	join [CRMLite].[Currencies] C on C.ID = W.CurrencyID
+	where W.ID = 'E04B8052-BF0C-41A2-A0FE-5CC331E95E17'

@@ -44,6 +44,13 @@ namespace CRMLite.TransactionStoreBLL.Services
             throw new ArgumentException("Guid LeadID is empty");
         }
 
+        public async Task<Wallet> GetSystemUSDWalletAsync()
+        {
+            var response = await _walletRepository.GetSystemUSDWalletAsync();
+
+            return response;
+        }
+
         public async Task<Wallet> GetUSDWalletByLeadIDAsync(Guid leadID)
         {
             if (leadID != Guid.Empty)
