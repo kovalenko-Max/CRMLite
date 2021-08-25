@@ -46,7 +46,7 @@ namespace CRMLite.TransactionStore.IntegrationTests.ControllerTests
 
             foreach (var stock in stocks)
             {
-                await _dbConnection.QueryAsync("[CRMLite].[CreateStock]", new { stock.ID, stock.Title, stock.IsDividend });
+                await _dbConnection.QueryAsync("[CRMLite].[CreateStock]", new { stock.ID, stock.Title, stock.Code, stock.IsDividend });
             }
         }
 
