@@ -55,9 +55,6 @@ namespace CRMLite.CRMAPI
             services.RegisterServices();
             services.AddAuthenticationLead(appSettings.Secret);
             services.AddAuthorizationLeads();
-
-           
-
             services.AddRabbitMQ(rabbitMQHostConfig);
             services.AddSwaggerGen(c =>
             {

@@ -8,8 +8,11 @@ using System.Threading.Tasks;
 using CRMLite.Core.Contracts.Roles;
 using System.Text.RegularExpressions;
 using System.Collections.Generic;
+using System.Data.SqlClient;
+using System.Net;
 using CRMLite.Core.Messages;
 using MassTransit;
+using Microsoft.Extensions.Configuration;
 
 namespace CRMLite.CRMServices.Services
 {
@@ -19,18 +22,20 @@ namespace CRMLite.CRMServices.Services
         private readonly ILeadRepository _leadRepository;
         private readonly IRoleRepository _roleRepository;
         private readonly IBusControl _busControl;
+        private readonly IConfiguration _config;
         private IConfirmMessageRepository _confirmMessageRepository { get; }
 
-        public AuthService(IDBContext dBContext, IMailExchangeService mailExchangeService, IBusControl busControl)
+        public AuthService(IDBContext dBContext, IMailExchangeService mailExchangeService, IBusControl busControl, IConfiguration config)
         {
             _confirmMessageRepository = dBContext.ConfirmMessageRepository;
             _mailExchangeService = mailExchangeService;
             _leadRepository = dBContext.LeadRepository;
             _roleRepository = dBContext.RoleRepository;
             _busControl = busControl;
+            _config = config;
         }
 
-        public async Task CreateMailConfirmationAsync(Lead lead)
+        public async Task CreateMailConfirmationAsync(Lead lead, string route)
         {
             var confirmationMessage = new ConfirmationMessageModel
             {
@@ -43,10 +48,10 @@ namespace CRMLite.CRMServices.Services
             var modelToSerialize = JsonSerializer.Serialize(confirmationMessage);
             var messageToSend = EncryptionHelper.Encrypt(modelToSerialize);
 
-            var confirmationString = $"http://localhost:1234/api/Auth/confirm?message={messageToSend}";
+            var confirmationString = $"{route}/api/Auth/confirm?message={messageToSend}";
 
             _mailExchangeService.SendMessage(lead.Email, lead.FirstName, confirmationString);
-        }
+         }
 
         public async Task<bool> MailConfirmationResultAsync(string message)
         {
@@ -75,25 +80,61 @@ namespace CRMLite.CRMServices.Services
             throw new ArgumentException("Message is empty");
         }
 
-        public async Task<bool> RegistrationLeadAsync(Lead lead)
+        public async Task<ConfirmRegistration> RegistrationLeadAsync(Lead lead, string route )
         {
-            if (!(lead is null))
-            {
-                if (IsPasswordValid(lead.Password))
-                {
-                    lead.Password = BCrypt.Net.BCrypt.HashPassword(lead.Password);
-                    lead.Id = Guid.NewGuid();
-                    lead.StatusType = 0;
-                    await _leadRepository.RegistrationLeadAsync(lead);
-                    await CreateMailConfirmationAsync(lead);
+            var response = new ConfirmRegistration();
 
-                    return true;
+            try
+            {
+                if (!(lead is null))
+                {
+                    if (IsPasswordValid(lead.Password))
+                    {
+                        lead.Password = BCrypt.Net.BCrypt.HashPassword(lead.Password);
+                        lead.Id = Guid.NewGuid();
+                        lead.StatusType = 0;
+                        await _leadRepository.RegistrationLeadAsync(lead);
+                        await CreateMailConfirmationAsync(lead, route);
+
+                        response.IsConfirmed=true;
+                        response.Message = "Check your email to confirm registration";
+                        return response;
+                    }
+                    else
+                    {
+                        response.IsConfirmed = false;
+                        response.Message = "Password is not valid";
+                        return response;
+                    }
+                }
+                else
+                {
+                    response.IsConfirmed = false;
+                    response.Message = "Lead is null";
+                    return response;
+                }
+            }
+            catch (SqlException e)
+            {
+                response.IsConfirmed = false;
+
+                if (e.Number == 2627)
+                {
+                    response.Message = "Email already exist";
+                }
+                else
+                {
+                    response.Message = "Service error";
                 }
 
-                return false;
+                return response;
             }
-
-            throw new ArgumentNullException("Lead is null");
+            catch (Exception e)
+            {
+                response.IsConfirmed = false;
+                response.Message = "Argument exception";
+                return response;
+            }
         }
 
         public async Task<Lead> LoginAsync(AuthentificationModel authenticationModel)

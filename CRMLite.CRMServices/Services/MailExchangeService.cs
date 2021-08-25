@@ -29,12 +29,14 @@ namespace CRMLite.CRMServices.Services
                 Credentials = new NetworkCredential(_smtpOption.SenderMail, _smtpOption.SenderPassword)
             };
 
+            string button = $"<a href=\"{messageBody}\"><button >Confirm registration</button></a>";
             var to = new MailAddress(destMail);
             var massage = new MailMessage(from, to)
             {
-                Body = messageBody,
+                Body = button,
                 Subject = messageSubject
             };
+            massage.IsBodyHtml = true;
 
             client.Send(massage);
         }
