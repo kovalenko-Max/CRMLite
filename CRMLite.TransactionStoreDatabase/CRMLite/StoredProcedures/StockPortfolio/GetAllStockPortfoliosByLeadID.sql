@@ -5,6 +5,7 @@ SELECT SP.ID,
 	SP.Quantity,
 	S.ID,
 	S.Title,
+	S.Code,
 	S.IsDividend
 FROM [CRMLite].[StockPortfolio] SP
 LEFT JOIN [CRMLite].[Stock] S ON SP.StockID = S.ID

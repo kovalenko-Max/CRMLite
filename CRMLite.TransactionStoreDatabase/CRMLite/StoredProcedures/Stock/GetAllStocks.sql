@@ -2,5 +2,6 @@
 AS
 SELECT ID,
 	Title,
+	Code,
 	IsDividend
 FROM [CRMLite].[Stock]

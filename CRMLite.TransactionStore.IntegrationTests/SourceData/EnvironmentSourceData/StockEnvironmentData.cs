@@ -29,6 +29,7 @@ namespace CRMLite.TransactionStore.IntegrationTests.SourceData.EnvironmentSource
                 {
                     ID = Guid.NewGuid(),
                     Title = $"Stock title #{i}",
+                    Code = $"Stock code {i}",
                     IsDividend = isDivident
                 });
             }

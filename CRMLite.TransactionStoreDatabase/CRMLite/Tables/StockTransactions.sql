@@ -8,3 +8,6 @@
 	Timestamp datetime NOT NULL,
 	CONSTRAINT [StockTransactions_fk0] FOREIGN KEY ([StockPortfolioID]) REFERENCES [CRMLite].[StockPortfolio]([ID]),
 )
+GO
+
+CREATE INDEX [IX_StockTransactions_StockPortfolioID] ON [CRMLite].[StockTransactions] ([StockPortfolioID])

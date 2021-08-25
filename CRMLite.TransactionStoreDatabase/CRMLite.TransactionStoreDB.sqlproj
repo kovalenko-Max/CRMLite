@@ -107,7 +107,7 @@
     <Build Include="CRMLite\StoredProcedures\Currency\CreateCurrency.sql" />
     <Build Include="CRMLite\StoredProcedures\LeadsTFA\SetExistTFAByLeadID.sql" />
     <Build Include="CRMLite\StoredProcedures\LeadsTFA\CRMLite.GetIsExistTFAByLeadID.sql" />
-    <Build Include="CRMLite\StoredProcedures\Wallet\CRMLite.GetPayPalSystemWallet.sql" />
+    <Build Include="CRMLite\StoredProcedures\Wallet\GetPayPalSystemWallet.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="CRMLite.TransactionStoreDB.refactorlog" />
