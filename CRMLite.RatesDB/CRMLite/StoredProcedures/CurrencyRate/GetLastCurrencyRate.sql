@@ -8,4 +8,4 @@ AS
 	[Value]
 	FROM [CRMLite].[CurrencyRates]
 	WHERE Code = @code
-	ORDER BY [Id] DESC
+	ORDER BY [Timestamp] DESC

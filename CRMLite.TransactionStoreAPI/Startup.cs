@@ -1,7 +1,10 @@
 using CRMLite.TransactionStoreAPI.Extensions;
 using CRMLite.TransactionStoreAPI.Middlewares;
 using CRMLite.TransactionStoreAPI.RabbitMQ;
+using CRMLite.TransactionStoreBLL;
+using CRMLite.TransactionStoreBLL.RestSharp.RatesApi;
 using CRMLite.TransactionStoreBLL.Services;
+using CRMLite.TransactionStoreDomain.Interfaces;
 using CRMLite.TransactionStoreDomain.Interfaces.IRepositories;
 using CRMLite.TransactionStoreDomain.Interfaces.IServices;
 using CRMLite.TransactionStoreInsightDatabase.Repositories;
@@ -30,16 +33,22 @@ namespace CRMLite.TransactionStoreAPI
         public void ConfigureServices(IServiceCollection services)
         {
             var rabbitMQHostConfig = Configuration.GetSection("RabbitMQHostConfig").Get<RabbitMQHostConfig>();
+            var restSharpConfig = Configuration.GetSection("RestSharpConfig").Get<RestSharpRatesApiConfig>();
             var connectionString = Configuration.GetConnectionString("Default");
             services.Configure<TFAConfig>(Configuration.GetSection("TFAConfig"));
 
+            services.Configure<TFAConfig>(Configuration.GetSection("RestSharpConfig"));
+
             services.AddHttpContextAccessor();
+
             services.AddControllers();
 
             services.AddMassTransitWithinRabbitMQ(rabbitMQHostConfig);
             services.AddTFA();
 
             services.AddTransient<IDbConnection>(conn => new SqlConnection(connectionString));
+
+            services.AddRestSharpForRatesApi(restSharpConfig);
 
             services.AddCors(options =>
             {
@@ -51,6 +60,7 @@ namespace CRMLite.TransactionStoreAPI
             });
 
             AddRepositories(services);
+
             AddServices(services);
 
             services.AddSwaggerGen(c =>
@@ -106,10 +116,10 @@ namespace CRMLite.TransactionStoreAPI
 
         private void AddServices(IServiceCollection services)
         {
+            services.AddTransient<IBalanceCounter, BalanceCounter>();
             services.AddTransient<IBalanceService, BalanceService>();
             services.AddTransient<ICurrencyService, CurrencyService>();
             services.AddTransient<IOperationTypeService, OperationTypeService>();
-            services.AddTransient<IStockBalanceService, StockBalanceService>();
             services.AddTransient<IStockPortfolioService, StockPortfolioService>();
             services.AddTransient<IStockService, StockService>();
             services.AddTransient<IStockTransactionService, StockTransactionService>();

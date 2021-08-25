@@ -1,9 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using CRMLite.RatesDAL.IRepositories;
 using CRMLite.RatesDAL.Models;
-using CRMLite.RatesDAL.IRepositories;
-using Microsoft.Extensions.Logging;
-using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace CRMLite.RatesAPI.Controllers
 {
@@ -11,27 +11,37 @@ namespace CRMLite.RatesAPI.Controllers
     [ApiController]
     public class CurrencyRatesController : Controller
     {
-        private readonly ILogger<CurrencyRatesController> _logger;
         private readonly ICurrencyRateRepository _currencyRateRepository;
 
-        public CurrencyRatesController(ICurrencyRateRepository exchangeRateRepository, ILogger<CurrencyRatesController> logger)
+        public CurrencyRatesController(ICurrencyRateRepository exchangeRateRepository)
         {
             _currencyRateRepository = exchangeRateRepository;
-            _logger = logger;
         }
 
         [HttpGet("code")]
-        public async Task<ExchangeRate> GetLastCurrencyRate(string code)
+        public async Task<ExchangeRate> GetLastCurrencyRateAsync(string code)
         {
             if (code != string.Empty)
             {
                 var response = await _currencyRateRepository.GetLastCurrencyRateAsync(code);
+
                 return response;
             }
-            else
+
+            throw new ArgumentException($"Code does not be empty");
+        }
+
+        [HttpGet("codes")]
+        public async Task<IEnumerable<ExchangeRate>> GetLastCurrencyRatesAsync(string[] codes)
+        {
+            if (codes != null)
             {
-                throw new ArgumentException($"Code does not be empty");
+                var response = await _currencyRateRepository.GetLastCurrencyRatesAsync(codes);
+
+                return response;
             }
+
+            throw new ArgumentNullException("Array codes is null");
         }
     }
 }

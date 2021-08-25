@@ -75,6 +75,9 @@
     <Build Include="CRMLite\Tables\StockRates.sql" />
     <Build Include="CRMLite\StoredProcedures\StockRate\CreateStockRates.sql" />
     <Build Include="CRMLite\StoredProcedures\StockRate\GetLastStockRate.sql" />
+    <Build Include="CRMLite\StoredProcedures\CurrencyRate\GetLastCurrencyRates.sql" />
+    <Build Include="CRMLite\User Defined Types\CodesTimeTable.sql" />
+    <Build Include="CRMLite\StoredProcedures\StockRate\GetLastStockRates.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="CRMLite.RatesDB.refactorlog" />

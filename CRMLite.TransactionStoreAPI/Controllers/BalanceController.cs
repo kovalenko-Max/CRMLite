@@ -9,21 +9,19 @@ namespace CRMLite.TransactionStoreAPI.Controllers
     [Route("api/[controller]")]
     public class BalanceController : Controller
     {
-        private IBalanceService _balanceService;
-        private IStockBalanceService _stockBalanceService;
+        private readonly IBalanceService _balanceService;
 
-        public BalanceController(IBalanceService balanceService, IStockBalanceService stockBalanceService)
+        public BalanceController(IBalanceService balanceService)
         {
             _balanceService = balanceService;
-            _stockBalanceService = stockBalanceService;
         }
 
-        [HttpGet("leadID")]
-        public async Task<decimal> GetBalanceByLeadIDAsync(Guid leadID)
+        [HttpGet("wallets/leadID")]
+        public async Task<decimal> GetTotalWalletsBalanceByLeadIDAsync(Guid leadID)
         {
             if (leadID != Guid.Empty)
             {
-                var response = await _balanceService.GetBalanceByLeadIDAsync(leadID);
+                var response = await _balanceService.GetTotalWalletsBalanceByLeadIDAsync(leadID);
 
                 return response;
             }
@@ -31,15 +29,25 @@ namespace CRMLite.TransactionStoreAPI.Controllers
             throw new ArgumentException("Guid LeadID is empty");
         }
 
-        [HttpGet("totalBalance/leadID")]
-        public async Task<decimal> GetTotalBalanceByLeadIDAsync(Guid leadID)
+        [HttpGet("stocks/leadID")]
+        public async Task<decimal> GetTotalStocksBalanceByLeadIDAsync(Guid leadID)
         {
-            decimal response = 0;
-
             if (leadID != Guid.Empty)
             {
-                response += await _balanceService.GetBalanceByLeadIDAsync(leadID);
-                response += await _stockBalanceService.GetStockBalanceByLeadIDAsync(leadID);
+                var response = await _balanceService.GetTotalStocksBalanceByLeadIDAsync(leadID);
+
+                return response;
+            }
+
+            throw new ArgumentException("Guid LeadID is empty");
+        }
+
+        [HttpGet("total/leadID")]
+        public async Task<decimal> GetTotalBalanceByLeadIDAsync(Guid leadID)
+        {
+            if (leadID != Guid.Empty)
+            {
+                var response = await _balanceService.GetTotalBalanceByLeadIDAsync(leadID);
 
                 return response;
             }

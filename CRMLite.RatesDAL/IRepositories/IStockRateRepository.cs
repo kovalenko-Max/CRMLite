@@ -9,6 +9,7 @@ namespace CRMLite.RatesDAL.IRepositories
     public interface IStockRateRepository
     {
         Task<ExchangeRate> GetLastStockRateAsync(string code);
+        Task<IEnumerable<ExchangeRate>> GetLastStockRatesAsync(string[] codes);
         Task CreateStockRatesAsync(IEnumerable<ExchangeRate> exchangeRate);
     }
 }

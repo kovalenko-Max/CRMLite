@@ -1,8 +1,8 @@
 ﻿using CRMLite.RatesDAL.IRepositories;
 using CRMLite.RatesDAL.Models;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace CRMLite.RatesAPI.Controllers
@@ -11,12 +11,10 @@ namespace CRMLite.RatesAPI.Controllers
     [ApiController]
     public class StockRatesController : Controller
     {
-        private readonly ILogger<StockRatesController> _logger;
         private readonly IStockRateRepository _stockRateRepository;
 
-        public StockRatesController(ILogger<StockRatesController> logger, IStockRateRepository stockRateRepository)
+        public StockRatesController(IStockRateRepository stockRateRepository)
         {
-            _logger = logger;
             _stockRateRepository = stockRateRepository;
         }
 
@@ -26,12 +24,26 @@ namespace CRMLite.RatesAPI.Controllers
             if (code != string.Empty)
             {
                 var response = await _stockRateRepository.GetLastStockRateAsync(code);
+
                 return response;
             }
             else
             {
                 throw new ArgumentException($"Code does not be empty");
             }
+        }
+
+        [HttpGet("codes")]
+        public async Task<IEnumerable<ExchangeRate>> GetLastStockRatesAsync(string[] codes)
+        {
+            if (codes != null)
+            {
+                var response = await _stockRateRepository.GetLastStockRatesAsync(codes);
+
+                return response;
+            }
+
+            throw new ArgumentNullException("Array codes is null");
         }
     }
 }

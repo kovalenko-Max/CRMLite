@@ -1,6 +1,7 @@
 ﻿using CRMLite.RatesDAL.IRepositories;
 using CRMLite.RatesDAL.Models;
 using Insight.Database;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Threading.Tasks;
@@ -31,6 +32,18 @@ namespace CRMLite.RatesDAL.Repositories
             }
 
             throw new System.ArgumentNullException("exchangeRate should not be null");
+        }
+
+        public async Task<IEnumerable<ExchangeRate>> GetLastStockRatesAsync(string[] codes)
+        {
+            if (codes != null)
+            {
+                var result = await _stockRateRepository.GetLastStockRatesAsync(codes);
+
+                return result;
+            }
+
+            throw new ArgumentNullException("Array codes is null");
         }
     }
 }

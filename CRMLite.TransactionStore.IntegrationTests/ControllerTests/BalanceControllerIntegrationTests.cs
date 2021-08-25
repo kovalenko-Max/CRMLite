@@ -28,7 +28,7 @@ namespace CRMLite.TransactionStore.IntegrationTests.ControllerTests
             Initialize();
             await InitializeEnvironmentData();
 
-            var getRoute = $"/api/Balance/leadID?leadID={_leadID}";
+            var getRoute = $"/api/Balance/wallets/leadID?leadID={_leadID}";
             var getResponse = await SendRequestToGetByID(getRoute);
             var actual = JsonConvert.DeserializeObject<decimal>(await getResponse.Content.ReadAsStringAsync());
 
