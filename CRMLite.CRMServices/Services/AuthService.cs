@@ -15,6 +15,7 @@ namespace CRMLite.CRMServices.Services
 {
     public class AuthService : IAuthService
     {
+
         private readonly IMailExchangeService _mailExchangeService;
         private readonly ILeadRepository _leadRepository;
         private readonly IRoleRepository _roleRepository;

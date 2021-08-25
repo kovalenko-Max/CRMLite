@@ -19,6 +19,11 @@ namespace CRMLite.CRMDAL.Repositories
             _leadRepository = DBConnection.As<ILeadRepository>();
         }
 
+        public async Task<int> GetCountLeadsAsync()
+        {
+            return await _leadRepository.GetCountLeadsAsync();
+        }
+
         public async Task<IEnumerable<Lead>> PaginateLeadsAsync(int startItem, int countItems)
         {
             if (startItem >= 0 && countItems > 0)

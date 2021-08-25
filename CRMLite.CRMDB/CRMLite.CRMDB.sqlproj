@@ -79,6 +79,7 @@
     <Build Include="dbo\Stored Procedures\GetConfirmMessageByLeadID.sql" />
     <Build Include="dbo\Stored Procedures\CreateConfirmMessage.sql" />
     <Build Include="dbo\Stored Procedures\UpdateConfirmMessage.sql" />
+    <Build Include="dbo\Stored Procedures\DeleteConfirmMessage.sql" />
     <Build Include="dbo\Tables\Lead_Role.sql" />
     <Build Include="dbo\Tables\Roles.sql" />
     <Build Include="dbo\Stored Procedures\GetAllRolesById.sql" />
@@ -88,8 +89,7 @@
     <Build Include="dbo\Stored Procedures\ResetIdentityInAllTables.sql" />
     <Build Include="dbo\Stored Procedures\CreateRole.sql" />
     <Build Include="dbo\Stored Procedures\PaginateLeads.sql" />
-    <Build Include="dbo\Stored Procedures\DeleteConfirmMessageByLeadIDAsync.sql" />
-    <Build Include="dbo\Stored Procedures\DeleteConfirmMessageByLeadID.sql" />
+    <Build Include="dbo\Stored Procedures\GetCountLeads.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="CRMLite.CRMDB.refactorlog" />
