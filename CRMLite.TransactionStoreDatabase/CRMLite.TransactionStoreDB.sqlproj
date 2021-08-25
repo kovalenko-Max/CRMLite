@@ -102,12 +102,13 @@
     <Build Include="CRMLite\Tables\CRMLite.LeadsTFA.sql" />
     <Build Include="CRMLite\StoredProcedures\LeadsTFA\AddTFAKeyToLead.sql" />
     <Build Include="CRMLite\StoredProcedures\LeadsTFA\CRMLite.GetTFAKeyByLeadID.sql" />
-    <Build Include="CRMLite\StoredProcedures\Wallet\GetUSDWalletsByLeadID.sql" />
     <Build Include="CRMLite\StoredProcedures\Currency\GetCurrencyByCode.sql" />
     <Build Include="CRMLite\StoredProcedures\Currency\CreateCurrency.sql" />
     <Build Include="CRMLite\StoredProcedures\LeadsTFA\SetExistTFAByLeadID.sql" />
     <Build Include="CRMLite\StoredProcedures\LeadsTFA\CRMLite.GetIsExistTFAByLeadID.sql" />
     <Build Include="CRMLite\StoredProcedures\Wallet\GetPayPalSystemWallet.sql" />
+    <Build Include="CRMLite\StoredProcedures\Wallet\GetUSDWalletByLeadID.sql" />
+    <Build Include="CRMLite\StoredProcedures\Wallet\GetSystemUSDmWallet.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="CRMLite.TransactionStoreDB.refactorlog" />

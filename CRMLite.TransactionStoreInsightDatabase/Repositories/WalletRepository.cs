@@ -74,5 +74,10 @@ namespace CRMLite.TransactionStoreInsightDatabase.Repositories
 
             throw new ArgumentException("Guid LeadID is empty");
         }
+
+        public async Task<Wallet> GetSystemUSDWalletAsync()
+        {
+            return await _walletRepository.GetSystemUSDWalletAsync();
+        }
     }
 }
