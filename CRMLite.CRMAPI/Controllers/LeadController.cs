@@ -11,7 +11,7 @@ namespace CRMLite.CRMAPI.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    [Authorize(Policy = "PermissionForAdminAndUserRoles")]
+    //[Authorize(Policy = "PermissionForAdminAndUserRoles")]
     public class LeadController : ControllerBase
     {
         private ILeadService _leadService;
