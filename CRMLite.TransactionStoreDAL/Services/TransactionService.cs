@@ -16,11 +16,11 @@ namespace CRMLite.TransactionStoreBLL.Services
             _repository = transactionRepository;
         }
 
-        public async Task CreateTransactionAsync(Transaction currencyTransaction)
+        public async Task CreateTransactionAsync(Transaction transaction)
         {
-            if (currencyTransaction != null)
+            if (transaction != null)
             {
-                await _repository.CreateTransactionAsync(currencyTransaction);
+                await _repository.CreateTransactionAsync(transaction);
             }
             else
             {
@@ -28,25 +28,107 @@ namespace CRMLite.TransactionStoreBLL.Services
             }
         }
 
-        public async Task<IEnumerable<Transaction>> GetAllTransactionsByLeadID(Guid leadID)
+        public async Task<IEnumerable<Transaction>> GetAllTransactionsByLeadIDAsync(Guid leadID)
         {
             if(leadID != Guid.Empty)
             {
                 var response = await _repository.GetAllTransactionsByLeadIDAsync(leadID);
+                var transactions = new List<Transaction>();
+                     
+                foreach(var tr in response)
+                {
+                    transactions.Add(
+                            new Transaction()
+                            {
+                                ID = tr.ID,
+                                LeadID = tr.LeadID,
+                                Amount = tr.Amount,
+                                Timestamp = tr.Timestamp,
+                                WalletFrom = new Wallet()
+                                {
+                                    ID = tr.WalletFromID,
+                                    Amount = tr.WalletFromAmount,
+                                    Currency = new Currency()
+                                    {
+                                        ID = tr.CurrencyFromID,
+                                        Code = tr.CurrencyFromCode,
+                                        Title = tr.CurrencyFromTitle
+                                    }
+                                },
+                                WalletTo = new Wallet()
+                                {
+                                    ID = tr.WalletToID,
+                                    Amount = tr.WalletToAmount,
+                                    Currency = new Currency()
+                                    {
+                                        ID = tr.CurrencyToID,
+                                        Code = tr.CurrencyToCode,
+                                        Title = tr.CurrencyToTitle
+                                    }
+                                },
+                                OperationType = new OperationType()
+                                {
+                                    ID = tr.OperationTypeID,
+                                    Type = tr.OperationTypeType
+                                }
+                            }
+                        );
+                }
 
-                return response;
+                return transactions;
             }
 
             throw new ArgumentException("Guid  LeadID is empty");
         }
 
-        public async Task<IEnumerable<Transaction>> GetAllTransactionsByWalletID(Guid walletID)
+        public async Task<IEnumerable<Transaction>> GetAllTransactionsByWalletIDAsync(Guid walletID)
         {
             if (walletID != Guid.Empty)
             {
                 var response = await _repository.GetAllTransactionsByWalletIDAsync(walletID);
+                var transactions = new List<Transaction>();
 
-                return response;
+                foreach (var tr in response)
+                {
+                    transactions.Add(
+                            new Transaction()
+                            {
+                                ID = tr.ID,
+                                LeadID = tr.LeadID,
+                                Amount = tr.Amount,
+                                Timestamp = tr.Timestamp,
+                                WalletFrom = new Wallet()
+                                {
+                                    ID = tr.WalletFromID,
+                                    Amount = tr.WalletFromAmount,
+                                    Currency = new Currency()
+                                    {
+                                        ID = tr.CurrencyFromID,
+                                        Code = tr.CurrencyFromCode,
+                                        Title = tr.CurrencyFromTitle
+                                    }
+                                },
+                                WalletTo = new Wallet()
+                                {
+                                    ID = tr.WalletToID,
+                                    Amount = tr.WalletToAmount,
+                                    Currency = new Currency()
+                                    {
+                                        ID = tr.CurrencyToID,
+                                        Code = tr.CurrencyToCode,
+                                        Title = tr.CurrencyToTitle
+                                    }
+                                },
+                                OperationType = new OperationType()
+                                {
+                                    ID = tr.OperationTypeID,
+                                    Type = tr.OperationTypeType
+                                }
+                            }
+                        );
+                }
+
+                return transactions;
             }
 
             throw new ArgumentException("Guid  WalletID is empty");
