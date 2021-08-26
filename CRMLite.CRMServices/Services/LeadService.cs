@@ -87,5 +87,15 @@ namespace CRMLite.CRMServices.Services
         {
             return await _leadRepository.GetCountLeadsAsync();
         }
+
+        public async Task<Lead> GetLeadByEmailAsync(string email)
+        {
+            if (!string.IsNullOrEmpty(email))
+            {
+                return await _leadRepository.GetLeadByEmailAsync(email);
+            }
+
+            throw new ArgumentNullException("String Email is empty");
+        }
     }
 }

@@ -56,7 +56,8 @@ namespace CRMLite.CRMAPI.Controllers
             {
                 var lead = await _registrationService.LoginAsync(authenticationModel);
 
-                if ((lead is null) || !BCrypt.Net.BCrypt.Verify(authenticationModel.Password, lead.Password))
+                if ((lead is null) || !BCrypt.Net.BCrypt.Verify(authenticationModel.Password, lead.Password)
+                || lead.Role is null)
                 {
                     return BadRequest("Uncorected Email or Password");
                 }

@@ -11,7 +11,7 @@ namespace CRMLite.CRMAPI.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    //[Authorize(Policy = "PermissionForAdminAndUserRoles")]
+    [Authorize(Policy = "PermissionForAdminAndUserRoles")]
     public class LeadController : ControllerBase
     {
         private ILeadService _leadService;
@@ -74,6 +74,17 @@ namespace CRMLite.CRMAPI.Controllers
             {
                 throw new ArgumentException("LeadID is empty");
             }
+        }
+
+        [HttpGet("email")]
+        public async Task<Lead> GetLeadByEmailAsync(string email)
+        {
+            if (!string.IsNullOrEmpty(email))
+            {
+                return await _leadService.GetLeadByEmailAsync(email);
+            }
+
+            throw new ArgumentNullException("String Email is empty");
         }
     }
 }

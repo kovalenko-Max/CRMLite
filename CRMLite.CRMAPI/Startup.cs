@@ -80,9 +80,7 @@ namespace CRMLite.CRMAPI
             app.UseMiddleware<ArgumentExceptionHandlerMiddleware>();
 
             app.UseRouting();
-            app.UseCors(
-         options => options.WithOrigins("http://localhost:3000").AllowAnyMethod()
-     );
+            app.UseCors(MyAllowSpecificOrigins);
 
             app.UseAuthentication();
             app.UseAuthorization();

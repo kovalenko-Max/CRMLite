@@ -92,7 +92,7 @@ namespace CRMLite.CRMDAL.Repositories
         }
         public async Task<Lead> GetLeadByEmailAsync(string email)
         {
-            if (!(email is null ) && email != string.Empty)
+            if (!string.IsNullOrEmpty(email))
             {
                 return await _leadRepository.GetLeadByEmailAsync(email);
             }
