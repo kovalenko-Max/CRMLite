@@ -5,7 +5,6 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using CRMLite.Core.Pagination;
-using CRMLite.CRMCore.Helper;
 
 namespace CRMLite.CRMServices.Services
 {

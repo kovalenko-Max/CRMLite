@@ -1,5 +1,4 @@
 ﻿using CRMLite.TransactionStoreBLL.Services;
-using CRMLite.TransactionStoreBLL.TFA;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace CRMLite.TransactionStoreAPI.Extensions

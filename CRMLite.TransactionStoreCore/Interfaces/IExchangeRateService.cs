@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using CRMLite.TransactionStoreDomain.Entities;
 using CRMLite.TransactionStoreDomain.RestSharp.RatesApi;
 
 namespace CRMLite.TransactionStoreDomain.Interfaces

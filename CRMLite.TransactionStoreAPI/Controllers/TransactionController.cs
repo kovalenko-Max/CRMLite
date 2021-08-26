@@ -1,5 +1,4 @@
-﻿using CRMLite.TransactionStoreAPI.Filters.Attributes;
-using CRMLite.TransactionStoreDomain.Entities;
+﻿using CRMLite.TransactionStoreDomain.Entities;
 using CRMLite.TransactionStoreDomain.Interfaces.IServices;
 using Microsoft.AspNetCore.Mvc;
 using System;

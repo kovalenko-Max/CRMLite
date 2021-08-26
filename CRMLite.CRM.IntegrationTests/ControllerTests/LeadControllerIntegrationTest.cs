@@ -8,7 +8,6 @@ using System;
 using System.Collections.Generic;
 using System.Net;
 using System.Threading.Tasks;
-using CRMLite.Core.Contracts.Roles;
 using Xunit;
 
 namespace CRMLite.CRM.IntegrationTests.ControllerTests

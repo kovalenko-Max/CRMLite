@@ -9,7 +9,6 @@ using CRMLite.Core.Contracts.Roles;
 using System.Text.RegularExpressions;
 using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Net;
 using CRMLite.Core.Messages;
 using MassTransit;
 using Microsoft.Extensions.Configuration;
