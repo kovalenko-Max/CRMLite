@@ -11,13 +11,13 @@ namespace CRMLite.TransactionStoreAPI.Extensions
         {
             services.AddMassTransit(x =>
             {
-                x.AddConsumer<ConsumerMock>();
+                x.AddConsumer<NewVerifiedLeadConsumer>();
 
                 x.UsingRabbitMq((context, cfg) =>
                 {
                     cfg.ReceiveEndpoint(options.Queue, e =>
                     {
-                        e.ConfigureConsumer<ConsumerMock>(context);
+                        e.ConfigureConsumer<NewVerifiedLeadConsumer>(context);
                     });
 
                     cfg.Host(options.Host, options.LocalHost, h =>
