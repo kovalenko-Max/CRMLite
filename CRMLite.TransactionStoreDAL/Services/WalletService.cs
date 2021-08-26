@@ -10,10 +10,12 @@ namespace CRMLite.TransactionStoreBLL.Services
     public class WalletService : IWalletService
     {
         private readonly IWalletRepository _walletRepository;
+        private readonly ICurrencyService _currencyService;
 
-        public WalletService(IWalletRepository walletRepository)
+        public WalletService(IWalletRepository walletRepository, ICurrencyService currencyService)
         {
             _walletRepository = walletRepository;
+            _currencyService = currencyService;
         }
 
         public async Task CreateWalletWithinLeadAsync(Guid leadID, Wallet wallet)
@@ -80,6 +82,25 @@ namespace CRMLite.TransactionStoreBLL.Services
             }
 
             throw new ArgumentException("Guid ID is empty");
+        }
+
+        public async Task CreateDefaultWalletForLead(Guid leadID)
+        {
+            if (leadID != Guid.Empty)
+            {
+                var currency =await _currencyService.GetCurrencyByCodeAsync("USD");
+
+                var wallet = new Wallet()
+                {
+                    ID = Guid.NewGuid(),
+                    Amount = 0,
+                    Currency = currency
+                };
+
+                await _walletRepository.CreateWalletWithinLeadAsync(leadID, wallet);
+            }
+
+            throw new ArgumentException("Guid leadID is empty");
         }
     }
 }

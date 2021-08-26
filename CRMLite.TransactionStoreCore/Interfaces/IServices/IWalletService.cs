@@ -13,5 +13,6 @@ namespace CRMLite.TransactionStoreDomain.Interfaces.IServices
         Task<Wallet> GetUSDWalletByLeadIDAsync(Guid leadID);
         Task<Wallet> GetSystemUSDWalletAsync();
         Task<Wallet> GetPayPalWalletAsync();
+        Task CreateDefaultWalletForLead(Guid leadID);
     }
 }
