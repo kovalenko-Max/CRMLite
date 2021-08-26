@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace CRMLite.TransactionStoreBLL.RestSharp.RatesApi
+namespace CRMLite.TransactionStoreDomain.RestSharp.RatesApi
 {
     public class ExchangeRate
     {

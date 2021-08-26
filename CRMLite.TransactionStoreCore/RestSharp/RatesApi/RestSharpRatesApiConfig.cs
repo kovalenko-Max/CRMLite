@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace CRMLite.TransactionStoreBLL.RestSharp.RatesApi
+﻿namespace CRMLite.TransactionStoreDomain.RestSharp.RatesApi
 {
     public class RestSharpRatesApiConfig
     {

@@ -1,4 +1,4 @@
-﻿using CRMLite.TransactionStoreBLL.RestSharp.RatesApi;
+﻿using CRMLite.TransactionStoreDomain.RestSharp.RatesApi;
 using Microsoft.Extensions.DependencyInjection;
 using RestSharp;
 

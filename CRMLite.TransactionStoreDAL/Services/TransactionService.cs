@@ -4,22 +4,31 @@ using CRMLite.TransactionStoreDomain.Interfaces.IServices;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using CRMLite.TransactionStoreDomain.Interfaces;
 
 namespace CRMLite.TransactionStoreBLL.Services
 {
     public class TransactionService : ITransactionService
     {
         private ITransactionRepository _repository;
+        private readonly IExchangeRateService _exchangeRateService;
 
-        public TransactionService(ITransactionRepository transactionRepository)
+        public TransactionService(ITransactionRepository transactionRepository, IExchangeRateService exchangeRateService)
         {
             _repository = transactionRepository;
+            _exchangeRateService = exchangeRateService;
         }
 
         public async Task CreateTransactionAsync(Transaction transaction)
         {
             if (transaction != null)
             {
+                var exchangeRate = await _exchangeRateService.GetExchangeRateForCurrencyAsync(
+                    transaction.WalletTo.Currency.Code);
+                transaction.WalletFrom.Amount -= transaction.Amount;
+                transaction.WalletTo.Amount += transaction.Amount *
+                                               (1 / (decimal)exchangeRate.Value);
+
                 await _repository.CreateTransactionAsync(transaction);
             }
             else
@@ -30,12 +39,12 @@ namespace CRMLite.TransactionStoreBLL.Services
 
         public async Task<IEnumerable<Transaction>> GetAllTransactionsByLeadIDAsync(Guid leadID)
         {
-            if(leadID != Guid.Empty)
+            if (leadID != Guid.Empty)
             {
                 var response = await _repository.GetAllTransactionsByLeadIDAsync(leadID);
                 var transactions = new List<Transaction>();
-                     
-                foreach(var tr in response)
+
+                foreach (var tr in response)
                 {
                     transactions.Add(
                             new Transaction()

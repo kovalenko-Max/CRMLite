@@ -12,7 +12,7 @@
     "CRMLite.RatesAPI": {
       "commandName": "Project",
       "launchBrowser": false,
-      "applicationUrl": "http://localhost:80",
+      "applicationUrl": "http://localhost:1020",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }

@@ -2,7 +2,6 @@ using CRMLite.TransactionStoreAPI.Extensions;
 using CRMLite.TransactionStoreAPI.Middlewares;
 using CRMLite.TransactionStoreAPI.RabbitMQ;
 using CRMLite.TransactionStoreBLL;
-using CRMLite.TransactionStoreBLL.RestSharp.RatesApi;
 using CRMLite.TransactionStoreBLL.Services;
 using CRMLite.TransactionStoreDomain.Interfaces;
 using CRMLite.TransactionStoreDomain.Interfaces.IRepositories;
@@ -18,6 +17,7 @@ using Microsoft.OpenApi.Models;
 using Serilog;
 using System.Data;
 using System.Data.SqlClient;
+using CRMLite.TransactionStoreDomain.RestSharp.RatesApi;
 
 namespace CRMLite.TransactionStoreAPI
 {
@@ -37,7 +37,7 @@ namespace CRMLite.TransactionStoreAPI
             var connectionString = Configuration.GetConnectionString("Default");
             services.Configure<TFAConfig>(Configuration.GetSection("TFAConfig"));
 
-            services.Configure<TFAConfig>(Configuration.GetSection("RestSharpConfig"));
+            services.Configure<RestSharpRatesApiConfig>(Configuration.GetSection("RestSharpConfig"));
 
             services.AddHttpContextAccessor();
 
@@ -116,6 +116,7 @@ namespace CRMLite.TransactionStoreAPI
 
         private void AddServices(IServiceCollection services)
         {
+            services.AddTransient<IExchangeRateService, ExchangeRateService>();
             services.AddTransient<IBalanceCounter, BalanceCounter>();
             services.AddTransient<IBalanceService, BalanceService>();
             services.AddTransient<ICurrencyService, CurrencyService>();
