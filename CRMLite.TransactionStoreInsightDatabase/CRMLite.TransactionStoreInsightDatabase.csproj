@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Insight.Database" Version="6.3.7" />
+    <PackageReference Include="Insight.Database.Providers.Default" Version="6.3.7" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CRMLite.TransactionStoreCore\CRMLite.TransactionStoreDomain.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,25 @@
+﻿using CRMLite.TransactionStoreAPI.RabbitMQ.Consumers;
+using MassTransit;
+using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
+
+namespace CRMLite.TransactionStoreAPI.Controllers
+{
+    [Route("api/[controller]")]
+    [ApiController]
+    public class RabbitMQMockController : ControllerBase
+    {
+        private IBusControl _busControl;
+
+        public RabbitMQMockController(IBusControl busControl)
+        {
+            _busControl = busControl;
+        }
+
+        [HttpPost]
+        public async Task PostMessage(ClassMock mock)
+        {
+            await _busControl.Publish(mock);
+        }
+    }
+}
