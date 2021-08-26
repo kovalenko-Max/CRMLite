@@ -28,6 +28,20 @@ namespace CRMLite.RatesAPI
             services.AddTransient<ICurrencyRateRepository, CurrencyRateRepository>();
             services.AddTransient<IStockRateRepository, StockRateRepository>();
 
+            services.AddCors(options =>
+            {
+                options.AddPolicy(name: "Policy",
+                    builder =>
+                    {
+                        builder.WithOrigins("http://localhost:3000", "http://localhost:5050",
+                                "https://localhost:3000", "https://localhost:5050", "https://www.sandbox.paypal.com",
+                                "http://www.sandbox.paypal.com", "https://crmlite-transaction-store.azurewebsites.net")
+                            .AllowAnyHeader()
+                            .AllowAnyMethod()
+                            .AllowAnyOrigin();
+                    });
+            });
+
             services.AddTransient<IDbConnection>(connection => new SqlConnection(
                 Configuration.GetConnectionString("Default")
                 ));
@@ -50,6 +64,8 @@ namespace CRMLite.RatesAPI
             app.UseRouting();
 
             app.UseMiddleware<ErrorHandlerMiddleware>();
+
+            app.UseCors("Policy");
 
             app.UseAuthorization();
 
