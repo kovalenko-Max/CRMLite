@@ -3,11 +3,13 @@ using CRMLite.TransactionStoreDomain.Interfaces.IServices;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 
 namespace CRMLite.TransactionStoreAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize(Policy = "PermissionForAdminAndUserRoles")]
     public class TFAController : ControllerBase
     {
         private ITFAService _tFAService;

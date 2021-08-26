@@ -10,7 +10,6 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using Serilog;
 using System.Data;
-using System.Data.Common;
 using System.Data.SqlClient;
 
 namespace CRMLite.CRMAPI

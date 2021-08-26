@@ -4,11 +4,13 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 
 namespace CRMLite.TransactionStoreAPI.Controllers
 {
-    [Route("api/[controller]")]
     [ApiController]
+    [Route("api/[controller]")]
+    [Authorize(Policy = "PermissionForAdminAndUserRoles")]
     public class PayPalStatisticController : Controller
     {
         private readonly IPalPalStatisticService _palPalStatisticService;
