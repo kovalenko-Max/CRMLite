@@ -14,5 +14,6 @@ namespace CRMLite.CRMServices.Interfaces
         public Task<IEnumerable<Lead>> GetAllLeadsAsync();
         public Task<int> GetCountLeadsAsync();
         public Task<PaginationModel<Lead>> PaginateLeadsAsync(int currentPage);
+        public Task<Lead> GetLeadByEmailAsync(string email);
     }
 }

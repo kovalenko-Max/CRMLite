@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Net;
 using System.Threading.Tasks;
+using CRMLite.Core.Contracts.Roles;
 using Xunit;
 
 namespace CRMLite.CRM.IntegrationTests.ControllerTests
@@ -67,6 +68,7 @@ namespace CRMLite.CRM.IntegrationTests.ControllerTests
             
             var getRoute = $"/api/Lead/{lead.Id}";
             var getResponse = await SendRequestToGetByID(getRoute);
+
             var actual = JsonConvert.DeserializeObject<Lead>(await getResponse.Content.ReadAsStringAsync());
             actual.Should().BeEquivalentTo(lead);
         }
