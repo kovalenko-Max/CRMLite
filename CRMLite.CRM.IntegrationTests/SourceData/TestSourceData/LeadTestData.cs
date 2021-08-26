@@ -21,7 +21,7 @@ namespace CRMLite.CRM.IntegrationTests.SourceData.TestSourceData
                 Password = "Aa12345!",
                 Role = null,
                 StatusType = StatusType.Regular,
-                TIN = "123456791"
+                TIN = "1234567910"
             };
         }
 
