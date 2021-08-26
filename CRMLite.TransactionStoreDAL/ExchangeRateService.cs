@@ -58,11 +58,8 @@ namespace CRMLite.TransactionStoreBLL
             {
                 var request = new RestRequest(_config.GetLastCurrencyRatePath, DataFormat.Json)
                     .AddHeader("content-type", "application/json charset=utf-8")
-                    //.AddJsonBody(obj: code)
                     .AddParameter("code", code);
 
-                //var responce = await _client.PostAsync<ExchangeRate>(request);
-                //var responce = await _client.ExecuteAsync<ExchangeRate>(request);
                 var response = await _client.GetAsync<ExchangeRate>(request);
 
                 return response;

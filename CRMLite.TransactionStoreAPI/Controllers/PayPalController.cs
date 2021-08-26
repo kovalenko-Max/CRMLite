@@ -39,6 +39,7 @@ namespace CRMLite.TransactionStoreAPI.Controllers
             return paymentCreated.RedirectUrl;
         }
 
+        [HttpGet]
         [Route("success")]
         public async Task<JsonResult> Success([FromQuery(Name = "paymentId")] string paymentId,
             [FromQuery(Name = "payerID")] string payedID)
