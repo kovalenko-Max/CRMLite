@@ -1,12 +1,12 @@
 ﻿using CRMLite.Core.Messages;
+using CRMLite.TransactionStoreDomain.Interfaces.IServices;
 using MassTransit;
 using Microsoft.Extensions.Logging;
 using System.Threading.Tasks;
-using CRMLite.TransactionStoreDomain.Interfaces.IServices;
 
 namespace CRMLite.TransactionStoreAPI.RabbitMQ.Consumers
 {
-    public class NewVerifiedLeadConsumer :IConsumer<NewVerifiedLeadMessage>
+    public class NewVerifiedLeadConsumer : IConsumer<NewVerifiedLeadMessage>
     {
         private readonly ILogger<ConsumerMock> _logger;
         private readonly IWalletService _walletService;

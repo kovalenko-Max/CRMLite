@@ -88,7 +88,7 @@ namespace CRMLite.TransactionStoreBLL.Services
         {
             if (leadID != Guid.Empty)
             {
-                var currency =await _currencyService.GetCurrencyByCodeAsync("USD");
+                var currency = await _currencyService.GetCurrencyByCodeAsync("USD");
 
                 var wallet = new Wallet()
                 {
@@ -99,8 +99,10 @@ namespace CRMLite.TransactionStoreBLL.Services
 
                 await _walletRepository.CreateWalletWithinLeadAsync(leadID, wallet);
             }
-
-            throw new ArgumentException("Guid leadID is empty");
+            else
+            {
+                throw new ArgumentException("Guid leadID is empty");
+            }
         }
     }
 }
