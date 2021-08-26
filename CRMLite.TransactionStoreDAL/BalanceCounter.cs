@@ -59,6 +59,5 @@ namespace CRMLite.TransactionStoreBLL
 
             throw new ArgumentNullException("List stockPortfolios is null");
         }
-
     }
 }

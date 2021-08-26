@@ -61,7 +61,7 @@ namespace CRMLite.TransactionStoreAPI
                   {
                       builder.WithOrigins("http://localhost:3000", "http://localhost:5050",
                         "https://localhost:3000", "https://localhost:5050", "https://www.sandbox.paypal.com",
-                        "http://www.sandbox.paypal.com")
+                        "http://www.sandbox.paypal.com", "https://crmlite-transaction-store.azurewebsites.net")
                         .AllowAnyHeader()
                         .AllowAnyMethod()
                         .AllowAnyOrigin();

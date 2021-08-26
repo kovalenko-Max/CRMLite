@@ -35,7 +35,6 @@ namespace CRMLite.TransactionStoreAPI.Controllers
         }
 
         [HttpPost]
-        [TypeFilter(typeof(TwoFactorAuthorizeAttribute))]
         public async Task CreateStockPortfolioAsync(StockPortfolio stockPortfolio)
         {
             if (stockPortfolio != null)

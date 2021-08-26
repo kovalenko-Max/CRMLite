@@ -26,6 +26,7 @@ namespace CRMLite.RatesAPI
         {
             services.AddControllers();
             services.AddTransient<ICurrencyRateRepository, CurrencyRateRepository>();
+            services.AddTransient<IStockRateRepository, StockRateRepository>();
 
             services.AddTransient<IDbConnection>(connection => new SqlConnection(
                 Configuration.GetConnectionString("Default")

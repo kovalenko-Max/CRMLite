@@ -33,7 +33,7 @@ namespace CRMLite.RatesAPI.Controllers
             }
         }
 
-        [HttpGet("codes")]
+        [HttpPost("codes")]
         public async Task<IEnumerable<ExchangeRate>> GetLastStockRatesAsync(string[] codes)
         {
             if (codes != null)
