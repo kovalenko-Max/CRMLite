@@ -61,6 +61,11 @@ namespace CRMLite.CRMAPI.Controllers
                 {
                     return BadRequest("Uncorected Email or Password");
                 }
+                else if(lead.Role.Count == 0)
+
+                {
+                    return BadRequest("Check confirm message");
+                }
 
                 LeadAccessInfo leadAccessInfo = new LeadAccessInfo();
                 leadAccessInfo.LeadID = lead.Id;
