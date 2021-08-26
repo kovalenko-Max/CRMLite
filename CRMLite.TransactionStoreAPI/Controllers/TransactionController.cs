@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using CRMLite.TransactionStoreAPI.Filters.Attributes;
 using Microsoft.AspNetCore.Authorization;
 
 namespace CRMLite.TransactionStoreAPI.Controllers
