@@ -9,7 +9,7 @@ namespace CRMLite.TransactionStoreAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize(Policy = "PermissionForAdminAndUserRoles")]
+    [AllowAnonymous]
     public class TFAController : ControllerBase
     {
         private ITFAService _tFAService;
