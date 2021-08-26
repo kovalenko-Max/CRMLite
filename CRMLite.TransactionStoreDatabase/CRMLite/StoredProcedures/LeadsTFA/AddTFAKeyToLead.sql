@@ -1,0 +1,11 @@
+﻿CREATE PROCEDURE [CRMLite].[AddTFAKeyToLead] @LeadID UNIQUEIDENTIFIER,
+	@TFAKey NVARCHAR(500)
+AS
+INSERT INTO [CRMLite].[LeadsTFA] (
+	LeadID,
+	TFAKey
+	)
+VALUES (
+	@LeadID,
+	@TFAKey
+	)

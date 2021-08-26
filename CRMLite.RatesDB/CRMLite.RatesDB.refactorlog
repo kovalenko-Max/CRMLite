@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Operations Version="1.0" xmlns="http://schemas.microsoft.com/sqlserver/dac/Serialization/2012/02">
+  <Operation Name="Rename Refactor" Key="37495d25-4aec-4f23-b0e8-d713a093c3fa" ChangeDateTime="08/19/2021 11:32:56">
+    <Property Name="ElementName" Value="[CRMLite].[CurrencyRates].[Val]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[CRMLite].[CurrencyRates]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Value" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="5e377147-b182-4799-a353-3e6b4f76e647" ChangeDateTime="08/19/2021 11:33:01">
+    <Property Name="ElementName" Value="[CRMLite].[StockRates].[Val]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[CRMLite].[StockRates]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Value" />
+  </Operation>
+</Operations>

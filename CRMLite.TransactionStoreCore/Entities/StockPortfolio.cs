@@ -1,0 +1,12 @@
+﻿using System;
+
+namespace CRMLite.TransactionStoreDomain.Entities
+{
+    public class StockPortfolio
+    {
+        public Guid ID { get; set; }
+        public Guid LeadID { get; set; }
+        public Stock Stock { get; set; }
+        public int Quantity { get; set; }
+    }
+}
