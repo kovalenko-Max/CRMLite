@@ -11,24 +11,31 @@ namespace CRMLite.TransactionStoreBLL.Services
     public class TransactionService : ITransactionService
     {
         private ITransactionRepository _repository;
+        private IWalletRepository _walletRepository;
         private readonly IExchangeRateService _exchangeRateService;
         private readonly Dictionary<string, Guid> _startedCheckoutsCache;
 
-        public TransactionService(ITransactionRepository transactionRepository, IExchangeRateService exchangeRateService)
+        public TransactionService(ITransactionRepository transactionRepository, IWalletRepository walletRepository,
+            IExchangeRateService exchangeRateService)
         {
             _startedCheckoutsCache = new Dictionary<string, Guid>();
             _repository = transactionRepository;
+            _walletRepository = walletRepository;
             _exchangeRateService = exchangeRateService;
-        }
+        }
+
         public void СheckoutStarted(string paymentId, Guid leadID)
         {
             _startedCheckoutsCache.Add(paymentId, leadID);
-        }
+        }
 
         public async Task CreateTransactionAsync(Transaction transaction)
         {
             if (transaction != null)
             {
+                transaction.WalletFrom = await _walletRepository.GetWalletByIDAsync(transaction.WalletFrom.ID);
+                transaction.WalletTo = await _walletRepository.GetWalletByIDAsync(transaction.WalletTo.ID);
+
                 var exchangeRateFrom = await _exchangeRateService.GetExchangeRateForCurrencyAsync(
                     transaction.WalletFrom.Currency.Code);
                 var exchangeRateTo = await _exchangeRateService.GetExchangeRateForCurrencyAsync(

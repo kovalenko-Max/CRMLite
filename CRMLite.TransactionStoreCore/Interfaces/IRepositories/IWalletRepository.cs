@@ -23,5 +23,6 @@ namespace CRMLite.TransactionStoreDomain.Interfaces.IRepositories
         Task<Wallet> GetSystemUSDWalletAsync();
 
         [Recordset(typeof(Wallet), typeof(Currency))]        Task<Wallet> GetPayPalSystemWalletAsync();
+        Task CreateWalletForLeadAsync(Guid leadID, Wallet wallet);
     }
 }
