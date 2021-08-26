@@ -11,7 +11,7 @@ namespace CRMLite.TransactionStoreAPI.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    [Authorize(Policy = "PermissionForAdminAndUserRoles")]
+    //[Authorize(Policy = "PermissionForAdminAndUserRoles")]
     public class TransactionController : Controller
     {
         private readonly ITransactionService _transactionService;
@@ -48,7 +48,7 @@ namespace CRMLite.TransactionStoreAPI.Controllers
         }
 
         [HttpPost]
-        //[TypeFilter(typeof(TwoFactorAuthorizeAttribute))]
+        [TypeFilter(typeof(TwoFactorAuthorizeAttribute))]
         public async Task CreateTransactionAsync(Transaction transaction)
         {
             if (transaction != null)
