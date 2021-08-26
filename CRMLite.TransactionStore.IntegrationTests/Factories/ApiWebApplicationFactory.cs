@@ -16,6 +16,7 @@ using System.Data;
 using System.Data.Common;
 using System.IO;
 using System.Net.Http;
+using Microsoft.AspNetCore.Authorization.Policy;
 
 namespace CRMLite.TransactionStore.IntegrationTests.Factories
 {
@@ -67,6 +68,7 @@ namespace CRMLite.TransactionStore.IntegrationTests.Factories
         private void AddServices(IServiceCollection services)
         {
             services.AddTransient<IWalletService, WalletService>();
+            services.AddSingleton<IPolicyEvaluator, FakePolicyEvaluator>();
         }
     }
 }
