@@ -31,7 +31,7 @@ namespace CRMLite.TransactionStoreAPI.Controllers
             throw new ArgumentException("Guid LeadID is empty");
         }
 
-        [HttpGet("stocks/leadID")]
+        [HttpGet("stockPortfolios/leadID")]
         public async Task<decimal> GetTotalStocksBalanceByLeadIDAsync(Guid leadID)
         {
             if (leadID != Guid.Empty)

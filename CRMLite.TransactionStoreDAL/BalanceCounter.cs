@@ -1,13 +1,9 @@
 ﻿using CRMLite.TransactionStoreDomain.Entities;
 using CRMLite.TransactionStoreDomain.Interfaces;
-using Microsoft.Extensions.Options;
-using Newtonsoft.Json;
-using RestSharp;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using CRMLite.TransactionStoreDomain.RestSharp.RatesApi;
 
 namespace CRMLite.TransactionStoreBLL
 {

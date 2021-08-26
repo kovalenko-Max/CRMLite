@@ -4,7 +4,6 @@ using CRMLite.CRMServices.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using System;
-using Microsoft.AspNetCore.Authorization;
 
 namespace CRMLite.CRMAPI.Controllers
 {

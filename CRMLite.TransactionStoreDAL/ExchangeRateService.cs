@@ -1,7 +1,6 @@
 ﻿using CRMLite.TransactionStoreDomain.Interfaces;
 using CRMLite.TransactionStoreDomain.RestSharp.RatesApi;
 using Microsoft.Extensions.Options;
-using Newtonsoft.Json;
 using RestSharp;
 using System;
 using System.Collections.Generic;
@@ -45,8 +44,6 @@ namespace CRMLite.TransactionStoreBLL
                     .AddJsonBody(obj: codes);
 
                 var responce = await _client.PostAsync<IEnumerable<ExchangeRate>>(request);
-
-                //var responce = _client.Execute<ExchangeRate>(request);
 
                 return responce;
             }
