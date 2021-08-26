@@ -6,7 +6,6 @@ using CRMLite.TransactionStoreBLL.Services;
 using CRMLite.TransactionStoreDomain.Interfaces;
 using CRMLite.TransactionStoreDomain.Interfaces.IRepositories;
 using CRMLite.TransactionStoreDomain.Interfaces.IServices;
-using CRMLite.TransactionStoreInsightDatabase.Repositories;
 using CRMLite.TransactionStoreBLL.TFA;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -17,6 +16,7 @@ using Microsoft.OpenApi.Models;
 using Serilog;
 using System.Data;
 using System.Data.SqlClient;
+using CRMLite.TransactionStoreInsightDatabase.Repositories;
 using CRMLite.TransactionStoreDomain.RestSharp.RatesApi;
 
 namespace CRMLite.TransactionStoreAPI
@@ -29,6 +29,7 @@ namespace CRMLite.TransactionStoreAPI
         {
             Configuration = configuration;
         }
+        readonly string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
 
         public void ConfigureServices(IServiceCollection services)
         {
@@ -50,15 +51,20 @@ namespace CRMLite.TransactionStoreAPI
 
             services.AddRestSharpForRatesApi(restSharpConfig);
 
+
             services.AddCors(options =>
             {
-                options.AddDefaultPolicy(
-                    builder =>
-                    {
-                        builder.WithOrigins("http://localhost:3000", "http://localhost:5050");
-                    });
+                options.AddPolicy(name: MyAllowSpecificOrigins,
+                  builder =>
+                  {
+                      builder.WithOrigins("http://localhost:3000", "http://localhost:5050",
+                          "https://localhost:3000", "https://localhost:5050", "https://www.sandbox.paypal.com",
+                     "http://www.sandbox.paypal.com")
+                     .AllowAnyHeader()
+                     .AllowAnyMethod()
+                     .AllowAnyOrigin();
+                  });
             });
-
             AddRepositories(services);
 
             AddServices(services);
@@ -83,7 +89,11 @@ namespace CRMLite.TransactionStoreAPI
 
             app.UseRouting();
 
-            app.UseCors();
+
+            app.UseCors(
+         options => options.WithOrigins("http://localhost:5050", "http://localhost:3000",
+         "https://www.sandbox.paypal.com", "http://www.sandbox.paypal.com").AllowAnyMethod()
+     );
 
             app.UseAuthorization();
 
@@ -111,6 +121,7 @@ namespace CRMLite.TransactionStoreAPI
             services.AddTransient<IStockTransactionRepository, StockTransactionRepository>();
             services.AddTransient<IWalletRepository, WalletRepository>();
             services.AddTransient<ILeadTFAKeyRepository, LeadTFAKeyRepository>();
+            services.AddTransient<IPalPalStatisticRepository, PayPalStatisticRepository>();
             services.AddTransient<ITransactionRepository, TransactionRepository>();
         }
 
@@ -126,7 +137,8 @@ namespace CRMLite.TransactionStoreAPI
             services.AddTransient<IStockTransactionService, StockTransactionService>();
             services.AddTransient<IWalletService, WalletService>();
             services.AddTransient<ITFAService, GoogleTFAService>();
-            services.AddTransient<ITransactionService, TransactionService>();
+            services.AddTransient<IPalPalStatisticService, PayPalStatisticService>();
+            services.AddSingleton<ITransactionService, TransactionService>();
         }
     }
 }

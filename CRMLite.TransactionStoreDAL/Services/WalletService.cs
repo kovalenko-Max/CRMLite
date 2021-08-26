@@ -51,6 +51,13 @@ namespace CRMLite.TransactionStoreBLL.Services
             return response;
         }
 
+        public async Task<Wallet> GetPayPalWalletAsync()
+        {
+            var response = await _walletRepository.GetPayPalSystemWalletAsync();
+
+            return response;
+        }
+
         public async Task<Wallet> GetUSDWalletByLeadIDAsync(Guid leadID)
         {
             if (leadID != Guid.Empty)

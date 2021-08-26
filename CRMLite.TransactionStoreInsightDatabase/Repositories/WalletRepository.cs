@@ -79,5 +79,10 @@ namespace CRMLite.TransactionStoreInsightDatabase.Repositories
         {
             return await _walletRepository.GetSystemUSDWalletAsync();
         }
+
+        public async Task<Wallet> GetPayPalSystemWalletAsync()
+        {
+            return await _walletRepository.GetPayPalSystemWalletAsync();
+        }
     }
 }

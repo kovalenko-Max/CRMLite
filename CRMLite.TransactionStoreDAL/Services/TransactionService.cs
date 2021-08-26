@@ -10,13 +10,20 @@ namespace CRMLite.TransactionStoreBLL.Services
 {
     public class TransactionService : ITransactionService
     {
-        private ITransactionRepository _repository;
+        private readonly ITransactionRepository _repository;
+        private readonly Dictionary<string, Guid> _startedCheckoutsCache;
         private readonly IExchangeRateService _exchangeRateService;
 
         public TransactionService(ITransactionRepository transactionRepository, IExchangeRateService exchangeRateService)
         {
+            _startedCheckoutsCache = new Dictionary<string, Guid>();
             _repository = transactionRepository;
             _exchangeRateService = exchangeRateService;
+        }
+
+        public void СheckoutStarted(string paymentId, Guid leadID)
+        {
+            _startedCheckoutsCache.Add(paymentId, leadID);
         }
 
         public async Task CreateTransactionAsync(Transaction transaction)
@@ -141,6 +148,14 @@ namespace CRMLite.TransactionStoreBLL.Services
             }
 
             throw new ArgumentException("Guid  WalletID is empty");
+        }
+
+        public Guid GetCheckoutUserGuid(string paymentId)
+        {
+            Guid userGuid = Guid.Empty;
+            _startedCheckoutsCache.TryGetValue(paymentId, out userGuid);
+
+            return userGuid;
         }
     }
 }

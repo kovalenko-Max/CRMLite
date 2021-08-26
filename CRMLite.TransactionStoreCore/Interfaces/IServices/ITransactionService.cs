@@ -7,8 +7,10 @@ namespace CRMLite.TransactionStoreDomain.Interfaces.IServices
 {
     public interface ITransactionService
     {
-        public Task<IEnumerable<Transaction>> GetAllTransactionsByLeadIDAsync(Guid leadID);
-        public Task<IEnumerable<Transaction>> GetAllTransactionsByWalletIDAsync(Guid walletID);
-        public Task CreateTransactionAsync(Transaction transaction);
+        Task<IEnumerable<Transaction>> GetAllTransactionsByLeadIDAsync(Guid leadID);
+        Task<IEnumerable<Transaction>> GetAllTransactionsByWalletIDAsync(Guid walletID);
+        Task CreateTransactionAsync(Transaction transaction);
+        void СheckoutStarted(string paymentId, Guid leadID);
+        Guid GetCheckoutUserGuid(string paymentId);
     }
 }

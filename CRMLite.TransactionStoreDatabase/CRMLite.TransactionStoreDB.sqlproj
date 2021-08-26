@@ -71,6 +71,7 @@
     <Folder Include="CRMLite\StoredProcedures\Transaction" />
     <Folder Include="CRMLite\StoredProcedures\SystemSP" />
     <Folder Include="CRMLite\StoredProcedures\LeadsTFA" />
+    <Folder Include="CRMLite\StoredProcedures\PayPal" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="CRMLite\Tables\Balance.sql" />
@@ -108,7 +109,13 @@
     <Build Include="CRMLite\StoredProcedures\LeadsTFA\CRMLite.GetIsExistTFAByLeadID.sql" />
     <Build Include="CRMLite\StoredProcedures\Wallet\GetPayPalSystemWallet.sql" />
     <Build Include="CRMLite\StoredProcedures\Wallet\GetUSDWalletByLeadID.sql" />
-    <Build Include="CRMLite\StoredProcedures\Wallet\GetSystemUSDmWallet.sql" />
+    <Build Include="CRMLite\Tables\CRMLite.PayPalStatistic.sql" />
+    <Build Include="CRMLite\StoredProcedures\PayPal\GetAllPayPalStatistic.sql" />
+    <Build Include="CRMLite\StoredProcedures\PayPal\CreatePayPalStatistic.sql" />
+    <Build Include="CRMLite\StoredProcedures\PayPal\CRMLite.GetPayPalStatisticByCity.sql" />
+    <Build Include="CRMLite\StoredProcedures\PayPal\CRMLite.GetPayPalStatisticByDay.sql" />
+    <Build Include="CRMLite\StoredProcedures\Wallet\GetPayPalSystemWallet.sql" />
+    <Build Include="CRMLite\StoredProcedures\Wallet\GetSystemUSDWallet.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="CRMLite.TransactionStoreDB.refactorlog" />
