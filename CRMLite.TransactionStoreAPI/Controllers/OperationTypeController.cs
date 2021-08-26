@@ -3,11 +3,13 @@ using CRMLite.TransactionStoreDomain.Interfaces.IServices;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 
 namespace CRMLite.TransactionStoreAPI.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
+    [Authorize(Policy = "PermissionForAdminAndUserRoles")]
     public class OperationTypeController : Controller
     {
         private IOperationTypeService _operationTypeService;

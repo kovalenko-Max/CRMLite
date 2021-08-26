@@ -5,11 +5,13 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 
 namespace CRMLite.TransactionStoreAPI.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
+    [Authorize(Policy = "PermissionForAdminAndUserRoles")]
     public class TransactionController : Controller
     {
         private readonly ITransactionService _transactionService;

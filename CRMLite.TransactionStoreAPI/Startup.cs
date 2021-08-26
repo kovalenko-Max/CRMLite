@@ -37,6 +37,8 @@ namespace CRMLite.TransactionStoreAPI
             var rabbitMQHostConfig = Configuration.GetSection("RabbitMQHostConfig").Get<RabbitMQHostConfig>();
             var restSharpConfig = Configuration.GetSection("RestSharpConfig").Get<RestSharpRatesApiConfig>();
             var connectionString = Configuration.GetConnectionString("Default");
+            var jwtKey = Configuration.GetSection("JWTKey").Value;
+            
             services.Configure<TFAConfig>(Configuration.GetSection("TFAConfig"));
 
             services.Configure<RestSharpRatesApiConfig>(Configuration.GetSection("RestSharpConfig"));
@@ -66,6 +68,9 @@ namespace CRMLite.TransactionStoreAPI
                   });
             });
 
+            services.AddAuthenticationLead(jwtKey);
+            services.AddAuthorizationPolicy();
+
             AddRepositories(services);
 
             AddServices(services);
@@ -91,6 +96,7 @@ namespace CRMLite.TransactionStoreAPI
             app.UseRouting();
             app.UseCors(_corsPolicy);
 
+            app.UseAuthentication();
             app.UseAuthorization();
             app.UseSerilogRequestLogging();
 
