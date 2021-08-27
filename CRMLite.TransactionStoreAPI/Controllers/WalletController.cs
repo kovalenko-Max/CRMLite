@@ -81,5 +81,11 @@ namespace CRMLite.TransactionStoreAPI.Controllers
 
             return response;
         }
+
+        [HttpPost]
+        public async Task CreateWalletForLeadAsync(Guid leadID, Wallet wallet)
+        {
+            await _walletService.CreateWalletForLeadAsync(leadID, wallet);
+        }
     }
 }

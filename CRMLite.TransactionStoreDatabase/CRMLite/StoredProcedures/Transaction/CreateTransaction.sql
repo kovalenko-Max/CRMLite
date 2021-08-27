@@ -27,10 +27,13 @@ VALUES (
 	@OperationType
 	)
 
-UPDATE CRMLite.Wallets
-SET Amount = @WalletFromAmount
-WHERE ID = @WalletFrom
+	if @@ROWCOUNT > 0
+	begin
+		UPDATE CRMLite.Wallets
+		SET Amount = @WalletFromAmount
+		WHERE ID = @WalletFrom
 
-UPDATE CRMLite.Wallets
-SET Amount = @WalletToAmount
-WHERE ID = @WalletTo
+		UPDATE CRMLite.Wallets
+		SET Amount = @WalletToAmount
+		WHERE ID = @WalletTo
+	end

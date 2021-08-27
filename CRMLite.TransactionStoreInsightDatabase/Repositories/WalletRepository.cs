@@ -84,5 +84,29 @@ namespace CRMLite.TransactionStoreInsightDatabase.Repositories
         {
             return await _walletRepository.GetPayPalSystemWalletAsync();
         }
+
+        public async Task CreateWalletForLeadAsync(Guid leadID, Wallet wallet)
+        {
+            if (wallet != null && leadID != Guid.Empty)
+            {
+                var currencyID = wallet.Currency.ID;
+
+                await DBConnection.QueryAsync(nameof(CreateWalletForLeadAsync).GetStoredProcedureName(),
+                    new
+                    {
+                        leadID,
+                        wallet.ID,
+                        currencyID
+                    });
+            }
+            else if (wallet == null)
+            {
+                throw new ArgumentNullException("Wallet is null");
+            }
+            else if (leadID == Guid.Empty)
+            {
+                throw new ArgumentException("Guid LeadID is empty");
+            }
+        }
     }
 }
