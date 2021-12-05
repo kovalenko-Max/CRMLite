@@ -31,14 +31,13 @@ namespace CRMLite.TransactionStoreAPI
             Configuration = configuration;
         }
 
-
         public void ConfigureServices(IServiceCollection services)
         {
             var rabbitMQHostConfig = Configuration.GetSection("RabbitMQHostConfig").Get<RabbitMQHostConfig>();
             var restSharpConfig = Configuration.GetSection("RestSharpConfig").Get<RestSharpRatesApiConfig>();
             var connectionString = Configuration.GetConnectionString("Default");
             var jwtKey = Configuration.GetSection("JWTKey").Value;
-            
+
             services.Configure<TFAConfig>(Configuration.GetSection("TFAConfig"));
 
             services.Configure<RestSharpRatesApiConfig>(Configuration.GetSection("RestSharpConfig"));
@@ -57,15 +56,15 @@ namespace CRMLite.TransactionStoreAPI
             services.AddCors(options =>
             {
                 options.AddPolicy(name: _corsPolicy,
-                  builder =>
-                  {
-                      builder.WithOrigins("http://localhost:3000", "http://localhost:5050",
-                        "https://localhost:3000", "https://localhost:5050", "https://www.sandbox.paypal.com",
-                        "http://www.sandbox.paypal.com", "https://crmlite-transaction-store.azurewebsites.net")
-                        .AllowAnyHeader()
-                        .AllowAnyMethod()
-                        .AllowAnyOrigin();
-                  });
+                    builder =>
+                    {
+                        builder.WithOrigins("http://localhost:3000", "http://localhost:5050",
+                                "https://localhost:3000", "https://localhost:5050", "https://www.sandbox.paypal.com",
+                                "http://www.sandbox.paypal.com", "https://crmlite-transaction-store.azurewebsites.net")
+                            .AllowAnyHeader()
+                            .AllowAnyMethod()
+                            .AllowAnyOrigin();
+                    });
             });
 
             services.AddAuthenticationLead(jwtKey);
@@ -75,10 +74,7 @@ namespace CRMLite.TransactionStoreAPI
 
             AddServices(services);
 
-            services.AddSwaggerGen(c =>
-            {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "CRMLite.TransactionStoreAPI", Version = "v1" });
-            });
+            services.AddSwaggerGen(c => { c.SwaggerDoc("v1", new OpenApiInfo { Title = "CRMLite.TransactionStoreAPI", Version = "v1" }); });
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -100,10 +96,7 @@ namespace CRMLite.TransactionStoreAPI
             app.UseAuthorization();
             app.UseSerilogRequestLogging();
 
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllers();
-            });
+            app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
 
             if (env.IsDevelopment())
             {
