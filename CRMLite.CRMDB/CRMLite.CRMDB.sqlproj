@@ -90,6 +90,7 @@
     <Build Include="dbo\Stored Procedures\CreateRole.sql" />
     <Build Include="dbo\Stored Procedures\PaginateLeads.sql" />
     <Build Include="dbo\Stored Procedures\GetCountLeads.sql" />
+    <Build Include="dbo\Tables\CRMLite.Table1.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="CRMLite.CRMDB.refactorlog" />
